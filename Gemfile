@@ -17,6 +17,10 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i(windows jruby)
+gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
+gem 'coderay' 
+gem 'carrierwave'
+gem "rails-i18n"
 
 group :development, :test do
   gem "debug", platforms: %i(mri windows)
