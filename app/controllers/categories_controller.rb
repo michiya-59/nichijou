@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     else
       flash[:error] = @category.errors.full_messages
     end
-    redirect_to new_category_path
+    redirect_to categories_path
   end
 
   def edit
@@ -28,7 +28,7 @@ class CategoriesController < ApplicationController
     else
       flash[:error] = @category.errors.full_messages
     end
-    redirect_to edit_category_path(@category)
+    redirect_to categories_path
   end
 
   def destroy
