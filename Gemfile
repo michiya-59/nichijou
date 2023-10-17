@@ -21,9 +21,21 @@ gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
 gem 'coderay' 
 gem 'carrierwave'
 gem "rails-i18n"
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem "sassc-rails"
+gem 'popper_js'
+gem 'bootstrap', '~> 5.3'
+gem 'mini_racer'
 
 group :development, :test do
-  gem "debug", platforms: %i(mri windows)
+  gem "brakeman", require: false
+  gem "bullet"
+  gem "byebug", platforms: %i(mri mingw x64_mingw)
+  gem "debug", platforms: %i(mri mingw x64_mingw)
+  gem "factory_bot_rails"
+  gem "pry-byebug"
+  gem "pry-rails"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-performance", require: false
@@ -34,7 +46,6 @@ end
 
 group :development do
   gem "brakeman", require: false
-  gem "rack-mini-profiler"
   gem "spring"
   gem "web-console"
 end
@@ -44,3 +55,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "cssbundling-rails", "~> 1.3"
