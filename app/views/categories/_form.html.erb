@@ -1,0 +1,13 @@
+<%= form_with model: @category do |f| %>
+  <%= render 'shared/error_messages'%>
+
+  <div>
+    <%= f.label :name, "カテゴリ名" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= link_to '戻る', categories_path, class: 'btn btn-warning mt-2' %>
+    <%= f.submit '更新', class: 'btn btn-info mt-2' %>  
+  </div>
+<% end %>

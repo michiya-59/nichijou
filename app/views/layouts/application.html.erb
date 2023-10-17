@@ -12,6 +12,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <% if current_admin %>
+        <div class="mt-2 row">
+          <!-- サイドバー部分 -->
+          <%= render 'shared/header' %>
+
+          <!-- メインコンテンツ部分 -->
+          <div class="col-md-9">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <!-- ログイン画面 -->
+        <%= yield %>
+      <% end %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      category:
+        name: カテゴリー名
+    errors:
+      models:
+        category:
+          attributes:
+            name:
+              blank: "を入力してください"

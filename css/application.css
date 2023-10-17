@@ -1,7 +1,4 @@
-// Sassy
-@import "destyle";
-
-.error_main{
+.error_main {
   padding: 10px;
   border: 1px solid #ffc1c1;
   background: #ffdddd;
@@ -11,29 +8,32 @@
   margin: 17px auto 0 0;
   border-radius: 5px;
   margin-bottom: 20px;
-  p{
-    font-size: 12px;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-    color: #8c1818;
-  }
-  li{
-    color: #8c1818;
-    list-style: none;
-  }
 }
-.error_content{
+.error_main p {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: #8c1818;
+}
+.error_main li {
+  color: #8c1818;
+  list-style: none;
+}
+
+.error_content {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.part_error{
+
+.part_error {
   color: #8c1818;
   margin: 0;
 }
-.success_dsn{
+
+.success_dsn {
   text-align: center;
-  background: #55c500b8;
+  background: rgba(85, 197, 0, 0.7215686275);
   border-radius: 5px;
   color: white;
   opacity: 0.8;
@@ -41,4 +41,4 @@
   width: 50%;
   margin: 1rem auto 1rem 0;
   font-size: 1.5rem;
-}
+}/*# sourceMappingURL=application.css.map */
