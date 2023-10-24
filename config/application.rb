@@ -19,10 +19,10 @@ module Nichijou
     config.autoload_lib(ignore: %w(assets tasks))
     config.generators do |g|
       g.test_framework :rspec,
-                      fixtures: false,
-                      view_specs: false,
-                      routing_specs: false,
-                      controller: false
+                       fixtures: false,
+                       view_specs: false,
+                       routing_specs: false,
+                       controller: false
     end
   end
 end

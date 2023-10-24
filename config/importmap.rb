@@ -12,4 +12,3 @@ pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.1.1/app/assets/javasc
 # 正しいBootstrapのバージョンのみを保持
 pin_all_from "app/javascript/shared", under: "shared"
 pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.3.2/dist/js/bootstrap.esm.js"
-

@@ -3,10 +3,11 @@
 
   <div>
     <%= f.label :name, "カテゴリ名" %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
 
-  <div>
+  <div class="mb-4">
     <%= link_to '戻る', categories_path, data: {turbo: false}, class: 'btn btn-warning mt-2' %>
     <%= f.submit '更新', data: {turbo: false}, class: 'btn btn-info mt-2' %>  
   </div>

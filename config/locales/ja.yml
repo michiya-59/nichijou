@@ -3,9 +3,27 @@ ja:
     attributes:
       category:
         name: カテゴリー名
+      area:
+        name: エリア名
+      store:
+        name: エリア名
+        tel: 電話番号
+        address: 住所
     errors:
       models:
         category:
           attributes:
             name:
+              blank: "を入力してください"
+        area:
+          attributes:
+            name:
+              blank: "を入力してください"
+        store:
+          attributes:
+            name:
+              blank: "を入力してください"
+            tel:
+              blank: "を入力してください"
+            address:
               blank: "を入力してください"

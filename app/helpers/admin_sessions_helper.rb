@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminSessionsHelper
   def login admin
     session[:admin_id] = admin.id

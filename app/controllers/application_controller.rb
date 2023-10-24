@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     redirect_to admin_login_path
   end
 
-    # 60分でセッションが切れて、ログアウトする処理
+  # 60分でセッションが切れて、ログアウトする処理
   def redirect_not_session
     return unless session[:expires_at]
 

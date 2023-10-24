@@ -3,7 +3,7 @@
     <%= active_link_to '投稿一覧', posts_path, data: {turbo: false}, class: "list-group-item list-group-item-action" %>
     <%= active_link_to 'カテゴリー一覧', categories_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
     <%= active_link_to 'エリア一覧', areas_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to '店舗情報一覧', areas_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
+    <%= active_link_to '店舗情報一覧', stores_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
     <%= link_to 'ログアウト', admin_logout_path, method: :delete, class: "list-group-item list-group-item-action" %>
   </div>
 </div>

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :set_category, only: %i(edit update destroy)
 
   def index
     @categories = Category.all
@@ -9,6 +11,8 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit; end
+
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -17,9 +21,6 @@ class CategoriesController < ApplicationController
       flash[:error] = @category.errors.full_messages
     end
     redirect_to categories_path
-  end
-
-  def edit
   end
 
   def update

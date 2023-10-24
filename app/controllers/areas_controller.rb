@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AreasController < ApplicationController
-  before_action :set_area, only: [:edit, :update, :destroy]
+  before_action :set_area, only: %i(edit update destroy)
 
   def index
     @areas = Area.all
@@ -9,6 +11,8 @@ class AreasController < ApplicationController
     @area = Area.new
   end
 
+  def edit; end
+
   def create
     @area = Area.new(area_params)
     if @area.save
@@ -17,9 +21,6 @@ class AreasController < ApplicationController
       flash[:error] = @area.errors.full_messages
     end
     redirect_to areas_path
-  end
-
-  def edit
   end
 
   def update
@@ -34,7 +35,7 @@ class AreasController < ApplicationController
   def destroy
     @area.destroy
     flash[:destroy] = "エリアを削除しました"
-    redirect_to areas_path, notice: 'エリアを削除しました'
+    redirect_to areas_path, notice: "エリアを削除しました"
   end
 
   private

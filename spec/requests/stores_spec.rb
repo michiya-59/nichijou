@@ -2,38 +2,31 @@
 
 require "rails_helper"
 
-RSpec.describe "Areas", type: :request do
-  describe "GET /new" do
+RSpec.describe "Stores", type: :request do
+  describe "GET /index" do
     it "returns http success" do
-      get "/areas/new"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /create" do
-    it "returns http success" do
-      get "/areas/create"
+      get "/stores/index"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/areas/edit"
+      get "/stores/edit"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /update" do
+    it "returns http success" do
+      get "/stores/update"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /destroy" do
     it "returns http success" do
-      get "/areas/destroy"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /index" do
-    it "returns http success" do
-      get "/areas/index"
+      get "/stores/destroy"
       expect(response).to have_http_status(:success)
     end
   end
