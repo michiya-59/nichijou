@@ -1,0 +1,32 @@
+<%= form_with model: @notice, url: (@notice.new_record? ? admin_notices_path : admin_notice_path(@notice)) do |f| %>
+
+  <%= render 'shared/error_messages'%>
+
+  <!-- タイトル -->
+  <div class="form-group">
+    <%= f.label :title, "タイトル", class: "mb-1 mt-3" %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.text_field :title, class: 'form-control', required: true %>
+  </div>
+
+  <!-- お知らせ内容 -->
+  <div class="form-group">
+    <%= f.label :content, "お知らせ内容", class: "mb-1 mt-3" %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.text_area :content, class: "form-control", id: "note_explanation", rows: "20", placeholder: "投稿内容を入力してください", required: true %>
+  </div>
+
+  <!-- 種類 -->
+  <div class="form-group">
+    <%= f.label :kind, "種類", class: "mb-1 mt-3" %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.select :kind, [[ "お知らせ", 1 ], [ "リリース", 2 ]], {}, class: "form-control" %>
+  </div>
+
+  <div class="mb-4">
+    <%= link_to '戻る', admin_notices_path, data: {turbo: false}, class: 'btn btn-warning mt-2' %>
+    <%= f.submit '更新', data: {turbo: false}, class: 'btn btn-info mt-2' %>  
+  </div>
+<% end %>
+
+

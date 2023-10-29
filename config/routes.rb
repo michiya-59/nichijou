@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :admin_categories, only: %i(index new create edit update destroy)
   resources :admin_areas, only: %i(index new create edit update destroy)
   resources :admin_stores
+  resources :admin_notices
 
   get "admin/login", to: "admin_sessions#new", as: :admin_login
   post "admin/login", to: "admin_sessions#create"

@@ -4,9 +4,9 @@ class AdminSessionsController < ApplicationController
   skip_before_action :authenticate_user, :redirect_not_logged_in, only: %i(new create destroy)
 
   def new
-    if current_admin
-      redirect_to admin_posts_path
-    end
+    return unless current_admin
+
+    redirect_to admin_posts_path
   end
 
   def create
