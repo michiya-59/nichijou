@@ -306,7 +306,7 @@ Style/MethodDefParentheses:
 
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
-  Max: 40
+  Max: 45
 
 Rails/HelperInstanceVariable:
   Enabled: false
@@ -545,4 +545,10 @@ Naming/AccessorMethodName:
   Enabled: false
 
 Lint/EmptyBlock:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Enabled: false
+
+Rails/BulkChangeTable:
   Enabled: false

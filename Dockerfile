@@ -1,6 +1,10 @@
 FROM ruby:3.2.1
 
 RUN apt update -qq && apt install -y postgresql-client
+
+RUN apt-get update
+RUN apt-get install -y vim
+
 RUN mkdir /nichijou
 WORKDIR /nichijou
 COPY Gemfile /nichijou/Gemfile

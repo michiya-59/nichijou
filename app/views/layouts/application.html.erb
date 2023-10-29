@@ -8,9 +8,24 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= yield(:js) %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <% if current_admin %>
+        <div class="mt-2 row">
+          <!-- サイドバー部分 -->
+          <%= render 'shared/header' %>
+
+          <!-- メインコンテンツ部分 -->
+          <div class="col-md-9">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1>投稿一覧</h1>
+
+<%= link_to '新しい投稿を追加', new_post_path, data: {turbo: false}, class: 'btn btn-primary mb-3' %>
+
+<% if flash[:success].present? %>
+  <div class="alert alert-success text-center mt-2">
+    <%= flash[:success].html_safe %>
+  </div>
+<% elsif flash[:destroy].present? %>
+  <div class="alert alert-danger text-center">
+    <%= flash[:destroy].html_safe %>
+  </div>
+<% end %>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>投稿日</th>
+      <th>投稿 店舗名</th>
+      <th>タイトル</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= post.store.name %></td>
+        <td><%= post.title %></td>
+        <td>
+          <%= link_to '詳細', post_path(post), data: {turbo: false}, class: 'btn btn-sm btn-success me-2' %> 
+          <%= link_to '編集', edit_post_path(post), data: {turbo: false}, class: 'btn btn-sm btn-warning me-2' %> 
+          <%= link_to '削除', post_path(post), data: { "turbo-method": :delete, turbo_confirm: "削除しますか？", turbo: false }, class: 'btn btn-sm btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

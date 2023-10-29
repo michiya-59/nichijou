@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :posts do
+    post "upload_content_image", on: :collection
+  end
+  resources :categories, only: %i(index new create edit update destroy)
+  resources :areas, only: %i(index new create edit update destroy)
+  resources :stores
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get "admin/login", to: "admin_sessions#new", as: :admin_login
+  post "admin/login", to: "admin_sessions#create"
+  get "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
 end
