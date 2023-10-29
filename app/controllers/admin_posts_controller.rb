@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PostsController < ApplicationController
+class AdminPostsController < ApplicationController
   before_action :set_post, only: %i(edit update destroy show)
   before_action :detail_set_post, only: %i(edit new)
 
@@ -20,27 +20,27 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     if @post.save
       flash[:success] = "投稿を追加しました"
-      redirect_to posts_path
+      redirect_to admin_posts_path
     else
       flash[:error] = @post.errors.full_messages
-      redirect_to new_post_path
+      redirect_to new_admin_post_path
     end
   end
 
   def update
     if @post.update(post_params)
       flash[:success] = "投稿を更新しました"
-      redirect_to posts_path
+      redirect_to admin_posts_path
     else
       flash[:error] = @post.errors.full_messages
-      redirect_to edit_post_path
+      redirect_to edit_admin_post_path
     end
   end
 
   def destroy
     @post.destroy
     flash[:destroy] = "投稿を削除しました"
-    redirect_to posts_path, notice: "投稿を削除しました"
+    redirect_to admin_posts_path, notice: "投稿を削除しました"
   end
 
   def upload_content_image

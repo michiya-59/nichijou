@@ -117,7 +117,7 @@ window.addEventListener('load', () => {
       var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
       // 非同期でサーバに画像ファイルを送信する
-      fetch('/posts/upload_content_image', {
+      fetch('/admin_posts/upload_content_image', {
         method: 'POST',
         headers: {
           'X-CSRF-Token': token,

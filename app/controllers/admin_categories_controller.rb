@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CategoriesController < ApplicationController
+class AdminCategoriesController < ApplicationController
   before_action :set_category, only: %i(edit update destroy)
 
   def index
@@ -17,25 +17,27 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "カテゴリーを追加しました"
+      redirect_to admin_categories_path
     else
       flash[:error] = @category.errors.full_messages
+      redirect_to new_admin_category_path
     end
-    redirect_to categories_path
   end
 
   def update
     if @category.update(category_params)
       flash[:success] = "カテゴリーを更新しました"
+      redirect_to admin_categories_path
     else
       flash[:error] = @category.errors.full_messages
+      redirect_to edit_admin_category_path
     end
-    redirect_to categories_path
   end
 
   def destroy
     @category.destroy
     flash[:destroy] = "カテゴリーを削除しました"
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   private

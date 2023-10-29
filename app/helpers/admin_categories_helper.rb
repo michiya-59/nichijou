@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-module StoresHelper
+module AdminCategoriesHelper
 end

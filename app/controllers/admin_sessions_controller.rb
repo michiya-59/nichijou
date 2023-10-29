@@ -3,13 +3,17 @@
 class AdminSessionsController < ApplicationController
   skip_before_action :authenticate_user, :redirect_not_logged_in, only: %i(new create destroy)
 
-  def new; end
+  def new
+    return unless current_admin
+
+    redirect_to admin_posts_path
+  end
 
   def create
     admin = AdminUser.find_by(login_id: params[:login_id])
     if admin&.authenticate(params[:password])
       login admin
-      redirect_to posts_path
+      redirect_to admin_posts_path
     else
       flash[:alert] = "ログインIDまたはパスワードが間違っています"
       redirect_to admin_login_path

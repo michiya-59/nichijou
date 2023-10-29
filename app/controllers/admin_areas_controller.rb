@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AreasController < ApplicationController
+class AdminAreasController < ApplicationController
   before_action :set_area, only: %i(edit update destroy)
 
   def index
@@ -20,7 +20,7 @@ class AreasController < ApplicationController
     else
       flash[:error] = @area.errors.full_messages
     end
-    redirect_to areas_path
+    redirect_to admin_areas_path
   end
 
   def update
@@ -29,13 +29,13 @@ class AreasController < ApplicationController
     else
       flash[:error] = @area.errors.full_messages
     end
-    redirect_to areas_path
+    redirect_to admin_areas_path
   end
 
   def destroy
     @area.destroy
     flash[:destroy] = "エリアを削除しました"
-    redirect_to areas_path, notice: "エリアを削除しました"
+    redirect_to admin_areas_path, notice: "エリアを削除しました"
   end
 
   private

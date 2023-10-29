@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_25_234612) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_29_115554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_25_234612) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_images_on_post_id"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.integer "kind", comment: "お知らせ種類"
+    t.text "content", comment: "お知らせ内容"
+    t.text "title", comment: "お知らせタイトル"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
