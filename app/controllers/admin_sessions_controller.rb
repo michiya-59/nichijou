@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AdminSessionsController < ApplicationController
+  skip_before_action :authenticate_user, :redirect_not_logged_in, only: %i(new create destroy)
+
   def new; end
 
   def create

@@ -2,12 +2,13 @@
 
 class ApplicationController < ActionController::Base
   include(AdminSessionsHelper)
-  # before_action :authenticate_user, :redirect_not_logged_in, :redirect_not_session
+  before_action :authenticate_user, :redirect_not_logged_in
 
   # ログインされていない場合またはURLが直接操作されてた場合の処理
   def authenticate_user
     return if logged_in? && valid_referrer?
 
+    reset_session
     flash[:logout] = "不正なアクセスがありました。<br>再度ログインをしてください。"
     redirect_to admin_login_path
   end
@@ -16,23 +17,8 @@ class ApplicationController < ActionController::Base
   def redirect_not_logged_in
     return if current_admin
 
-    flash[:logout] = "ログインされてません。ログインしてください。"
-    redirect_to admin_login_path
-  end
-
-  # 60分でセッションが切れて、ログアウトする処理
-  def redirect_not_session
-    return unless session[:expires_at]
-
-    # session[:expires_at] を Time オブジェクトとして読み込み
-    expires_at = Time.zone.parse(session[:expires_at].to_s)
-    # 現在の時間との差を比較
-    session_out_time = Time.zone.now - expires_at
-
-    return unless session_out_time > 0
-
     reset_session
-    flash[:logout] = "セッションが切れました<br>（60分間ご利用でない場合、または不正アクセスのため）"
+    flash[:logout] = "ログインされてません。ログインしてください。"
     redirect_to admin_login_path
   end
 

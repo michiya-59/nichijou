@@ -4,7 +4,7 @@
 
 <%= link_to '新しいエリアを追加', new_area_path, data: {turbo: false}, class: 'btn btn-primary mb-3' %>
 <% if flash[:success].present? %>
-  <div class="alert alert-success text-center">
+  <div class="alert alert-success text-center mt-2">
     <%= flash[:success].html_safe %>
   </div>
 <% elsif flash[:destroy].present? %>
@@ -15,13 +15,16 @@
 <table class="table table-bordered table-hover">
   <thead class="table-light">
     <tr>
-      <th>エリア名</th>
+      <th>都道府県</th>
+      <th>市区郡</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @areas.each do |area| %>
       <tr>
         <td><%= area.name %></td>
+        <td><%= area.city_name %></td>
         <td>
           <%= link_to '編集', edit_area_path(area), data: {turbo: false}, class: 'btn btn-sm btn-warning me-2' %> 
           <%= link_to '削除', area_path(area), data: { "turbo-method": :delete, turbo_confirm: "削除しますか？"}, class: 'btn btn-sm btn-danger' %>

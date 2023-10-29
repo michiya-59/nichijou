@@ -7,7 +7,7 @@
 <% end %>
 
 <% if flash[:logout].present? %>
-  <div class="alert alert-success text-center">
+  <div class="alert alert-danger text-center mt-2">
     <%= flash[:logout].html_safe %>
   </div>
 <% end %>

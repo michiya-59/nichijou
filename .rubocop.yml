@@ -549,3 +549,6 @@ Lint/EmptyBlock:
 
 Rails/ReversibleMigration:
   Enabled: false
+
+Rails/BulkChangeTable:
+  Enabled: false

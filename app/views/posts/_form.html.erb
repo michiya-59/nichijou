@@ -1,0 +1,89 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/mark_down_btns" %>
+  <%= javascript_import_module_tag "shared/mark_down_preview" %>
+<% end %>
+
+<%= form_with model: @post, html: { enctype: 'multipart/form-data' } do |f| %>
+  <%= render 'shared/error_messages'%>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div>
+        <!-- タイトル -->
+        <div class="form-group">
+          <%= f.label :title, "タイトル", class: "mb-1 mt-3" %>
+          <span class="badge bg-danger form_require">必須項目</span>
+          <%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください", required: true %>
+        </div>
+
+        <!-- トップ写真 -->
+        <div class="form-group">
+          <%= f.label :top_image, "トップ写真", class: "mb-1 mt-3" %>
+          <span class="badge bg-danger form_require">必須項目</span>
+          
+          <% if @post.top_image.attached? %>
+            <div class="mb-3">
+              <%= image_tag @post.top_image, class: 'img-thumbnail' %>
+              <p>現在の画像</p>
+            </div>
+            <%= f.file_field :top_image, class: "form-control" %>
+          <% else %>
+            <%= f.file_field :top_image, class: "form-control", required: true %>
+          <% end %>
+          <span class="input_example red">アップロードできる形式は「png・jpeg・jpg」のみになります。</span>
+        </div>
+
+        <!-- カテゴリー -->
+        <div class="form-group">
+          <%= f.label :category_id, "カテゴリー", class: "mb-1 mt-3" %>
+          <span class="badge bg-danger form_require">必須項目</span>
+          <%= f.select :category_id, @categories.map { |category| [category.name, category.id] }, {}, class: "form-control" %>
+        </div>
+
+        <!-- エリア -->
+        <div class="form-group">
+          <%= f.label :area_id, "エリア", class: "mb-1 mt-3" %>
+          <span class="badge bg-danger form_require">必須項目</span>
+          <%= f.select :area_id, @areas.map { |area| [area.name, area.id] }, {}, class: "form-control" %>
+        </div>
+
+        <!-- 店舗情報 -->
+        <div class="form-group">
+          <%= f.label :store_id, "店舗情報", class: "mb-1 mt-3" %>
+          <span class="badge bg-danger form_require">必須項目</span>
+          <%= f.select :store_id, @stores.map { |store| [store.name, store.id] }, {}, class: "form-control" %>
+        </div>
+
+        <!-- プレビューボタンと編集に戻るボタンの追加 -->
+        <div class="preview-button-group mt-4 mb-2">
+          <button id="markdown-preview" class="btn btn-secondary">プレビュー</button>
+          <button id="markdown-edit" class="btn btn-secondary" style="display: none;">編集に戻る</button>
+        </div>
+
+        <!-- 投稿内容 -->
+        <div class="form-group">
+          <%= f.label :content, "投稿内容", class: "mb-1 " %>
+          <span class="badge bg-danger form_require">必須項目</span><br>
+          <%= render 'mark_down_btns' %>
+          <%= f.text_area :content, class: "form-control", id: "note_explanation", rows: "30", placeholder: "投稿内容を入力してください", required: true %>
+
+          <!-- プレビューエリアの追加 -->
+          <div id="markdown-preview" class="form-control mt-2" style="display: none;"></div>
+
+          <!-- プレビューボタンと編集に戻るボタンの追加 -->
+          <div class="preview-button-group mt-2 mb-2">
+            <button id="markdown-preview-bottom" class="btn btn-secondary">プレビュー</button>
+            <button id="markdown-edit-bottom" class="btn btn-secondary" style="display: none;">編集に戻る</button>
+          </div>
+        </div>
+        <%= f.hidden_field :view_count, value: 0 %>
+
+        <!-- 送信ボタン -->
+        <div class="mt-2 mb-5">
+          <%= link_to '戻る', posts_path, data: {turbo: false}, class: 'btn btn-warning' %>
+          <%= f.submit "更新する", class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

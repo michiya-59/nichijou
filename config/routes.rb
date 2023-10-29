@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    post "upload_content_image", on: :collection
+  end
   resources :categories, only: %i(index new create edit update destroy)
   resources :areas, only: %i(index new create edit update destroy)
   resources :stores

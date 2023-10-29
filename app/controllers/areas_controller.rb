@@ -45,6 +45,6 @@ class AreasController < ApplicationController
   end
 
   def area_params
-    params.require(:area).permit(:name)
+    params.require(:area).permit(:name, :city_name)
   end
 end

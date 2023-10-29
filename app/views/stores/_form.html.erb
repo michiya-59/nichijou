@@ -20,6 +20,12 @@
     <span class="input_example">入力例：〒000-111 東京都品川区高輪テスト1-1　※郵便番号も含めて全て入力してください。</span>
   </div>
   <div class="mt-1">
+    <%= f.label :google_map_url, "住所 Google MapのURL" %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.text_field :google_map_url, class: 'form-control', required: true %>
+    <span class="input_example">※ 該当住所のGoogle Mapを開く → 「共有」をクリック → 「地図を埋め込む」 → 「HTMLをコピーをクリック」</span>
+  </div>
+  <div class="mt-1">
     <%= f.label :name, "徒歩 アクセス方法" %>
     <%= f.text_field :access, class: 'form-control' %>
     <span class="input_example">入力例：相模原線 橋本駅から徒歩10分</span>

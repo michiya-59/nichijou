@@ -4,7 +4,7 @@
 
 <%= link_to '新しい店舗を追加', new_store_path, data: {turbo: false}, class: 'btn btn-primary mb-3' %>
 <% if flash[:success].present? %>
-  <div class="alert alert-success text-center">
+  <div class="alert alert-success text-center mt-2">
     <%= flash[:success].html_safe %>
   </div>
 <% elsif flash[:destroy].present? %>
@@ -16,6 +16,7 @@
   <thead class="table-light">
     <tr>
       <th>店舗名</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>

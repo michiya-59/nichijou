@@ -2,9 +2,15 @@
   <%= render 'shared/error_messages'%>
 
   <div>
-    <%= f.label :name, "エリア名" %>
+    <%= f.label :name, "都道府県" %>
     <span class="badge bg-danger form_require">必須項目</span>
     <%= f.text_field :name, class: 'form-control', required: true %>
+  </div>
+
+  <div>
+    <%= f.label :name, "市区郡" %>
+    <span class="badge bg-danger form_require">必須項目</span>
+    <%= f.text_field :city_name, class: 'form-control', required: true %>
   </div>
 
   <div class="mb-4">

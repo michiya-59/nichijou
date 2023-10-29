@@ -47,7 +47,7 @@ class StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :tel, :address, :access, :access2,
+    params.require(:store).permit(:name, :tel, :address, :google_map_url, :access, :access2,
                                   :nearest_station, :nearest_station2, :sales_time_lanch_weekday,
                                   :sales_time_lanch_holiday, :sales_time_dinner_weekday,
                                   :sales_time_dinner_holiday, :holiday, :pay_methods, :homepage_url,
