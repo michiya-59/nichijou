@@ -1,0 +1,48 @@
+ja:
+  activerecord:
+    attributes:
+      category:
+        name: カテゴリー名
+      area:
+        name: エリア名
+      store:
+        name: エリア名
+        tel: 電話番号
+        address: 住所
+      post:
+        name: 投稿名
+        top_image: トップ画像
+        category_id: カテゴリー
+        area_id: エリア
+        store_id: 店舗
+        content: 投稿内容
+    errors:
+      models:
+        category:
+          attributes:
+            name:
+              blank: "を入力してください"
+        area:
+          attributes:
+            name:
+              blank: "を入力してください"
+        store:
+          attributes:
+            name:
+              blank: "を入力してください"
+            tel:
+              blank: "を入力してください"
+            address:
+              blank: "を入力してください"
+        post:
+          attributes:
+            name:
+              blank: "を入力してください"
+            top_image:
+              blank: "を選択してください"
+            category_id:
+              blank: "を選択してください"
+            area_id:
+              blank: "を選択してください"
+            store_id:
+              blank: "を選択してください"

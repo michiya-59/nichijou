@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nichijou</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= yield(:js) %>
+  </head>
+
+  <body>
+    <div class="container">
+      <% if current_admin %>
+        <div class="mt-2 row">
+          <!-- サイドバー部分 -->
+          <%= render 'shared/header' %>
+
+          <!-- メインコンテンツ部分 -->
+          <div class="col-md-9">
+            <%= yield %>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
+    </div>
+  </body>
+</html>
