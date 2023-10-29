@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StoresController < ApplicationController
+class AdminStoresController < ApplicationController
   before_action :set_store, only: %i(edit update destroy show)
 
   def index
@@ -19,25 +19,27 @@ class StoresController < ApplicationController
     @store = Store.new(store_params)
     if @store.save
       flash[:success] = "店舗情報を追加しました"
+      redirect_to admin_stores_path
     else
       flash[:error] = @store.errors.full_messages
+      redirect_to new_admin_store_path
     end
-    redirect_to stores_path
   end
 
   def update
     if @store.update(store_params)
       flash[:success] = "店舗情報を更新しました"
+      redirect_to admin_stores_path
     else
       flash[:error] = @store.errors.full_messages
+      redirect_to edit_admin_admin_store_path
     end
-    redirect_to stores_path
   end
 
   def destroy
     @store.destroy
     flash[:destroy] = "店舗情報を削除しました"
-    redirect_to stores_path
+    redirect_to admin_stores_path
   end
 
   private
