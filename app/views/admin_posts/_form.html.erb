@@ -1,6 +1,7 @@
 <% content_for :js do %>
   <%= javascript_import_module_tag "shared/mark_down_btns" %>
   <%= javascript_import_module_tag "shared/mark_down_preview" %>
+  <%= javascript_import_module_tag "fontawesome" %>
 <% end %>
 
 <%= form_with model: @post, url: (@post.new_record? ? admin_posts_path : admin_post_path(@post)), html: { enctype: 'multipart/form-data' } do |f| %>
@@ -26,9 +27,9 @@
               <%= image_tag @post.top_image, class: 'img-thumbnail' %>
               <p>現在の画像</p>
             </div>
-            <%= f.file_field :top_image, class: "form-control" %>
+            <%= f.file_field :top_image, class: "form-control", id: "top_image_file" %>
           <% else %>
-            <%= f.file_field :top_image, class: "form-control", required: true %>
+            <%= f.file_field :top_image, class: "form-control", id: "top_image_file", required: true %>
           <% end %>
           <span class="input_example red">アップロードできる形式は「png・jpeg・jpg」のみになります。</span>
         </div>

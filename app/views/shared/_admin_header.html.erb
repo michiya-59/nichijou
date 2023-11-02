@@ -1,0 +1,10 @@
+<div class="col-md-3">
+  <div class="list-group">
+    <%= active_link_to '投稿一覧', admin_posts_path, data: {turbo: false}, class: "list-group-item list-group-item-action" %>
+    <%= active_link_to 'カテゴリー一覧', admin_categories_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
+    <%= active_link_to 'エリア一覧', admin_areas_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
+    <%= active_link_to '店舗情報一覧', admin_stores_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
+    <%= active_link_to 'お知らせ一覧', admin_notices_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
+    <%= link_to 'ログアウト', admin_logout_path, method: :delete, class: "list-group-item list-group-item-action" %>
+  </div>
+</div>

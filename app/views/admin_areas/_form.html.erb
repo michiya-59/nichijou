@@ -2,14 +2,14 @@
 
   <%= render 'shared/error_messages'%>
 
-  <div>
-    <%= f.label :name, "都道府県" %>
+  <div class="form-group">
+    <%= f.label :name, "都道府県", class: "mb-1 mt-3" %>
     <span class="badge bg-danger form_require">必須項目</span>
-    <%= f.text_field :name, class: 'form-control', required: true %>
+    <%= f.select :name, Area::LIST.map { |name| [name, name] }, { prompt: '都道府県を選択してください' }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= f.label :name, "市区郡" %>
+  <div class="form-group">
+    <%= f.label :name, "市区郡", class: "mb-1 mt-3" %>
     <span class="badge bg-danger form_require">必須項目</span>
     <%= f.text_field :city_name, class: 'form-control', required: true %>
   </div>

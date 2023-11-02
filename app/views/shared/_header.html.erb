@@ -1,10 +1,32 @@
-<div class="col-md-3">
-  <div class="list-group">
-    <%= active_link_to '投稿一覧', admin_posts_path, data: {turbo: false}, class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'カテゴリー一覧', admin_categories_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'エリア一覧', admin_areas_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to '店舗情報一覧', admin_stores_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'お知らせ一覧', admin_notices_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= link_to 'ログアウト', admin_logout_path, method: :delete, class: "list-group-item list-group-item-action" %>
+<header>
+  <div class="header">
+    <div class="header_left">
+      <%= link_to root_path, data: { turbolinks: false }  do %>
+        <%= image_tag "1.png", alt: "日常街のポータル" %>
+      <% end %>
+    </div>
+    <div class="header_right">
+      <ul class="nav_menu">
+        <li><%= link_to "日常街のポータルとは", about_path %></li>
+        <li><%= link_to "おすすめ", "#" %></li>
+        <li><%= link_to "新着記事", "#" %></li>
+        <li><%= link_to "お知らせ", "#" %></li>
+        <li><%= link_to "問い合わせ", "#" %></li>
+      </ul>
+    </div>
+    <div class="header_right_mobile">
+      <div id="nav-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul id="mobile-nav">
+        <li><%= link_to "日常街のポータルとは", about_path %></li>
+        <li><%= link_to "おすすめ", "#" %></li>
+        <li><%= link_to "新着記事", "#" %></li>
+        <li><%= link_to "お知らせ", "#" %></li>
+        <li><%= link_to "問い合わせ", "#" %></li>
+      </ul>
+    </div>
   </div>
-</div>
+</header>

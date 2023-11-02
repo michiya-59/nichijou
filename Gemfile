@@ -32,6 +32,8 @@ gem "nokogiri"
 gem "rack-cache"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
+gem "font-awesome-sass", "~> 6.4.2"
+
 
 group :development, :test do
   gem "brakeman", require: false

@@ -1,0 +1,168 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "slick_setup" %>
+  <%= javascript_import_module_tag "shared/hamburger" %>
+<% end %>
+
+<main>
+  <section class="main_top">
+    <div class="top_message">
+      <h1>日常街のポータルで</h1>
+      <h1>あなたの街が輝く瞬間へ</h1>
+    </div>
+    <div class="slider">
+      <div><%= image_tag "image.webp" %></div>
+      <div><%= image_tag "image2.webp" %></div>
+      <div><%= image_tag "image3.webp" %></div>
+      <div><%= image_tag "image4.webp" %></div>
+      <div><%= image_tag "image5.webp" %></div>
+      <div><%= image_tag "image6.webp" %></div>
+      <div><%= image_tag "image7.webp" %></div>
+      <div><%= image_tag "image8.webp" %></div>
+      <div><%= image_tag "image9.webp" %></div>
+      <div><%= image_tag "image10.webp" %></div>
+    </div>
+  </section>
+  <div class="front_main_container">
+    <div class="main_content">
+      <section class="content_left">
+        <div class="top_picks">
+          <div class="common_title">
+            <h2>
+              TOP PICKS <span>おすすめ</span>
+            </h2>
+          </div>
+          <% if @top_pick_articles.present? %>
+            <div class="common_content">
+              <% @top_pick_articles.each do |top_pick_article| %>
+                <%= link_to "#", class: "common_content_part" do %>
+                  <div class="image_part">
+                    <%= image_tag top_pick_article.top_image if top_pick_article.top_image.attached? %>
+                  </div>
+                  <p><%= truncate_content(top_pick_article.title, 33) %></p>
+                  <p><%= top_pick_article.created_at.strftime("%Y/%m/%d") %></p>
+                <% end %>
+              <% end %>
+            </div>
+            <%= link_to "More", "#", class: "more_btn" %>
+          <% else %>
+            <p class="not_content">記事がひとつもありません。</p>
+          <% end %>
+        </div>
+        <div class="news">
+          <div class="common_title">
+            <h2>
+              News <span>新着記事</span>
+            </h2>
+          </div>
+          <% if @news_articles.present? %>
+            <div class="common_content">
+              <% @news_articles.each do |news_article| %>
+                <%= link_to "#", class: "common_content_part" do %>
+                  <div class="image_part">
+                    <%= image_tag news_article.top_image if news_article.top_image.attached? %>
+                  </div>
+                  <p><%= truncate_content(news_article.title, 33) %></p>
+                  <p><%= news_article.created_at.strftime("%Y/%m/%d") %></p>
+                <% end %>
+              <% end %>
+            </div>
+            <%= link_to "More", "#", class: "more_btn" %>
+          <% else %>
+            <p class="not_content">記事がひとつもありません。</p>
+          <% end %>
+        </div>
+      </section>
+      <aside class="content_right">
+        <div class="ranking">
+          <div class="common_title">
+            <h2>
+              Ranking <span>ランキング</span>
+            </h2>
+          </div>
+          <% if @ranking_articles.present? %>
+            <div class="ranking_content">
+              <% @ranking_articles.each.with_index(1) do |ranking_article, idx|  %>
+                <%= link_to "#", class: "ranking_content_part" do %>
+                  <div class="ranking_left_img">
+                    <span><%= image_tag "ranking_#{idx}.svg", alt: "ランキング#{idx}" %></span>
+                    <%= image_tag ranking_article.top_image if ranking_article.top_image.attached? %>
+                  </div>
+                  <div class="ranking_right_content">
+                    <p class="ranking_article"><%= truncate_content(ranking_article.title, 30) %></p>
+                    <p class="tag"><%= ranking_article.category.name %></p>
+                    <div class="clock">
+                      <div class="clock_img">
+                        <%= image_tag "clock.svg", alt: "時計アイコン" %>
+                      </div>
+                      <p><%= ranking_article.created_at.strftime("%Y/%m/%d") %></p>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="not_content">記事がひとつもありません。</p>
+          <% end %>
+        </div>
+        <%= form_with url: "#", method: :get, id: "search_form" do |form| %>
+          <div class="search_container">
+            <%= form.text_field :search_item, id: "search_input", placeholder: "検索記事" %>
+            <span id="search_icon">
+              <%= image_tag "search.svg", alt: "検索画像" %>
+            </span>
+          </div>
+        <% end %>
+        
+        <div class="common_title">
+          <h2>
+            CATEGORY <span>カテゴリー</span>
+          </h2>
+        </div>
+        <% if @categories.present? %>
+          <div class="tag_list">
+            <% @categories.each do |category| %>
+              <%= link_to category.name, "#" %>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="not_content">カテゴリーがひとつもありません。</p>
+        <% end %>
+
+        <div class="common_title">
+          <h2>
+            AREA <span>エリア</span>
+          </h2>
+        </div>
+        <% if @areas.present? %>
+          <div class="area_list">
+            <% @areas.each do |area| %>
+              <a href="#">
+                <span><%= area.name %></span>
+                <%= image_tag "#{area.name}.webp", alt: "#{area.name}の風景" %>
+              </a>
+            <% end %>
+          </div>
+        <% end %>
+      </aside>
+    </div>
+    <div class="notice_list">
+      <% if @notices.present? %>
+        <% @notices.each do |notice| %>
+          <div class="notice_part">
+            <div class="notice_kind_content">
+              <p class="notice_time"><%= notice.created_at.strftime('%Y.%m.%d') %></p>
+              <p class="notice_kind <%= get_notice_kind_classname notice.kind %>"><%= get_notice_kind_name notice.kind %></p>
+            </div>
+            <%= link_to "#", class: "notice_body" do %>
+              <%= truncate_content(notice.content, 50) %>
+              <span>
+                <%= image_tag "arrow.svg" %>
+              </span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</main>

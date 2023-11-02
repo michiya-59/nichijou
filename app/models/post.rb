@@ -10,8 +10,10 @@ class Post < ApplicationRecord
   validates :top_image, presence: true
   validates :content, presence: true
   validates :view_count, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
-
   validate :acceptable_image
+
+  scope :by_view_count, -> { order(view_count: :desc) }
+  scope :recent, -> { order(created_at: :desc) }
 
   def acceptable_image
     return unless top_image.attached?

@@ -49,6 +49,35 @@ document.addEventListener('DOMContentLoaded', function() {
   markdownPreviewButtonBottom.addEventListener('click', switchToPreview);
   markdownEditButtonTop.addEventListener('click', switchToEdit);
   markdownEditButtonBottom.addEventListener('click', switchToEdit);
+
+
+  const fileInput = document.getElementById("top_image_file");
+
+  if (fileInput) {
+    fileInput.addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      
+      if (!file) return; // ファイルが選択されていない場合は何もしない
+      
+      // 1MBをバイト単位で定義
+      const ONE_MB = 1 * 1024 * 1024;
+      
+      // ファイルサイズのバリデーション
+      if (file.size > ONE_MB) {
+        alert("画像は1MB以下のものをアップロードしてください。");
+        event.target.value = '';  // ファイルの選択をクリア
+        return;
+      }
+      
+      // ファイルタイプのバリデーション
+      const acceptableTypes = ["image/jpeg", "image/png", "image/jpg"];
+      if (!acceptableTypes.includes(file.type)) {
+        alert("画像はJPEGまたはPNG形式でアップロードしてください。");
+        event.target.value = '';  // ファイルの選択をクリア
+        return;
+      }
+    });
+  }
 });
 
 
