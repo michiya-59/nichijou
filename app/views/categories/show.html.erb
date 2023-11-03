@@ -3,14 +3,14 @@
     <p class="pankuzu">
       <%= link_to 'ホーム', root_path, class: 'common_a' %>
       >
-      <%= @tag_name %>
+      <%= @category&.name %>の記事一覧
     </p>
     <div class="main_content">
       <section class="content_left">
         <div class="news">
           <div class="common_title">
             <h2>
-              <%= @title_en %> <span><%= @title_ja %></span>
+              <%= @category&.name %><span>による検索結果</span>
             </h2>
           </div>
           <% if @articles.present? %>
@@ -29,7 +29,7 @@
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
 
-          <%= paginate @articles, theme: 'article_custom_paginator' %>
+          <%= paginate @articles, theme: 'category_article_custom_paginator' %>
         </div>
       </section>
       <%= render partial: "shared/sidebar", locals: { 

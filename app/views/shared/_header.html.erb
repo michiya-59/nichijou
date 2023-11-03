@@ -1,7 +1,7 @@
 <header>
   <div class="header">
     <div class="header_left">
-      <%= link_to root_path, data: { turbolinks: false }  do %>
+      <%= link_to root_path do %>
         <%= image_tag "1.png", alt: "日常街のポータル" %>
       <% end %>
     </div>
@@ -10,10 +10,10 @@
         <li class="<%= 'active_header_menu' if current_page?(about_path) %>">
           <%= link_to "日常街のポータルとは", about_path %>
         </li>
-        <li class="<%= 'active_header_menu' if current_page?(articles_path(type: 'recommend')) %>">
+        <li class="<%= 'active_header_menu' if controller_name == 'articles' && params[:type] == 'recommend' %>">
           <%= link_to "おすすめ", articles_path(type: 'recommend') %>
         </li>
-        <li class="<%= 'active_header_menu' if current_page?(articles_path(type: 'news')) %>">
+        <li class="<%= 'active_header_menu' if controller_name == 'articles' && params[:type] == 'news' %>">
           <%= link_to "新着記事", articles_path(type: 'news') %>
         </li>
         <li class="<%= 'active_header_menu' if current_page?('#') %>">

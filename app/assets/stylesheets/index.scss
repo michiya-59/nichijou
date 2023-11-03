@@ -92,11 +92,10 @@ $beige: #BB915B;
 .common_content{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   .common_content_part{
     width: 30%;
-    margin-bottom: 2rem;
     display: block;
+    margin: 0 2rem 2rem 0;
     .image_part{
       height: 14rem;
       img{

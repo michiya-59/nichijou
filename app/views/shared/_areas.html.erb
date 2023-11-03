@@ -5,11 +5,11 @@
 </div>
 <% if areas.present? %>
   <div class="area_list">
-    <% areas.each do |area| %>
-      <a href="#">
-        <span><%= area.name %></span>
-        <%= image_tag "#{area.name}.webp", alt: "#{area.name}の風景" %>
-      </a>
+    <% areas&.each do |area| %>
+      <%= link_to area_path(area) do %>
+        <span><%= area&.name %></span>
+        <%= image_tag "#{area&.name}.webp", alt: "#{area&.name}の風景" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

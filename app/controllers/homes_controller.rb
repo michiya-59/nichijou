@@ -6,7 +6,7 @@ class HomesController < ApplicationController
   def index
     @top_pick_articles = get_offset_number 6
     @news_articles = Post.with_attached_top_image.recent.limit(6)
-    @notices = Notice.order(created_at: :desc).limit(5)
+    @notices = Notice.order(created_at: :asc).limit(5)
   end
 
   def about; end
@@ -18,8 +18,8 @@ class HomesController < ApplicationController
   private
 
   def get_offset_number limit_number
-    offset_number = Post.order(view_count: :desc).offset(5).limit(6).count < 5 ? 0 : 5
-    Post.with_attached_top_image.order(view_count: :desc).offset(offset_number).limit(limit_number)
+    offset_number = Post.order(view_count: :asc).offset(5).limit(6).count < 5 ? 0 : 5
+    Post.with_attached_top_image.order(view_count: :asc).offset(offset_number).limit(limit_number)
   end
 
   def load_data
