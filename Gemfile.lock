@@ -270,6 +270,8 @@ GEM
     rails-i18n (7.0.8)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     railties (7.1.1)
       actionpack (= 7.1.1)
       activesupport (= 7.1.1)
@@ -376,10 +378,6 @@ GEM
     thor (1.2.2)
     tilt (2.3.0)
     timeout (0.4.0)
-    turbo-rails (1.5.0)
-      actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
@@ -436,6 +434,7 @@ DEPENDENCIES
   rack-cache
   rails (~> 7.1.1)
   rails-i18n
+  rails-ujs
   redcarpet (~> 2.3.0)
   redis (>= 4.0.1)
   rouge
@@ -450,7 +449,6 @@ DEPENDENCIES
   spring-commands-rspec
   sprockets-rails
   stimulus-rails
-  turbo-rails
   tzinfo-data
   web-console
   webdrivers

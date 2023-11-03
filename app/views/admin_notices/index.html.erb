@@ -2,7 +2,7 @@
 
 <h1 class="mb-3">お知らせ一覧</h1>
 
-<%= link_to '新しいお知らせを追加', new_admin_notice_path, data: {turbo: false}, class: 'btn btn-primary mb-3' %>
+<%= link_to '新しいお知らせを追加', new_admin_notice_path, class: 'btn btn-primary mb-3' %>
 <% if flash[:success].present? %>
   <div class="alert alert-success text-center mt-2">
     <%= flash[:success].html_safe %>
@@ -29,8 +29,8 @@
         <td><%= notice.title %></td>
         <td><%= notice.kind == 1 ? "お知らせ" : (notice.kind == 2 ? "リリース" : "未知") %></td>
         <td>
-          <%= link_to '編集', edit_admin_notice_path(notice), data: {turbo: false}, class: 'btn btn-sm btn-warning me-2' %> 
-          <%= link_to '削除', admin_notice_path(notice), data: { "turbo-method": :delete, turbo_confirm: "削除しますか？"}, class: 'btn btn-sm btn-danger' %>
+          <%= link_to '編集', edit_admin_notice_path(notice), class: 'btn btn-sm btn-warning me-2' %> 
+          <%= link_to '削除', admin_notice_path(notice), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>
