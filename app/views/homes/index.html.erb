@@ -72,78 +72,11 @@
           <% end %>
         </div>
       </section>
-      <aside class="content_right">
-        <div class="ranking">
-          <div class="common_title">
-            <h2>
-              Ranking <span>ランキング</span>
-            </h2>
-          </div>
-          <% if @ranking_articles.present? %>
-            <div class="ranking_content">
-              <% @ranking_articles.each.with_index(1) do |ranking_article, idx|  %>
-                <%= link_to "#", class: "ranking_content_part" do %>
-                  <div class="ranking_left_img">
-                    <span><%= image_tag "ranking_#{idx}.svg", alt: "ランキング#{idx}" %></span>
-                    <%= image_tag ranking_article.top_image if ranking_article.top_image.attached? %>
-                  </div>
-                  <div class="ranking_right_content">
-                    <p class="ranking_article"><%= truncate_content(ranking_article.title, 30) %></p>
-                    <p class="tag"><%= ranking_article.category.name %></p>
-                    <div class="clock">
-                      <div class="clock_img">
-                        <%= image_tag "clock.svg", alt: "時計アイコン" %>
-                      </div>
-                      <p><%= ranking_article.created_at.strftime("%Y/%m/%d") %></p>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          <% else %>
-            <p class="not_content">記事がひとつもありません。</p>
-          <% end %>
-        </div>
-        <%= form_with url: "#", method: :get, id: "search_form" do |form| %>
-          <div class="search_container">
-            <%= form.text_field :search_item, id: "search_input", placeholder: "検索記事" %>
-            <span id="search_icon">
-              <%= image_tag "search.svg", alt: "検索画像" %>
-            </span>
-          </div>
-        <% end %>
-        
-        <div class="common_title">
-          <h2>
-            CATEGORY <span>カテゴリー</span>
-          </h2>
-        </div>
-        <% if @categories.present? %>
-          <div class="tag_list">
-            <% @categories.each do |category| %>
-              <%= link_to category.name, "#" %>
-            <% end %>
-          </div>
-        <% else %>
-          <p class="not_content">カテゴリーがひとつもありません。</p>
-        <% end %>
-
-        <div class="common_title">
-          <h2>
-            AREA <span>エリア</span>
-          </h2>
-        </div>
-        <% if @areas.present? %>
-          <div class="area_list">
-            <% @areas.each do |area| %>
-              <a href="#">
-                <span><%= area.name %></span>
-                <%= image_tag "#{area.name}.webp", alt: "#{area.name}の風景" %>
-              </a>
-            <% end %>
-          </div>
-        <% end %>
-      </aside>
+      <%= render partial: "shared/sidebar", locals: { 
+        ranking_articles: @ranking_articles,
+        categories: @categories,
+        areas: @areas 
+      } %>
     </div>
     <div class="notice_list">
       <% if @notices.present? %>
@@ -163,6 +96,5 @@
         <% end %>
       <% end %>
     </div>
-
   </div>
 </main>

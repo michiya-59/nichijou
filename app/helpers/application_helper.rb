@@ -7,10 +7,10 @@ module ApplicationHelper
     link_to(name, path, options)
   end
 
-  def truncate_content(content, length, omission: '....')
+  def truncate_content content, length, omission: "...."
     return content if content.length <= length
 
-    content.truncate(length, omission: omission)
+    content.truncate(length, omission:)
   end
 
   def get_notice_kind_classname kind
@@ -21,7 +21,7 @@ module ApplicationHelper
       "release"
     else
       ""
-    end  
+    end
   end
 
   def get_notice_kind_name kind
@@ -34,7 +34,6 @@ module ApplicationHelper
       ""
     end
   end
-
 
   private
 

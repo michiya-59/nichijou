@@ -565,7 +565,7 @@ header{
   display: flex;
   margin-bottom: 2rem;
   .ranking_left_img{
-    width: 31.5%;
+    width: 9rem;
     height: 9.2rem;
     position: relative;
     span{
@@ -581,6 +581,7 @@ header{
     img{
       height: 100%;
       border-radius: 50%;
+      object-fit: cover;
     }
     @include responsive_media(sp){
       height: auto;
@@ -607,6 +608,10 @@ header{
   &:hover{
     cursor: pointer;
   }
+}
+.active_header_menu{
+  padding-bottom: 2px;
+  border-bottom: 2px solid #d9a545;
 }
 #search_form{
   margin-bottom: 3rem;
@@ -672,7 +677,7 @@ header{
   flex-wrap: wrap;
   a{
     display: block;
-    width: 46%;
+    width: 45%;
     height: 7rem;
     position: relative;
     margin: 0.5rem;
@@ -701,7 +706,7 @@ header{
   }
 }
 .notice_list{
-  margin: 2rem 0;
+  margin: 15rem 0 2rem 0;
   .notice_part{
     display: flex;
     align-items: center;

@@ -1,0 +1,8 @@
+<%= form_with url: "#", method: :get, id: "search_form" do |form| %>
+  <div class="search_container">
+    <%= form.text_field :search_item, id: "search_input", placeholder: "検索記事" %>
+    <span id="search_icon">
+      <%= image_tag "search.svg", alt: "検索画像" %>
+    </span>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+<main>
+  <div class="front_main_container">
+    <p class="pankuzu">
+      <%= link_to 'ホーム', root_path, class: 'common_a' %>
+      >
+      <%= @tag_name %>
+    </p>
+    <div class="main_content">
+      <section class="content_left">
+        <div class="news">
+          <div class="common_title">
+            <h2>
+              <%= @title_en %> <span><%= @title_ja %></span>
+            </h2>
+          </div>
+          <% if @articles.present? %>
+            <div class="common_content">
+              <% @articles.each do |article| %>
+                <%= link_to "#", class: 'common_content_part' do %>
+                  <div class="image_part">
+                    <%= image_tag article.top_image if article.top_image.attached? %>
+                  </div>
+                  <p><%= truncate_content(article.title, 33) %></p>
+                  <p><%= article.created_at.strftime("%Y/%m/%d") %></p>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="not_content">記事がひとつもありません。</p>
+          <% end %>
+          <div class="pagenation">
+            <%= link_to '1', "#", class: 'common_box_beige common_size14' %>
+            <%= link_to '2', "#", class: 'common_btn_beige_background common_size14' %>
+            <%= link_to '3', "#", class: 'common_box_beige common_size14' %>
+            <%= link_to '次へ', "#", class: 'beige common_size14' %>
+          </div>
+        </div>
+      </section>
+      <%= render partial: "shared/sidebar", locals: { 
+        ranking_articles: @ranking_articles,
+        categories: @categories,
+        areas: @areas 
+      } %>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,15 @@
+<div class="common_title">
+  <h2>
+    AREA <span>エリア</span>
+  </h2>
+</div>
+<% if areas.present? %>
+  <div class="area_list">
+    <% areas.each do |area| %>
+      <a href="#">
+        <span><%= area.name %></span>
+        <%= image_tag "#{area.name}.webp", alt: "#{area.name}の風景" %>
+      </a>
+    <% end %>
+  </div>
+<% end %>
