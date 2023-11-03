@@ -28,12 +28,8 @@
           <% else %>
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
-          <div class="pagenation">
-            <%= link_to '1', "#", class: 'common_box_beige common_size14' %>
-            <%= link_to '2', "#", class: 'common_btn_beige_background common_size14' %>
-            <%= link_to '3', "#", class: 'common_box_beige common_size14' %>
-            <%= link_to '次へ', "#", class: 'beige common_size14' %>
-          </div>
+
+          <%= paginate @articles, theme: 'article_custom_paginator' %>
         </div>
       </section>
       <%= render partial: "shared/sidebar", locals: { 

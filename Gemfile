@@ -34,6 +34,7 @@ gem "rack-cache"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
 gem 'rails-ujs'
+gem 'kaminari'
 
 group :development, :test do
   gem "brakeman", require: false

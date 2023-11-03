@@ -1,0 +1,25 @@
+<%# コレクションの総数が30を超える場合のみページネーションを表示します。 %>
+<% if @articles.total_pages > 1 %>
+  <div class="pagenation">
+    <%# 前ページへのリンク。存在しない場合は表示しない。 %>
+    <% if @articles.prev_page %>
+      <%= link_to '前へ', articles_path(type: params[:type], page: @articles.prev_page), class: 'beige common_size14' %>
+    <% end %>
+    
+    <%# 各ページへのリンク %>
+    <% 1.upto(@articles.total_pages) do |page| %>
+      <% if page == @articles.current_page %>
+        <%# 現在のページは非活性表示 %>
+        <a class="common_btn_beige_background common_size14"><%= page %></a>
+      <% else %>
+        <%# それ以外のページへのリンク %>
+        <%= link_to page, articles_path(type: params[:type], page: page), class: 'common_box_beige common_size14' %>
+      <% end %>
+    <% end %>
+    
+    <%# 次ページへのリンク。存在しない場合は表示しない。 %>
+    <% if @articles.next_page %>
+      <%= link_to '次へ', articles_path(type: params[:type], page: @articles.next_page), class: 'beige common_size14' %>
+    <% end %>
+  </div>
+<% end %>
