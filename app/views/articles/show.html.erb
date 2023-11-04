@@ -10,13 +10,12 @@
         <b><%= @article.title %></b>
         
         <div class="detail_content_sub_bottom">
-          <div class="clock">
+          <dziv class="clock">
             <div class="clock_img">
               <%= image_tag("clock.svg", alt: "時計アイコン", class: "clock_img") %>
             </div>
-          </div>
-
-          <p><%= @article.created_at.strftime("%Y/%m/%d") %></p>
+          </dziv>
+          <p class="clock_ddata"><%= @article.created_at.strftime("%Y/%m/%d") %></p>
 
           <div class="position">
             <%= image_tag("position.svg", alt: "位置情報アイコン", class: "position_img") %>

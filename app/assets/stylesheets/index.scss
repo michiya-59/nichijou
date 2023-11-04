@@ -162,6 +162,7 @@ $beige: #BB915B;
   display: inline-block;
   padding: 0.3rem 2rem;
   border-radius: 4rem;
+  margin-top: 0.5rem;
   @include responsive_media(sp){
     font-size: 2rem;
   }
@@ -183,6 +184,9 @@ $beige: #BB915B;
       font-size: 2rem;
     }
   }
+}
+.clock_ddata{
+  margin-top: 0.6rem;
 }
 .position{
   display: flex;
@@ -832,11 +836,17 @@ header{
 .detail_main_content{
   margin-bottom: 6rem;
   p{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #3c3c3c;
-    margin: 1rem 0;
+    margin: 0.2rem 0;
     @include responsive_media(sp){
-      line-height: 3rem;
+      line-height: 2.5rem;
+      font-size: 2.1rem;
+    }
+  }
+  li, strong,pre{
+    font-size: 1.5rem;
+    @include responsive_media(sp){
       font-size: 2.1rem;
     }
   }
