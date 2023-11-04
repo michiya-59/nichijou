@@ -7,7 +7,7 @@ ruby "3.2.1"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "bootstrap", "5.3.2"
-gem "bootstrap-sass"
+# gem "bootstrap-sass"
 gem "carrierwave"
 gem "dartsass-rails", "~> 0.5.0"
 gem "importmap-rails"
