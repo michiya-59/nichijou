@@ -1,6 +1,6 @@
 // import "@hotwired/turbo-rails"
-//= require rails-ujs
 import "@popperjs/core"
+//= require rails-ujs
 import "bootstrap"
 import jquery from "jquery"
 window.$ = jquery

@@ -72,11 +72,13 @@
           <% end %>
         </div>
       </section>
-      <%= render partial: "shared/sidebar", locals: { 
-        ranking_articles: @ranking_articles,
-        categories: @categories,
-        areas: @areas 
-      } %>
+      <aside class="content_right">
+        <%= render partial: "shared/sidebar", locals: { 
+          ranking_areas: @ranking_areas,
+          categories: @categories,
+          areas: @areas 
+        } %>
+      </aside>
     </div>
     <div class="notice_list">
       <% if @notices.present? %>

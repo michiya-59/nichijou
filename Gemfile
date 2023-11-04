@@ -32,7 +32,7 @@ gem "font-awesome-sass", "~> 6.4.2"
 gem "kaminari"
 gem "nokogiri"
 gem "rack-cache"
-gem "rails-ujs"
+# gem "rails-ujs"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
 

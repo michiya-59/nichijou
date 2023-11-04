@@ -32,11 +32,13 @@
           <%= paginate @articles, theme: 'area_article_custom_paginator' %>
         </div>
       </section>
-      <%= render partial: "shared/sidebar", locals: { 
-        ranking_areas: @ranking_areas,
-        categories: @categories,
-        areas: @areas 
-      } %>
+      <aside class="content_right">
+        <%= render partial: "shared/sidebar", locals: { 
+          ranking_areas: @ranking_areas,
+          categories: @categories,
+          areas: @areas 
+        } %>
+      </aside>
     </div>
   </div>
 </main>

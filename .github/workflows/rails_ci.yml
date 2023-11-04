@@ -50,7 +50,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up database configuration  # データベースの設定ファイルをコピー。
-        run: cp config/database.yml.sample config/database.yml
+        run: config/database.yml
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:

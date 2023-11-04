@@ -10,6 +10,10 @@ class ArticlesController < ApplicationController
 
   def show; end
 
+  def show
+    @article = Post.find(params[:id])
+  end
+
   private
 
   # 共通データのロードを１つのメソッドに集約
