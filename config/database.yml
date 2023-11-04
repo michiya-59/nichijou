@@ -18,4 +18,5 @@ production:
   <<: *default
   database: nichijou_production
   username: <%= ENV["NICHIJOU_DATABASE_USER"] %>
+  host: <%= ENV["NICHIJOU_DATABASE_HOST"] %>
   password: <%= ENV["NICHIJOU_DATABASE_PASSWORD"] %>
