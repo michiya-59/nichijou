@@ -35,6 +35,7 @@ gem "rack-cache"
 # gem "rails-ujs"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "brakeman", require: false

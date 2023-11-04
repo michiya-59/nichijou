@@ -40,3 +40,4 @@
 /db/seeds.rb
 
 /node_modules
+.env

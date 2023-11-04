@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    command: ./bin/dev
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/nichijou
+    ports:
+      - "80:3000"
+    environment:
+      RAILS_ENV: production
+
