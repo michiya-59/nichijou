@@ -9,23 +9,35 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= yield(:js) %>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   </head>
 
   <body>
-    <div class="container">
+    <% if request.fullpath.include?('admin') %>
       <% if current_admin %>
-        <div class="mt-2 row">
-          <!-- サイドバー部分 -->
-          <%= render 'shared/header' %>
+        <div class="container">
+          <div class="mt-2 row">
+            <!-- サイドバー部分 -->
+            <%= render 'shared/admin_header' %>
 
-          <!-- メインコンテンツ部分 -->
-          <div class="col-md-9">
-            <%= yield %>
+            <!-- メインコンテンツ部分 -->
+            <div class="col-md-9">
+              <%= yield %>
+            </div>
           </div>
         </div>
       <% else %>
-        <%= yield %>
+        <div class="container">
+          <%= yield %>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <%= stylesheet_link_tag "index" %>
+
+      <%= render 'shared/header' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

@@ -23,15 +23,19 @@ gem "redis", ">= 4.0.1"
 gem "sassc-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem "turbo-rails"
+# gem "turbo-rails"
 gem "tzinfo-data", platforms: %i(windows jruby)
 # Markdown関連
 gem "aws-sdk-s3"
 gem "coderay"
+gem "font-awesome-sass", "~> 6.4.2"
+gem "kaminari"
 gem "nokogiri"
 gem "rack-cache"
+# gem "rails-ujs"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
+gem "dotenv-rails"
 
 group :development, :test do
   gem "brakeman", require: false

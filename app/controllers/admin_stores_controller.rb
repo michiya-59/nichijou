@@ -2,6 +2,7 @@
 
 class AdminStoresController < ApplicationController
   before_action :set_store, only: %i(edit update destroy show)
+  before_action :authenticate_user, :redirect_not_logged_in
 
   def index
     @stores = Store.all

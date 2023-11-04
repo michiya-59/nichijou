@@ -1,0 +1,43 @@
+<main>
+  <div class="front_main_container">
+    <p class="pankuzu">
+      <%= link_to 'ホーム', root_path, class: "common_a" %> > <%= truncate_content(@article.title, 31) %>
+    </p>
+    <div class="main_content">
+      <section class="content_left">
+        <% image = @article.top_image if @article.top_image.attached? %>
+        <%= image_tag(image, alt: "創業123年！伊藤博文から営業許可を得て開業した老舗", class: "detail_img") %>
+        <b><%= @article.title %></b>
+        
+        <div class="detail_content_sub_bottom">
+          <div class="clock">
+            <div class="clock_img">
+              <%= image_tag("clock.svg", alt: "時計アイコン", class: "clock_img") %>
+            </div>
+          </div>
+
+          <p><%= @article.created_at.strftime("%Y/%m/%d") %></p>
+
+          <div class="position">
+            <%= image_tag("position.svg", alt: "位置情報アイコン", class: "position_img") %>
+            <p><%= @article&.area&.name %> - <%= @article&.area&.city_name %></p>
+          </div>
+
+          <% if @article&.category&.name.present? %>
+            <p class="tag"><%= @article&.category&.name %></p>
+          <% end %>
+        </div>
+        <div class="detail_main_content">
+          <%= sanitize(markdown(@article.content)) %>
+        </div>
+      </section>
+
+      <aside class="content_right detail_aside">
+        <%= render partial: "shared/sidebar", locals: { 
+          ranking_articles: @ranking_articles,
+          categories: @categories,
+          areas: @areas 
+        } %>
+      </aside>
+  </div>
+</main>

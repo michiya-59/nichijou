@@ -73,7 +73,7 @@ window.addEventListener('load', () => {
 
   function validateImage(file) {
     // 1MBをバイト単位で定義
-    const ONE_MB = 1 * 1024 * 1024;
+    const ONE_MB = 3 * 1024 * 1024;
     
     // ファイルサイズのバリデーション
     if (file.size > ONE_MB) {

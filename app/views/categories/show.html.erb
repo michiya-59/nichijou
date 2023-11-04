@@ -1,0 +1,44 @@
+<main>
+  <div class="front_main_container">
+    <p class="pankuzu">
+      <%= link_to 'ホーム', root_path, class: 'common_a' %>
+      >
+      <%= @category&.name %>の記事一覧
+    </p>
+    <div class="main_content">
+      <section class="content_left">
+        <div class="news">
+          <div class="common_title">
+            <h2>
+              <%= @category&.name %><span>による検索結果</span>
+            </h2>
+          </div>
+          <% if @articles.present? %>
+            <div class="common_content">
+              <% @articles.each do |article| %>
+                <%= link_to "#", class: 'common_content_part' do %>
+                  <div class="image_part">
+                    <%= image_tag article.top_image if article.top_image.attached? %>
+                  </div>
+                  <p><%= truncate_content(article.title, 31) %></p>
+                  <p><%= article.created_at.strftime("%Y/%m/%d") %></p>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="not_content">記事がひとつもありません。</p>
+          <% end %>
+
+          <%= paginate @articles, theme: 'category_article_custom_paginator' %>
+        </div>
+      </section>
+      <aside class="content_right">
+        <%= render partial: "shared/sidebar", locals: { 
+          ranking_areas: @ranking_areas,
+          categories: @categories,
+          areas: @areas 
+        } %>
+      </aside>
+    </div>
+  </div>
+</main>

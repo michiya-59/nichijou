@@ -7,6 +7,34 @@ module ApplicationHelper
     link_to(name, path, options)
   end
 
+  def truncate_content content, length, omission: "...."
+    return content if content.length <= length
+
+    content.truncate(length, omission:)
+  end
+
+  def get_notice_kind_classname kind
+    case kind
+    when 1
+      "notice"
+    when 2
+      "release"
+    else
+      ""
+    end
+  end
+
+  def get_notice_kind_name kind
+    case kind
+    when 1
+      "お知らせ"
+    when 2
+      "リリース"
+    else
+      ""
+    end
+  end
+
   private
 
   def active_class_for_path path

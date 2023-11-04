@@ -3,6 +3,7 @@
 class AdminPostsController < ApplicationController
   before_action :set_post, only: %i(edit update destroy show)
   before_action :detail_set_post, only: %i(edit new)
+  before_action :authenticate_user, :redirect_not_logged_in
 
   def index
     @posts = Post.order(created_at: :asc, updated_at: :asc)

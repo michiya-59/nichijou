@@ -2,6 +2,7 @@
 
 class AdminNoticesController < ApplicationController
   before_action :set_notice, only: %i(edit update destroy)
+  before_action :authenticate_user, :redirect_not_logged_in
 
   def index
     @notices = Notice.all

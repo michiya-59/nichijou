@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   include(AdminSessionsHelper)
-  before_action :authenticate_user, :redirect_not_logged_in
 
   # ログインされていない場合またはURLが直接操作されてた場合の処理
   def authenticate_user
