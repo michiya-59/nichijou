@@ -1,3 +1,7 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/hamburger" %>
+<% end %>
+
 <main>
   <div class="front_main_container">
     <p class="pankuzu">
@@ -38,5 +42,16 @@
           areas: @areas 
         } %>
       </aside>
+    </div>
+    
+    <%= render 'store_info', article: @article %>
+
+    <aside class="detail_aside_bottom">
+      <%= render partial: "shared/sidebar", locals: { 
+        ranking_articles: @ranking_articles,
+        categories: @categories,
+        areas: @areas 
+      } %>
+    </div>
   </div>
 </main>

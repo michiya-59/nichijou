@@ -34,7 +34,7 @@
           <% if @top_pick_articles.present? %>
             <div class="common_content">
               <% @top_pick_articles.each do |top_pick_article| %>
-                <%= link_to "#", class: "common_content_part" do %>
+                <%= link_to article_path(top_pick_article), class: "common_content_part" do %>
                   <div class="image_part">
                     <%= image_tag top_pick_article.top_image if top_pick_article.top_image.attached? %>
                   </div>
@@ -43,7 +43,7 @@
                 <% end %>
               <% end %>
             </div>
-            <%= link_to "More", "#", class: "more_btn" %>
+            <%= link_to "More", articles_path(type: 'recommend'), class: "more_btn" %>
           <% else %>
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
@@ -57,7 +57,7 @@
           <% if @news_articles.present? %>
             <div class="common_content">
               <% @news_articles.each do |news_article| %>
-                <%= link_to "#", class: "common_content_part" do %>
+                <%= link_to article_path(news_article), class: "common_content_part" do %>
                   <div class="image_part">
                     <%= image_tag news_article.top_image if news_article.top_image.attached? %>
                   </div>
@@ -66,7 +66,7 @@
                 <% end %>
               <% end %>
             </div>
-            <%= link_to "More", "#", class: "more_btn" %>
+            <%= link_to "More", articles_path(type: 'news'), class: "more_btn" %>
           <% else %>
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
