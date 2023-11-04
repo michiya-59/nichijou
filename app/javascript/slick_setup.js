@@ -14,15 +14,63 @@ $(document).ready(function(){
     pauseOnHover: false, //スライダーにマウスホバーした時にスライドを停止させるか
     responsive: [
       {
-        breakpoint: 1281, // タブレットの場合のブレークポイント
+        breakpoint: 1881, // タブレットの場合のブレークポイント
         settings: {
-          slidesToShow: 5.5, // 1度に表示するスライド数を3に変更
+          slidesToShow: 6.2, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1701, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 5.7, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1591, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 5.3, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1499, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 5, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1380, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 4.6, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1300, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 4.3, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1201, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 4, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 1125, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 3.8, // 1度に表示するスライド数を3に変更
         }
       },
       {
         breakpoint: 1025, // タブレットの場合のブレークポイント
         settings: {
           slidesToShow: 5, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 980, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 4.5, // 1度に表示するスライド数を3に変更
         }
       },
       {
@@ -44,21 +92,39 @@ $(document).ready(function(){
         }
       },
       {
+        breakpoint: 767, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 5, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
+        breakpoint: 764, // タブレットの場合のブレークポイント
+        settings: {
+          slidesToShow: 4.5, // 1度に表示するスライド数を3に変更
+        }
+      },
+      {
         breakpoint: 668, // タブレットの場合のブレークポイント
         settings: {
-          slidesToShow: 3.2, // 1度に表示するスライド数を3に変更
+          slidesToShow: 4, // 1度に表示するスライド数を3に変更
         }
       },
       {
         breakpoint: 620, // タブレットの場合のブレークポイント
         settings: {
-          slidesToShow: 3, // 1度に表示するスライド数を3に変更
+          slidesToShow: 4.2, // 1度に表示するスライド数を3に変更
         }
       },
       {
         breakpoint: 599, // スマートフォンの場合のブレークポイント
         settings: {
           slidesToShow: 3, // 1度に表示するスライド数を1に変更
+        }
+      },
+      {
+        breakpoint: 415, // スマートフォンの場合のブレークポイント
+        settings: {
+          slidesToShow: 2.8, // 1度に表示するスライド数を1に変更
         }
       },
       {

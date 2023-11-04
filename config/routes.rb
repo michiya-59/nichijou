@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :articles, only: %i(index show)
   resources :categories, only: %i(show)
   resources :areas, only: %i(show)
+  resources :notices, only: %i(index show)
 
   resources :admin_posts do
     post "upload_content_image", on: :collection
