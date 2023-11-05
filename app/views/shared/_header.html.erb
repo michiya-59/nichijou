@@ -1,10 +1,44 @@
-<div class="col-md-3">
-  <div class="list-group">
-    <%= active_link_to '投稿一覧', admin_posts_path, data: {turbo: false}, class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'カテゴリー一覧', admin_categories_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'エリア一覧', admin_areas_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to '店舗情報一覧', admin_stores_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= active_link_to 'お知らせ一覧', admin_notices_path, data: {turbo: false},  class: "list-group-item list-group-item-action" %>
-    <%= link_to 'ログアウト', admin_logout_path, method: :delete, class: "list-group-item list-group-item-action" %>
+<header>
+  <div class="header">
+    <div class="header_left">
+      <%= link_to root_path do %>
+        <%= image_tag "1.png", alt: "日常街のポータル" %>
+      <% end %>
+    </div>
+    <div class="header_right">
+      <ul class="nav_menu">
+        <li class="<%= 'active_header_menu' if current_page?(about_path) %>">
+          <%= link_to "日常街のポータルとは", about_path %>
+        </li>
+        <li class="<%= 'active_header_menu' if controller_name == 'articles' && params[:type] == 'recommend' %>">
+          <%= link_to "おすすめ", articles_path(type: 'recommend') %>
+        </li>
+        <li class="<%= 'active_header_menu' if controller_name == 'articles' && params[:type] == 'news' %>">
+          <%= link_to "新着記事", articles_path(type: 'news') %>
+        </li>
+        <li class="<%= 'active_header_menu' if current_page?('#') %>">
+          <%= link_to "お知らせ", notices_path %>
+        </li>
+        <li class="<%= 'active_header_menu' if current_page?('#') %>">
+          <%= link_to "問い合わせ", "#" %>
+        </li>
+      </ul>
+    </div>
+    <div class="header_right_mobile">
+      <div id="nav-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul id="mobile-nav">
+        <li><%= link_to "日常街のポータルとは", about_path %></li>
+        <li><%= link_to "おすすめ", articles_path(type: 'recommend') %></li>
+        <li><%= link_to "新着記事", articles_path(type: 'news') %></li>
+        <li><%= link_to "お知らせ", notices_path %></li>
+        <li><%= link_to "問い合わせ", "#" %></li>
+      </ul>
+    </div>
   </div>
-</div>
+</header>
+
+

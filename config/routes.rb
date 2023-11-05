@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root "homes#index"
+  get "/about", to: "homes#about"
+  resources :articles, only: %i(index show)
+  resources :categories, only: %i(show)
+  resources :areas, only: %i(show)
+  resources :notices, only: %i(index show)
+
   resources :admin_posts do
     post "upload_content_image", on: :collection
   end

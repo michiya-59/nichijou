@@ -1,0 +1,43 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "slick_setup" %>
+  <%= javascript_import_module_tag "shared/hamburger" %>
+  <%= javascript_import_module_tag "shared/notice_scroll" %>
+  <%= javascript_import_module_tag "shared/search" %>
+<% end %>
+
+<main>
+  <div class="front_main_container">
+    <p class="pankuzu">
+      <%= link_to 'ホーム', root_path, class: "common_a" %>
+      >
+      お知らせ一覧
+    </p>
+    <div class="common_title_h3 margin_top40">運営からのお知らせ</div>
+    <ul class="notices_nav_list">
+      <li class="<%= 'notice_border_bottom' unless params[:type].present? %>"><%= link_to '全て', notices_path %></li>
+      <li class="<%= 'notice_border_bottom' if params[:type] == 'notice' %>"><%= link_to 'お知らせ', notices_path(type: 'notice') %></li>
+      <li class="<%= 'notice_border_bottom' if params[:type] == 'release' %>"><%= link_to 'リリース', notices_path(type: 'release') %></li>
+    </ul>
+    <% if @notices.present? %>
+      <div class="notices_article_content">
+        <% @notices.each do |notice| %>
+          <div id="notice_<%= notice.id %>" class="notices_article_part">
+            <div class="kind_date">
+              <p class="notice_kind <%= notice.kind == 1 ? 'notice' : 'release' %> common_size13"><%= notice.kind == 1 ? "お知らせ" : (notice.kind == 2 ? "リリース" : "未知") %></p>
+              <p class="notice_date common_size13"><%= notice.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
+            </div>
+            <p class="notices_title"><%= notice.title %></p>
+            <p class="notices_body common_size14">
+              <%= notice.content.html_safe %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="not_content">お知らせがひとつもありません。</p>
+    <% end %>
+
+    <%= paginate @notices, theme: 'notice_custom_paginator' %>
+
+  </div>
+</main>

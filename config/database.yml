@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: nichijou_pass
+  pool: 5
+
+development:
+  <<: *default
+  database: nichijou_production
+  username: <%= ENV["NICHIJOU_DATABASE_USER"] %>
+  host: <%= ENV["NICHIJOU_DATABASE_HOST"] %>
+  password: <%= ENV["NICHIJOU_DATABASE_PASSWORD"] %>
+
+test:
+  <<: *default
+  database: nichijou_test
+
+production:
+  <<: *default
+  database: nichijou_production
+  username: <%= ENV["NICHIJOU_DATABASE_USER"] %>
+  host: <%= ENV["NICHIJOU_DATABASE_HOST"] %>
+  password: <%= ENV["NICHIJOU_DATABASE_PASSWORD"] %>

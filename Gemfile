@@ -6,8 +6,8 @@ ruby "3.2.1"
 
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
-gem "bootstrap", "~> 5.3"
-gem "bootstrap-sass"
+gem "bootstrap", "5.3.2"
+# gem "bootstrap-sass"
 gem "carrierwave"
 gem "dartsass-rails", "~> 0.5.0"
 gem "importmap-rails"
@@ -23,13 +23,17 @@ gem "redis", ">= 4.0.1"
 gem "sassc-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem "turbo-rails"
+# gem "turbo-rails"
 gem "tzinfo-data", platforms: %i(windows jruby)
 # Markdown関連
 gem "aws-sdk-s3"
 gem "coderay"
+gem "font-awesome-sass", "~> 6.4.2"
+gem "kaminari"
 gem "nokogiri"
 gem "rack-cache"
+# gem "rails-ujs"
+gem "dotenv-rails"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
 

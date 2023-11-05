@@ -1,0 +1,33 @@
+<div class="ranking">
+  <div class="common_title">
+    <h2>
+      Ranking <span>ランキング</span>
+    </h2>
+  </div>
+  <% if ranking_articles.present? %>
+    <div class="ranking_content">
+      <% ranking_articles.each.with_index(1) do |ranking_article, idx|  %>
+        <%= link_to article_path(ranking_article), class: "ranking_content_part" do %>
+          <div class="ranking_left_img">
+            <span><%= image_tag "ranking_#{idx}.svg", alt: "ランキング#{idx}" %></span>
+            <%= image_tag ranking_article&.top_image if ranking_article.top_image.attached? %>
+          </div>
+          <div class="ranking_right_content">
+            <p class="ranking_article"><%= truncate_content(ranking_article&.title, 30) %></p>
+            <% if ranking_article.category.present? %>
+              <p class="tag"><%= ranking_article.category.name  %></p>
+            <% end %>
+            <div class="clock">
+              <div class="clock_img">
+                <%= image_tag "clock.svg", alt: "時計アイコン" %>
+              </div>
+              <p><%= ranking_article&.created_at.strftime("%Y/%m/%d") %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="not_content">記事がひとつもありません。</p>
+  <% end %>
+</div>
