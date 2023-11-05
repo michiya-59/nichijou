@@ -6,13 +6,42 @@ class ArticlesController < ApplicationController
   before_action :set_titles_and_tags, only: [:index], if: ->{params["type"].present?}
 
   # ページネーションの設定
-  def index; end
+  def index
+    if params.key?("search_item")
+      search
+    else
+      set_articles
+    end
+  end
 
   def show
     @article = Post.find(params[:id])
   end
 
   private
+
+  def search
+    # 検索文字の受け取りと検証（不適切なパラメータがあれば除外）
+    search_item = search_params[:search_item].strip
+
+    if search_item.present?
+      articles = Post.where("title LIKE :search OR content LIKE :search", search: "%#{search_item}%")
+      @articles = articles.page(params[:page]).per(24)
+      @title_en = search_item
+      @title_ja = "による検索"
+    else
+      @articles = []
+      @title_en = "Search"
+      @title_ja = "検索結果なし"
+    end
+    @tag_name = "検索"
+  rescue ActionController::ParameterMissing
+    redirect_to(articles_path) and return
+  end
+
+  def search_params
+    params.permit(:search_item)
+  end
 
   # 共通データのロードを１つのメソッドに集約
   def load_data
