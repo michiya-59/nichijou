@@ -2,6 +2,14 @@
 
 class ApplicationController < ActionController::Base
   include(AdminSessionsHelper)
+  around_action :catch_exception
+
+  def catch_exception
+    yield
+  rescue StandardError => e
+    LineNotifier.notify(e)
+    raise e # 例外を再度raiseして、アプリケーションの標準のエラー処理を行う
+  end
 
   # ログインされていない場合またはURLが直接操作されてた場合の処理
   def authenticate_user
