@@ -1,3 +1,8 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/hamburger" %>
+  <%= javascript_import_module_tag "shared/search" %>
+<% end %>
+
 <main>
   <div class="front_main_container">
     <p class="pankuzu">
@@ -29,7 +34,9 @@
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
 
-          <%= paginate @articles, theme: 'article_custom_paginator' %>
+          <% if @articles.present? %>
+            <%= paginate @articles, theme: 'article_custom_paginator' %>
+          <% end %>
         </div>
       </section>
       <aside class="content_right">

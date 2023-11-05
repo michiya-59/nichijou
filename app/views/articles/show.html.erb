@@ -1,3 +1,8 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/hamburger" %>
+  <%= javascript_import_module_tag "shared/search" %>
+<% end %>
+
 <main>
   <div class="front_main_container">
     <p class="pankuzu">
@@ -10,13 +15,12 @@
         <b><%= @article.title %></b>
         
         <div class="detail_content_sub_bottom">
-          <div class="clock">
+          <dziv class="clock">
             <div class="clock_img">
               <%= image_tag("clock.svg", alt: "時計アイコン", class: "clock_img") %>
             </div>
-          </div>
-
-          <p><%= @article.created_at.strftime("%Y/%m/%d") %></p>
+          </dziv>
+          <p class="clock_ddata"><%= @article.created_at.strftime("%Y/%m/%d") %></p>
 
           <div class="position">
             <%= image_tag("position.svg", alt: "位置情報アイコン", class: "position_img") %>
@@ -39,5 +43,16 @@
           areas: @areas 
         } %>
       </aside>
+    </div>
+    
+    <%= render 'store_info', article: @article %>
+
+    <aside class="detail_aside_bottom">
+      <%= render partial: "shared/sidebar", locals: { 
+        ranking_articles: @ranking_articles,
+        categories: @categories,
+        areas: @areas 
+      } %>
+    </div>
   </div>
 </main>

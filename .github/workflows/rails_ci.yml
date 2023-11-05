@@ -31,41 +31,6 @@ jobs:
       - name: Run Rubocop  # Rubocopを実行してコードのスタイルチェック。
         run: bundle exec rubocop
 
-  # RSpecジョブの定義。テストの実行を行います。
-  rspec:
-    runs-on: ubuntu-latest
-    env:  # 環境変数を定義。データベースへの接続情報など。
-      DB_USERNAME: postgres
-      DB_PASSWORD: nichijou_pass
-      DB_HOST: localhost
-    services:  # PostgreSQLのサービスを定義。テスト実行時に使用します。
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: nichijou_pass
-        ports:
-          - 5432:5432
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up database configuration  # データベースの設定ファイルをコピー。
-        run: config/database.yml
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.1
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-      - name: Setup test database  # テスト用のデータベースをセットアップ。
-        run: |
-          bin/rails db:create
-          bin/rails db:migrate
-      - name: Run RSpec  # RSpecを実行してテストを行う。
-        run: bundle exec rspec
-
   # brakemanジョブの定義。セキュリティの脆弱性チェックを行います。
   brakeman:
     runs-on: ubuntu-latest

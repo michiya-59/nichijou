@@ -1,0 +1,151 @@
+<div class="store_info">
+  <div class="store_info_left">
+    <h3 class="common_title_h3">店舗情報</h3>
+    <div class="store_info_content">
+      <%# 店舗名 %>
+      <div class="store_info_part">
+        <%= image_tag 'store.svg', class: 'store_info_img', alt: '店舗アイコン' %>
+        <p class="store_info_title">店舗名</p>
+        <p class="store_info_body"><%= article&.store&.name %></p>
+      </div>
+
+      <%# 電話番号 %>
+      <div class="store_info_part">
+        <%= image_tag 'tel.svg', class: 'store_info_img', alt: '電話アイコン' %>
+        <p class="store_info_title">TEL</p>
+        <p class="store_info_body"><%= link_to article&.store&.tel, "tel:#{article&.store&.tel}" %></p>
+      </div>
+
+      <%# 位置情報 %>
+      <div class="store_info_part multiple_lines">
+        <div class="store_info_detail_part">
+          <%= image_tag 'position2.svg', class: 'store_info_img', alt: '位置情報アイコン' %>
+          <p class="store_info_title">住所</p>
+          <p class="store_info_body"><%= article&.store&.address %></p>
+        </div>
+
+        <% if article&.store&.access.present? || article&.store&.access2.present? %>
+          <div class="store_info_detail_part common_padding">
+            <div class="store_info_img">
+            </div>
+            <p class="store_info_title">アクセス</p>
+            <div class="store_info_body_content">
+              <% if article&.store&.access.present? %>
+                <p class="store_info_body"><%= article&.store&.access %></p>
+              <% end %>
+
+              <% if article&.store&.access2.present? %>
+                <p class="store_info_body"><%= article&.store&.access2 %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if article&.store&.nearest_station.present? %>
+          <div class="store_info_detail_part">
+            <div class="store_info_img">
+            </div>
+            <p class="store_info_title">最寄駅</p>
+            <p class="store_info_body"><%= article&.store&.nearest_station %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <%# 営業時間 %>
+      <% if article&.store&.sales_time_lanch_weekday.present? || article&.store&.sales_time_lanch_holiday.present? || article&.store&.sales_time_dinner_weekday.present? || article&.store&.sales_time_dinner_holiday.present? || article&.store&.holiday.present? %>
+        <div class="store_info_part multiple_lines">
+          <div class="store_info_detail_part margin_bottom10">
+            <div class="store_info_img">
+              <%= image_tag 'clock2.svg', class: 'store_info_img', alt: '時間アイコン' %>
+            </div>
+            <p class="store_info_title">営業時間</p>
+
+            <% if article&.store&.sales_time_lanch_weekday.present? || article&.store&.sales_time_lanch_holiday.present? || article&.store&.sales_time_dinner_weekday.present? || article&.store&.sales_time_dinner_holiday.present? %>
+              <div class="store_info_body_content">
+                <% if article&.store&.sales_time_lanch_weekday.present? %>
+                  <p class="store_info_body">ランチ 平日 <%= article&.store&.sales_time_lanch_weekday %></p>
+                <% end %>
+                <% if article&.store&.sales_time_lanch_holiday.present? %>
+                  <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                <% end %>
+                <% if article&.store&.sales_time_dinner_weekday.present? %>
+                  <p class="store_info_body">ディナー 平日 <%= article&.store&.sales_time_dinner_weekday %></p>
+                <% end %>
+                <% if article&.store&.sales_time_dinner_holiday.present? %>
+                  <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                <% end %>
+                <p class="store_info_body">※（）内の時間はラストオーダーの時間です。</p>
+              </div>
+            <% end %>
+          </div>
+
+          <% if article&.store&.holiday.present? %>
+            <div class="store_info_detail_part">
+              <div class="store_info_img">
+              </div>
+              <p class="store_info_title">定休日</p>
+              <p class="store_info_body"><%= article&.store&.holiday %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# 支払い方法 %>
+      <% if article&.store&.pay_methods.present? %>
+        <div class="store_info_part">
+          <%= image_tag 'wallet.svg', class: 'store_info_img', alt: '支払いアイコン' %>
+          <p class="store_info_title">支払い方法</p>
+          <p class="store_info_body"><%= article&.store&.pay_methods %></p>
+        </div>
+      <% end %>
+
+      <%# ホームページ %>
+      <% if article&.store&.homepage_url.present? %>
+        <div class="store_info_part">
+          <%= image_tag 'homepage.svg', class: 'store_info_img', alt: 'ホームページアイコン' %>
+          <p class="store_info_title">ホームページ</p>
+          <%= link_to article&.store&.homepage_url, target: '_blank' do %>
+            <%= article&.store&.homepage_url %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%# SNSリンク %>
+      <% if article&.store&.sns_link_tabelog.present? || article&.store&.sns_link_twitter.present? || article&.store&.sns_link_instagram.present? || article&.store&.sns_link_facebook.present? || article&.store&.sns_link_line.present? %>
+        <div class="store_info_part multiple_lines">
+          <div class="store_info_detail_part sns_link_info">
+            <%= image_tag 'sns.svg', class: 'store_info_img sns_img_title', alt: 'SNSアイコン' %>
+            <div class="sns_link_list">
+              <%# 食べログ %>
+              <% if article&.store&.sns_link_tabelog.present? %>
+                <%= link_to image_tag('tabelog.png', alt: '食べログアイコン'), article&.store&.sns_link_tabelog, target: '_blank', class: 'store_info_body tabelog' %>
+              <% end %>
+              <%# Twitter %>
+              <% if article&.store&.sns_link_twitter.present? %>
+                <%= link_to image_tag('twitter.svg', alt: 'Twitterアイコン'), article&.store&.sns_link_twitter, target: '_blank', class: 'store_info_body twitter' %>
+              <% end %>
+              <%# Instagram %>
+              <% if article&.store&.sns_link_instagram.present? %>
+                <%= link_to image_tag('instagram.png', alt: 'Instagramアイコン'), article&.store&.sns_link_instagram, target: '_blank', class: 'store_info_body instagram' %>
+              <% end %>
+              <%# Facebook %>
+              <% if article&.store&.sns_link_facebook.present? %>
+                <%= link_to image_tag('facebook.svg', alt: 'FaceBookアイコン'), article&.store&.sns_link_facebook, target: '_blank', class: 'store_info_body facebook' %>
+              <% end %>
+              <%# LINE %>
+              <% if article&.store&.sns_link_line.present? %>
+                <%= link_to image_tag('line.png', alt: 'LINEアイコン'), article&.store&.sns_link_line, target: '_blank', class: 'store_info_body line' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% if article&.store&.google_map_url.present? %>
+    <div class="store_info_right">
+      <%= raw article&.store&.google_map_url %>
+    </div>
+  <% end %>
+</div>

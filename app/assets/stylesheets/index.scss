@@ -34,7 +34,7 @@ body{
   font-family: 'Tsukushi A Round Gothic';
   min-height: 98vh;
   position: relative;
-  padding-bottom: 39rem;
+  padding-bottom: 45rem;
   box-sizing: border-box;
 }
 main{
@@ -123,6 +123,9 @@ $beige: #BB915B;
     }
     @include responsive_media(sp){
       width: 48%;
+      &:nth-child(2n){
+        margin-right: 0;
+      }
     }
   }
 }
@@ -162,8 +165,9 @@ $beige: #BB915B;
   display: inline-block;
   padding: 0.3rem 2rem;
   border-radius: 4rem;
+  margin-top: 0.5rem;
   @include responsive_media(sp){
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 .clock{
@@ -183,6 +187,9 @@ $beige: #BB915B;
       font-size: 2rem;
     }
   }
+}
+.clock_ddata{
+  margin-top: 0.6rem;
 }
 .position{
   display: flex;
@@ -495,12 +502,20 @@ header{
     font-size: 5.5rem;
     font-weight: normal;
     color: #806B62;
+    h1{
+      font-size: 5.5rem;
+      font-weight: normal;
+      margin: 0;
+    }
     h1:nth-child(2){
       text-align: right;
     }
     @include responsive_media(sp){
       width: 73%;
       font-size: 3rem;
+      h1{
+        font-size: 3rem;
+      }
     }
   }
 }
@@ -584,8 +599,8 @@ header{
       object-fit: cover;
     }
     @include responsive_media(sp){
-      height: auto;
-      width: 28.5%;
+      height: 11rem;
+      width: 14rem;
     }
   }
   .ranking_right_content{
@@ -828,15 +843,22 @@ header{
   display: flex;
   align-items: center;
   margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 .detail_main_content{
   margin-bottom: 6rem;
   p{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #3c3c3c;
-    margin: 1rem 0;
+    margin: 0.2rem 0;
     @include responsive_media(sp){
-      line-height: 3rem;
+      line-height: 2.5rem;
+      font-size: 2.1rem;
+    }
+  }
+  li, strong,pre{
+    font-size: 1.5rem;
+    @include responsive_media(sp){
       font-size: 2.1rem;
     }
   }
@@ -844,6 +866,7 @@ header{
 .store_info{
   display: flex;
   justify-content: space-between;
+  margin-top: 10rem;
   .store_info_left{
     width: 48%;
     .store_info_part{
@@ -864,11 +887,8 @@ header{
         font-weight: bold;
         width: 30%;
         @include responsive_media(sp){
-          width: 20%;
-          font-size: 2rem;
-        }
-        @include responsive_media(sp_320){
           width: 25%;
+          font-size: 2rem;
         }
       }
       .store_info_body{
@@ -901,7 +921,7 @@ header{
             margin-right: 1rem;
           }
           .twitter, .instagram, .facebook, .line{
-            width: 5rem;
+            width: 3rem;
             margin-right: 1rem;
           }
         }
