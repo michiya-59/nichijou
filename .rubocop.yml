@@ -552,3 +552,6 @@ Rails/ReversibleMigration:
 
 Rails/BulkChangeTable:
   Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
