@@ -20,7 +20,7 @@
           <%= link_to "お知らせ", notices_path %>
         </li>
         <li class="<%= 'active_header_menu' if current_page?('#') %>">
-          <%= link_to "問い合わせ", "#" %>
+          <%= link_to "問い合わせ", new_contact_path %>
         </li>
       </ul>
     </div>
@@ -35,7 +35,7 @@
         <li><%= link_to "おすすめ", articles_path(type: 'recommend') %></li>
         <li><%= link_to "新着記事", articles_path(type: 'news') %></li>
         <li><%= link_to "お知らせ", notices_path %></li>
-        <li><%= link_to "問い合わせ", "#" %></li>
+        <li><%= link_to "問い合わせ", new_contact_path %></li>
       </ul>
     </div>
   </div>
