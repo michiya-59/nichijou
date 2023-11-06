@@ -1,0 +1,12 @@
+<%= stylesheet_link_tag "error" %>
+
+<div class="error_container">
+  <p class="error_code">500 <span class="error_msg">Internal Server Error</span></p><br><br>
+  <p class="error_msg_main">日常街のポータルサイト側で問題が発生しました。</p>
+  <p class="error_msg_detail">        
+    大変申し訳ございません。一時的なエラーが発生しました。<br>
+    エラーの詳細は管理会社にメールで送信されましたので、対応完了までしばらくお待ちください。<br>
+    ご迷惑おかけしてしまい申し訳ございませんが、しばらくしてからもう一度お試しください。
+  </p>
+  <%= link_to 'TOPページ', root_path, class: "error_top_link"%>
+</div>
