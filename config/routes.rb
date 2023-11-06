@@ -19,4 +19,9 @@ Rails.application.routes.draw do
   get "admin/login", to: "admin_sessions#new", as: :admin_login
   post "admin/login", to: "admin_sessions#create"
   get "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
+
+  # エラーページ用のルート
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
+  match "*path", to: "application#render_404", via: :all
 end
