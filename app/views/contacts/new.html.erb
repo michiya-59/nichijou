@@ -1,0 +1,64 @@
+<%= javascript_import_module_tag "shared/hamburger" %>
+
+
+<div class="front_main_container">
+  <p class="pankuzu">
+    <%= link_to 'ホーム', root_path, class: 'common_a' %>
+    >
+    お知らせ
+  </p>
+  <div class="contact_title beige">お問い合せ内容のご入力</div>
+  <div class="contact_content">
+    <%= form_with model: @contact, local: true do |form| %>
+      <% if flash[:success].present? %>
+        <div class="contact-success">
+          <%= flash[:success].html_safe %>
+        </div>
+      <% end %>
+      <div class="contact_part">
+        <div class="contact_form_title">
+          <p>お問い合せ <span>（必須）</span></p>
+        </div>
+
+        <%= form.select :inquiry_type, 
+                        { サイトについて: 'サイトについて',
+                          サイトの不具合報告: 'サイトの不具合報告',
+                          掲載内容の修正希望: '掲載内容の修正希望',
+                          広告掲載について: '広告掲載について',
+                          提携・ビジネスの提案: '提携・ビジネスの提案',
+                          著作権の問題: '著作権の問題',
+                          アカウントサポート: 'アカウントサポート',
+                          サイトのフィードバック: 'サイトのフィードバック',
+                          その他: 'その他' }, {}, { class: 'inquiry_type' } %>
+      </div>
+      <div class="contact_part">
+        <div class="contact_form_title">
+          <p>メールアドレス <span>（必須）</span></p>
+        </div>
+        <%= form.email_field :email, id: 'email', class: 'email', required: true %>
+      </div>
+      <div class="contact_part">
+        <div class="contact_form_title">
+          <p>お名前 <span>（必須）</span></p>
+        </div>
+        <%= form.text_field :name, id: 'name', class: 'name', required: true %>
+      </div>
+      <div class="contact_part">
+        <div class="contact_form_title">
+          <p>電話番号 <span>（必須）</span></p>
+        </div>
+        <%= form.telephone_field :tel, id: 'tel', class: 'tel', required: true %>
+      </div>
+      <div class="contact_part">
+        <div class="contact_form_title">
+          <p>お問い合せ内容 <span>（必須）</span></p>
+        </div>
+        <%= form.text_area :content, id: 'content', cols: '30', rows: '10', required: true %>
+      </div>
+      <%= form.button type: 'submit', class: 'submit_btn' do %>
+        <span>送信する</span>
+        <%= image_tag('contact_arrow.svg') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
