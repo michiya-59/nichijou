@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   resources :admin_stores
   resources :admin_notices
 
+  delete "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
   get "admin/login", to: "admin_sessions#new", as: :admin_login
   post "admin/login", to: "admin_sessions#create"
-  get "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
 
   # エラーページ用のルート
   match "/404", to: "errors#not_found", via: :all
