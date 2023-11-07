@@ -47,8 +47,8 @@ class ArticlesController < ApplicationController
   def load_data
     @ranking_articles = fetch_posts.with_attached_top_image.by_view_count.select(:id, :title, :created_at, :view_count, :category_id).limit(5)
       .with_attached_top_image.by_view_count.limit(5)
-    @categories = cached_data("categories"){Category.all.to_a}
-    @areas = cached_data("areas"){Area.all.to_a}
+    @categories = Category.all
+    @areas = Area.all
   end
 
   # 投稿を取得する共通の処理をメソッドに抽出
