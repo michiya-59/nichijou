@@ -24,11 +24,7 @@ class HomesController < ApplicationController
 
   def load_data
     @ranking_articles = Post.with_attached_top_image.by_view_count.limit(5).includes(:top_image_blob)
-    @categories = Rails.cache.fetch("categories", expires_in: 12.hours) do
-      Category.all.to_a # オブジェクトをキャッシュする
-    end
-    @areas = Rails.cache.fetch("areas", expires_in: 12.hours) do
-      Area.all.to_a # オブジェクトをキャッシュする
-    end
+    @categories = Category.all
+    @areas = Area.all
   end
 end
