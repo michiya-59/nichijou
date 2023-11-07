@@ -1416,3 +1416,37 @@ select{
   position: inherit;
 }
 // 「日常街のポータル」とは
+
+// エラー
+.error_container{
+  text-align: left;
+  margin: 4rem auto;
+  width: 50%;
+  .error_code{
+    font-weight: bold;
+    font-size: 6rem;
+    color: #555;
+    .error_msg{
+      font-size: 3rem;
+      color: #aaa;
+      margin-left: 1.2rem;
+    }
+  }
+  .error_msg_main{
+    font-weight: normal;
+    font-size: 4rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  .error_msg_detail{
+    font-size: 1.3rem;
+  }
+  .error_top_link{
+    display: block;
+    font-size: 1.5rem;
+    color: #5b5bcc;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+}
+// エラー
