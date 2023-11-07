@@ -1,3 +1,5 @@
+コードは以下のようになっています。
+
 window.addEventListener('load', () => {
   var navIcon = document.getElementById('nav-icon');
   var mobileNav = document.getElementById('mobile-nav');
