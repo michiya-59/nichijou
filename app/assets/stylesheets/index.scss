@@ -346,8 +346,8 @@ header{
     width: 94%;
   }
   @include responsive_media(tab_820){
-    width: 92%;
-    margin: 2rem auto 1rem auto;
+    width: 87%;
+    margin: 2.5rem auto 1rem auto;
     .header_left{
       width: 30%;
       a img{
@@ -379,7 +379,7 @@ header{
       display: block;
     }
     @include responsive_media(sp){
-      display: block;
+      display: block;.
       padding: 0;
     }
   }
