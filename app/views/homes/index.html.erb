@@ -81,23 +81,32 @@
         } %>
       </aside>
     </div>
-    <div class="notice_list">
-      <% if @notices.present? %>
-        <% @notices.each do |notice| %>
-          <div class="notice_part">
-            <div class="notice_kind_content">
-              <p class="notice_time"><%= notice.created_at.strftime('%Y.%m.%d') %></p>
-              <p class="notice_kind <%= get_notice_kind_classname notice.kind %>"><%= get_notice_kind_name notice.kind %></p>
+    <setion class="notices">
+      <div class="common_title">
+        <h2>
+          Notices <span>お知らせ</span>
+        </h2>
+      </div>
+      <div class="notice_list">
+        <% if @notices.present? %>
+          <% @notices.each do |notice| %>
+            <div class="notice_part">
+              <div class="notice_kind_content">
+                <p class="notice_time"><%= notice.created_at.strftime('%Y.%m.%d') %></p>
+                <p class="notice_kind <%= get_notice_kind_classname notice.kind %>"><%= get_notice_kind_name notice.kind %></p>
+              </div>
+              <%= link_to notices_path(id: notice), class: "notice_body" do %>
+                <%= truncate_content(notice.content, 50) %>
+                <span>
+                  <%= image_tag "arrow.svg" %>
+                </span>
+              <% end %>
             </div>
-            <%= link_to notices_path(id: notice), class: "notice_body" do %>
-              <%= truncate_content(notice.content, 50) %>
-              <span>
-                <%= image_tag "arrow.svg" %>
-              </span>
-            <% end %>
-          </div>
+          <% end %>
+        <% else %>
+          <p class="not_content">記事がひとつもありません。</p>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    </section>
   </div>
 </main>

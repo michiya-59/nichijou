@@ -723,7 +723,6 @@ header{
   }
 }
 .notice_list{
-  margin: 15rem 0 2rem 0;
   .notice_part{
     display: flex;
     align-items: center;
@@ -988,6 +987,10 @@ header{
 // 詳細画面
 
 // お知らせ画面
+.notices{
+  display: block;
+  margin: 15rem 0 2rem 0;
+}
 .notices_nav_list{
   display: flex;
   margin-top: 3rem;
