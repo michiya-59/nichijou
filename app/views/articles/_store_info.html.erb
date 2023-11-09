@@ -49,6 +49,23 @@
             <p class="store_info_body"><%= article&.store&.nearest_station %></p>
           </div>
         <% end %>
+        <% if article&.store&.nearest_station2.present? %>
+          <% if article&.store&.nearest_station.blank? %>
+            <div class="store_info_detail_part">
+              <div class="store_info_img">
+              </div>
+              <p class="store_info_title">最寄駅</p>
+              <p class="store_info_body"><%= article&.store&.nearest_station2 %></p>
+            </div>
+          <% else %>
+            <div class="store_info_detail_part">
+              <div class="store_info_img">
+              </div>
+              <p class="store_info_title"></p>
+              <p class="store_info_body"><%= article&.store&.nearest_station2 %></p>
+            </div>
+          <% end %>
+        <% end %>
       </div>
 
       <%# 営業時間 %>
@@ -66,13 +83,22 @@
                   <p class="store_info_body">ランチ 平日 <%= article&.store&.sales_time_lanch_weekday %></p>
                 <% end %>
                 <% if article&.store&.sales_time_lanch_holiday.present? %>
-                  <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                  <% if article&.store&.sales_time_lanch_weekday.blank? %>
+                    <p class="store_info_body margin_bottom10">ランチ 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                  <% elsif article&.store&.sales_time_lanch_weekday.present? %>
+                    <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                  <% end %>
                 <% end %>
+
                 <% if article&.store&.sales_time_dinner_weekday.present? %>
                   <p class="store_info_body">ディナー 平日 <%= article&.store&.sales_time_dinner_weekday %></p>
                 <% end %>
                 <% if article&.store&.sales_time_dinner_holiday.present? %>
-                  <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                  <% if article&.store&.sales_time_dinner_weekday.blank? %>
+                    <p class="store_info_body margin_bottom10">ディナー 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                  <% elsif %>
+                    <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                  <% end %>
                 <% end %>
                 <p class="store_info_body">※（）内の時間はラストオーダーの時間です。</p>
               </div>
