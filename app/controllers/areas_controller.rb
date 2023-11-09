@@ -5,9 +5,16 @@ class AreasController < ApplicationController
 
   # ページネーションの設定
   def show
-    @area = Area.where(id: params[:id]).select(:id, :name).first
-    @articles = fetch_posts.with_attached_top_image
-      .where(area_id: @area.id)
+    # 特定のIDでAreaを検索し、存在する場合はその名前を取得
+    area = Area.select(:id, :name).find_by(id: params[:id])
+    @area_name = area.name if area.present?
+
+    # 取得した名前でAreaを検索し、関連するIDの配列を作成
+    area_ids = Area.where(name: @area_name).pluck(:id)
+
+    # Area IDが4または5のPost情報を取得
+    @articles = Post.with_attached_top_image
+      .where(area_id: area_ids)
       .order(created_at: :asc)
       .page(params[:page]).per(24)
   end
