@@ -8,20 +8,20 @@
     <p class="pankuzu">
       <%= link_to 'ホーム', root_path, class: 'common_a' %>
       >
-      <%= @area&.name %>の記事一覧
+      <%= @area_name %>の記事一覧
     </p>
     <div class="main_content">
       <section class="content_left">
         <div class="news">
           <div class="common_title">
             <h2>
-              <%= @area&.name %><span>による検索結果</span>
+              <%= @area_name %><span>による検索結果</span>
             </h2>
           </div>
           <% if @articles.present? %>
             <div class="common_content">
               <% @articles.each do |article| %>
-                <%= link_to "#", class: 'common_content_part' do %>
+                <%= link_to article_path(article), class: 'common_content_part' do %>
                   <div class="image_part">
                     <%= image_tag article.top_image if article.top_image.attached? %>
                   </div>

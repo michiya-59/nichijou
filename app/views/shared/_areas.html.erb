@@ -3,12 +3,13 @@
     AREA <span>エリア</span>
   </h2>
 </div>
+
 <% if areas.present? %>
   <div class="area_list">
-    <% areas&.each do |area| %>
+    <% areas.uniq { |area| area.name }.each do |area| %>
       <%= link_to area_path(area) do %>
-        <span><%= area&.name %></span>
-        <%= image_tag "#{area&.name}.webp", alt: "#{area&.name}の風景" %>
+        <span><%= area.name %></span>
+        <%= image_tag "#{area.name}.webp", alt: "#{area.name}の風景" %>
       <% end %>
     <% end %>
   </div>
