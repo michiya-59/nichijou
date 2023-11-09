@@ -45,7 +45,7 @@
         <div class="form-group">
           <%= f.label :area_id, "エリア", class: "mb-1 mt-3" %>
           <span class="badge bg-danger form_require">必須項目</span>
-          <%= f.select :area_id, @areas.map { |area| [area.name, area.id] }, {}, class: "form-control" %>
+          <%= f.select :area_id, @areas.map { |area| ["#{area.name}：#{area.city_name}" , area.id] }, {}, class: "form-control" %>
         </div>
 
         <!-- 店舗情報 -->

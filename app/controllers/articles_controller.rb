@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Post.find(params[:id])
+    @article.increment!(:view_count)
   end
 
   private
