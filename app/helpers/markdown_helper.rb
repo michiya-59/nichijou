@@ -56,8 +56,8 @@ module MarkdownHelper
   def markdown body
     options = {
       filter_html: true, # htmlを出力しない
-      hard_wrap: true, # マークダウン中の空行をhtmlに置き換え
-      space_after_headers: true # # と文字の間にスペースを要求
+      hard_wrap: false, # マークダウン中の空行をhtmlに置き換え
+      space_after_headers: false # # と文字の間にスペースを要求
     }
     html_render = Redcarpet::Render::HTML.new(options)
     markdown = Redcarpet::Markdown.new(html_render, REDCARPET_OPTIONS)
