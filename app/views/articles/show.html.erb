@@ -32,7 +32,9 @@
           <% end %>
         </div>
         <div class="detail_main_content">
-          <%= sanitize(markdown(@article.content)) %>
+          <% markdown_content = markdown(@article.content).html_safe %>
+          <% markdown_content_with_br = markdown_content.gsub(/\n\n/, '<br>') %>
+          <%= sanitize(markdown_content_with_br) %>
         </div>
       </section>
 
