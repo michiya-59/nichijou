@@ -8,14 +8,14 @@
     <p class="pankuzu">
       <%= link_to 'ホーム', root_path, class: 'common_a' %>
       >
-      <%= @category&.name %>の記事一覧
+      <%= @category_name %>の記事一覧
     </p>
     <div class="main_content">
       <section class="content_left">
         <div class="news">
           <div class="common_title">
             <h2>
-              <%= @category&.name %><span>による検索結果</span>
+              <%= @category_name %><span>による検索結果</span>
             </h2>
           </div>
           <% if @articles.present? %>
