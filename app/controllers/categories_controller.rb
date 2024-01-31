@@ -6,11 +6,11 @@ class CategoriesController < ApplicationController
   # ページネーションの設定
   def show
     @category = Category.where(id: params[:id]).select(:id, :name).first
-    if @category.present?
-      @category_name = @category.name
-    else
-      @category_name = "存在しないカテゴリー"
-    end
+    @category_name = if @category.present?
+                       @category.name
+                     else
+                       "存在しないカテゴリー"
+                     end
     @articles = fetch_posts.with_attached_top_image
       .where(category_id: @category&.id)
       .order(created_at: :asc)

@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1 class="mb-3"><%= get_coupon_type_name params[:coupon_type]&.to_i %> 詳細</h1>
+
+<h5 class="mt-4">店名：<b><%= @store_name %></b></h5>
+
+<% if flash[:success].present? %>
+  <div class="alert alert-success text-center mt-2">
+    <%= flash[:success].html_safe %>
+  </div>
+<% end %>
+
+<%= link_to 'クーポン追加', new_admin_coupon_path(coupon_type: params[:coupon_type], store_id: params[:store_id]), class: 'btn btn-primary mb-3 mt-4' %>
+<p>計：<%= @coupons.size %>  個</p>
+
+<%= render 'shared/coupon', coupons: @coupons %>
+
+<%= link_to '戻る', admin_coupons_path(store_id: params[:store_id]), class: 'btn btn-warning mt-2' %>
+

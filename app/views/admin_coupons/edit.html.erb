@@ -1,0 +1,54 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/coupon_content_real_time" %>
+  <%= javascript_import_module_tag "shared/expiration_date_control" %>
+<% end %>
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1 class="mb-3"><%= get_coupon_type_name params[:coupon_type]&.to_i %> 編集</h1>
+
+<h5 class="mt-4">店名：<b><%= @store_name %></b></h5>
+
+<%= render 'shared/coupon' , coupons: [@coupon] %>
+
+<%= form_with(model: @coupon, url: admin_coupon_path(@coupon), html: { class: "form-horizontal", id: "coupon_form" }) do |f| %>
+  <%= render 'shared/error_messages'%>
+  <div class="form-group mt-5">
+    <%= f.label :title, "タイトル", class: "control-label" %>
+    <span class="badge bg-danger form_require mb-2">必須項目</span>
+    <%= f.text_field :title, maxlength: 40, class: "form-control", required: true %>
+    <span class="input_example">文字数制限：40文字まで</span>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :usage_terms, "利用条件（カンマ区切りで入力）", class: "control-label" %>
+    <span class="badge bg-danger form_require mb-2">必須項目</span>
+    <%= f.text_field :usage_terms, class: "form-control", required: true %>
+    <span class="input_example">入力例：他クーポンとの併用不可, お会計1000円以上から</span>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :presentation_terms, "提示条件（カンマ区切りで入力）", class: "control-label" %>
+    <span class="badge bg-danger form_require mb-2">必須項目</span>
+    <%= f.text_field :presentation_terms, class: "form-control", required: true %>
+    <span class="input_example">入力例：お会計時に提示, クーポン使用の方はクーポン画面の提示お願いします</span>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :expiration_date, "有効期限", class: "control-label" %>
+    <span class="badge bg-danger form_require mb-2">必須項目</span>
+    <%= f.date_field :expiration_date, class: "form-control mb-1", id: "expiration_date" %>
+
+    <div class="form-check">
+      <%= f.check_box :unlimited, class: "form-check-input", id: "unlimited" %>
+      <%= f.label :unlimited, "無期限", class: "form-check-label" %>
+    </div>
+  </div>
+  <%= f.hidden_field :coupon_type_id, value: @coupon.coupon_type_id %>
+  <%= f.hidden_field :store_id, value: @coupon.store_id %>
+
+  <div class="actions mt-3 mb-5">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', coupons_detail_admin_coupons_path(coupon_type: params[:coupon_type], store_id: @coupon&.store_id), class: 'btn btn-warning mt-2' %>

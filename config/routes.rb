@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   resources :notices, only: %i(index show)
   resources :contacts, only: %i(new create)
 
+  resources :admin_coupons do
+    collection do
+      get "coupons_detail"
+    end
+  end
   resources :admin_posts do
     post "upload_content_image", on: :collection
   end
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
   post "admin/login", to: "admin_sessions#create"
 
   # エラーページ用のルート
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
-  match "*path", to: "application#render_404", via: :all
+  # match "/404", to: "errors#not_found", via: :all
+  # match "/500", to: "errors#internal_server_error", via: :all
+  # match "*path", to: "application#render_404", via: :all
 end

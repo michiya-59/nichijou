@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
   def show
     @article = Post.find(params[:id])
     @article.increment!(:view_count)
+    store_id = Post.find(params[:id]).store_id
+    @store = Store.find(store_id)
+    @coupons_list_1 = Coupon.where(store_id:).where(coupon_type_id: 1)
+    @coupons_list_2 = Coupon.where(store_id:).where(coupon_type_id: 2)
   end
 
   private

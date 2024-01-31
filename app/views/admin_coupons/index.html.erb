@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1 class="mb-3">クーポン一覧</h1>
+
+<h5 class="mt-4">店名：<b><%= @store_name %></b></h5>
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>クーポンの種類</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>初回来店用クーポン</td>
+      <td>
+        <%= link_to '詳細', coupons_detail_admin_coupons_path(coupon_type: 1, store_id: params[:store_id]), class: 'btn btn-sm btn-success me-2' %>
+      </td>
+    </tr>
+    <tr>
+      <td>2回目以降来店用クーポン</td>
+      <td>
+        <%= link_to '詳細', coupons_detail_admin_coupons_path(coupon_type: 2, store_id: params[:store_id]), class: 'btn btn-sm btn-success me-2' %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to '戻る', admin_stores_path, class: 'btn btn-warning mt-2' %>

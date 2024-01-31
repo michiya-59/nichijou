@@ -1,0 +1,71 @@
+<% if coupons.present? %>
+  <% coupons.each do |coupon| %>
+    <div class="coupon_edit_btn">
+      <%= link_to '編集', edit_admin_coupon_path(coupon, coupon_type: coupon&.coupon_type_id), class: 'btn btn-warning' %>
+      <%= link_to '削除', admin_coupon_path(coupon), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger delete-coupon' %>
+    </div>
+    <div class="coupon mb-3">
+      <div class="left">
+        <div class="coupon_tag_title">
+          <div class="coupon_tag">
+            <%= image_tag 'coupon.svg' %>
+          </div>
+          <p>クーポン</p>
+        </div>
+        <div class="left_top">
+          <h3><%= coupon&.title %></h3>
+        </div>
+        <div class="left_bottom">
+          <div class="coupon_term_part">
+            <p class="left_bottom_left">利用条件</p>
+            <p class="left_bottom_right"><%= coupon&.usage_terms&.gsub(",", " / ") %></p>
+          </div>
+          <div class="coupon_term_part">
+            <p class="left_bottom_left">提示条件</p>
+            <p class="left_bottom_right"><%= coupon&.presentation_terms&.gsub(",", " / ") %></p>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+          <div class="right-inner">
+              <div class="date">
+                <span class="expiration_date_title">有効期限</span>
+                <p><%= get_coupon_expiration_data coupon %></p>
+              </div>
+          </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="coupon">
+    <div class="left">
+      <div class="coupon_tag_title">
+        <div class="coupon_tag">
+          <%= image_tag 'coupon.svg' %>
+        </div>
+        <p>クーポン</p>
+      </div>
+      <div class="left_top">
+        <h3></h3>
+      </div>
+      <div class="left_bottom">
+        <div class="coupon_term_part">
+          <p class="left_bottom_left">利用条件</p>
+          <p class="left_bottom_right"></p>
+        </div>
+        <div class="coupon_term_part">
+          <p class="left_bottom_left">提示条件</p>
+          <p class="left_bottom_right"></p>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+        <div class="right-inner">
+            <div class="date">
+              <span class="expiration_date_title">有効期限</span>
+              <p></p>
+            </div>
+        </div>
+    </div>
+  </div>
+<% end %>

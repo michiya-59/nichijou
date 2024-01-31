@@ -899,6 +899,11 @@ header{
           font-size: 2rem;
         }
       }
+      a{
+        @include responsive_media(sp){
+          font-size: 2rem;
+        }
+      }
     }
     .store_info_body_content .store_info_body{
       width: 100%;
@@ -953,6 +958,212 @@ header{
     }
   }
 }
+.store_info_body_content{
+  width: 60%;
+}
+.coupon_content{
+  margin-bottom: 4rem;
+  .coupon_name{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3c3c3c;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+  }
+  .coupon_type_name{
+    font-size: 1.6rem;
+  }
+}
+.coupon_edit_btn{
+  text-align: right;
+  margin-bottom: 0.3rem;
+  max-width: 59rem;
+}
+.coupon {
+  background: rgb(200 229 255 / 31%);
+  display: flex;
+  border: 1px solid #d2d2d2;
+  width: 100%;
+  max-width: 80rem;
+  margin-bottom: 2rem;
+  @include responsive_media(sp){
+    max-width: 61rem;
+    flex-direction: column;
+  }
+}
+.info {
+  font-size: 3rem;
+  font-weight: 900;
+}
+.date {
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+  width: 100%;
+  .expiration_date_title{
+    width: 100%;
+    background: #15b2ff;
+    padding: 2px 0.5rem;
+    margin-bottom: 3px;
+    display: inline-block;
+    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+    @include responsive_media(sp){
+      font-size: 1.7rem;
+    }
+  }
+  p{
+    margin: 0;
+    font-size: 1.5rem;
+    @include responsive_media(sp){
+      font-size: 1.7rem;
+    }
+  }
+}
+.left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 2rem;
+  @include responsive_media(sp){
+    padding: 1rem 1rem;
+    border-bottom: 1.5px dotted #c3c3c3;
+  }
+  .coupon_tag_title{
+    display: flex;
+    margin-right: auto;
+    height: 2rem;
+    padding: 0px 1.1rem;
+    border-radius: 1rem;
+    background: #15b2ff;
+    color: black;
+    .coupon_tag{
+      width: 1rem;
+      margin-right: 0.3rem;
+      align-items: center;
+      display: inline-grid;
+    }
+    p{
+      color: white;
+      align-items: center;
+      display: inline-grid;
+    }
+  }
+  .left_top{
+    h3{
+      font-weight: bold;
+      margin: 1rem 0;
+      font-size: 1.8rem;
+    }
+  }
+  .left_bottom{
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
+.coupon_term_part{
+  display: flex;
+  width: 100%;
+  font-size: 1.3rem;
+  .left_bottom_left{
+    width: 17%;
+    margin-bottom: 0.5rem;
+    @include responsive_media(sp){
+      width: 28%;
+    }
+  }
+  .left_bottom_right{
+    width: 83%;
+    margin-bottom: 0.5rem;
+  }
+  @include responsive_media(sp){
+    font-size: 1.5rem;
+  }
+}
+.right {
+  position: relative;
+  display: flex;
+  width: 18rem;
+  padding: 4rem 0rem;
+  border-left: 2px dashed #d2d2d2;
+  justify-content: center;
+  @include responsive_media(sp){
+    width: 100%;
+    padding: 1rem 0rem;
+    border-left: none;
+  }
+}
+.right-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+// .right::before,
+// .right::after {
+//   position: absolute;
+//   border: 1px solid #d2d2d2;
+//   display: block;
+//   content: "";
+//   border-radius: 100%;
+//   background: white;
+//   box-sizing: border-box;
+//   left: -1.2rem;
+//   width: 2.2rem;
+//   height: 2.2rem;
+// }
+// .right::before {
+//   top: -1.4rem;
+// }
+// .right::after {
+//   bottom: -1.2rem;
+//   left: -1.2rem;
+//   @include responsive_media(sp){
+//     bottom: 6.21rem;
+//     left: 59.7rem;
+//   }
+//   @include responsive_media(sp_430){
+//     bottom: 6.21rem;
+//     left: 57rem;
+//   }
+// }
+// .right-inner::before,
+// .right-inner::after {
+//   position: absolute;
+//   display: block;
+//   content: "";
+//   border-radius: 100%;
+//   background: white;
+//   z-index: 1;
+//   width: 2.4rem;
+//   height: 2.4rem;
+//   left: -1.3rem;
+// }
+// .right-inner::before {
+//   top: -1.9rem;
+//   @include responsive_media(sp){
+//     top: -1.7rem;
+//     left: -2.07rem;
+//     height: 2.7rem;
+//   }
+// }
+// .right-inner::after {
+//   bottom: -1.9rem;
+//   left: -1.3rem;
+//   @include responsive_media(sp_430){
+//     left: 59.5rem;
+//     bottom: 6.1rem;
+//   }
+//   @include responsive_media(sp){
+//     left: 57.6rem;
+//     bottom: 6.1rem;
+//   }
+// }
 .related_information{
   margin-top: 4rem;
   .related_info_list{

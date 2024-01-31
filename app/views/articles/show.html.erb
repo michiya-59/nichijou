@@ -49,6 +49,90 @@
     
     <%= render 'store_info', article: @article %>
 
+    <% if @coupons_list_1.present? || @coupons_list_2.present? %>
+      <div class="coupon_content">
+        <p class="coupon_name"><%= @store.name %> のクーポン一覧 （全<%= (@coupons_list_1 + @coupons_list_2).size%>枚）</p>
+
+        <% if @coupons_list_1.present? %>
+          <p class="coupon_name">初回来店用クーポン</p>
+          <div class="coupon_first_list">
+            <% @coupons_list_1.each do |coupon| %>
+              <div class="coupon">
+                <div class="left">
+                  <div class="coupon_tag_title">
+                    <div class="coupon_tag">
+                      <%= image_tag 'coupon.svg' %>
+                    </div>
+                    <p>クーポン</p>
+                  </div>
+                  <div class="left_top">
+                    <h3><%= coupon&.title %></h3>
+                  </div>
+                  <div class="left_bottom">
+                    <div class="coupon_term_part">
+                      <p class="left_bottom_left">利用条件</p>
+                      <p class="left_bottom_right"><%= coupon&.usage_terms&.gsub(",", " / ") %></p>
+                    </div>
+                    <div class="coupon_term_part">
+                      <p class="left_bottom_left">提示条件</p>
+                      <p class="left_bottom_right"><%= coupon&.presentation_terms&.gsub(",", " / ") %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="right">
+                    <div class="right-inner">
+                        <div class="date">
+                          <span class="expiration_date_title">有効期限</span>
+                          <p><%= get_coupon_expiration_data coupon %></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if @coupons_list_2.present? %>
+          <p class="coupon_name">2回目以降来店用クーポン</p>
+          <div class="coupon_second_list">
+            <% @coupons_list_2.each do |coupon| %>
+              <div class="coupon">
+                <div class="left">
+                  <div class="coupon_tag_title">
+                    <div class="coupon_tag">
+                      <%= image_tag 'coupon.svg' %>
+                    </div>
+                    <p>クーポン</p>
+                  </div>
+                  <div class="left_top">
+                    <h3><%= coupon&.title %></h3>
+                  </div>
+                  <div class="left_bottom">
+                    <div class="coupon_term_part">
+                      <p class="left_bottom_left">利用条件</p>
+                      <p class="left_bottom_right"><%= coupon&.usage_terms&.gsub(",", " / ") %></p>
+                    </div>
+                    <div class="coupon_term_part">
+                      <p class="left_bottom_left">提示条件</p>
+                      <p class="left_bottom_right"><%= coupon&.presentation_terms&.gsub(",", " / ") %></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="right">
+                    <div class="right-inner">
+                        <div class="date">
+                          <span class="expiration_date_title">有効期限</span>
+                          <p><%= get_coupon_expiration_data coupon %></p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
     <aside class="detail_aside_bottom">
       <%= render partial: "shared/sidebar", locals: { 
         ranking_articles: @ranking_articles,

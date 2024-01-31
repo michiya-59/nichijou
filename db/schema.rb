@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_06_170708) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_27_151818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_06_170708) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.string "title"
+    t.string "usage_terms"
+    t.string "presentation_terms"
+    t.string "bikou"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "coupon_type_id"
+    t.datetime "expiration_date"
+    t.integer "unlimited"
+    t.index ["store_id"], name: "index_coupons_on_store_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.string "image_data", comment: "写真パス"
@@ -132,6 +146,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_06_170708) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "coupons", "stores"
   add_foreign_key "images", "posts"
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "categories"

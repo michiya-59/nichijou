@@ -43,4 +43,12 @@ module ApplicationHelper
 
     request_path.start_with?(base_path) ? "active_link" : ""
   end
+
+  def get_coupon_expiration_data coupon_info
+    if coupon_info&.expiration_date.present?
+      coupon_info.expiration_date.strftime("%Y年%m月%d日")
+    elsif coupon_info&.unlimited.present?
+      "無期限"
+    end
+  end
 end
