@@ -894,7 +894,7 @@ header{
         font-weight: bold;
         width: 30%;
         @include responsive_media(sp){
-          width: 22%;
+          width: 25%;
           font-size: 2rem;
         }
       }
@@ -909,6 +909,8 @@ header{
         font-size: 1.5rem;
       }
       a{
+        width: 70%;
+        font-size: 1.4rem;
         @include responsive_media(sp){
           font-size: 2rem;
         }

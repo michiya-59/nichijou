@@ -127,7 +127,15 @@ module ApplicationHelper
     request_path = request.path
     base_path = URI.parse(path).path # pathから基本部分を取得
 
-    request_path.start_with?(base_path) ? "active_link" : ""
+    if request_path.include?("admin_coupons")
+      if base_path.include?("admin_stores")
+        "active_link"
+      else
+        ""
+      end
+    else
+      request_path.start_with?(base_path) ? "active_link" : ""
+    end
   end
 
   def get_coupon_expiration_data coupon_info

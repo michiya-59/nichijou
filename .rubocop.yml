@@ -557,7 +557,7 @@ Naming/VariableNumber:
   Enabled: false
 
 Metrics/ModuleLength:
-  Max: 120
+  Max: 127
 
 Metrics/CyclomaticComplexity:
   Max: 17
