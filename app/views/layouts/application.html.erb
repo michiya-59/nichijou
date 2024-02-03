@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>日常街のポータル</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', sizes: '180x180' %>
     <%= favicon_link_tag 'favicon-32x32.png', rel: 'icon', type: 'image/png', sizes: '32x32' %>
@@ -10,6 +9,8 @@
     <%= favicon_link_tag 'safari-pinned-tab.svg', rel: 'mask-icon', color: '#5bbad5' %>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
+    <%= show_meta_tags %>
+    <%= yield :head %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

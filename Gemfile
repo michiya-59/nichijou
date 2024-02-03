@@ -34,6 +34,7 @@ gem "nokogiri"
 gem "rack-cache"
 # gem "rails-ujs"
 gem "dotenv-rails"
+gem "meta-tags"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "rouge"
 

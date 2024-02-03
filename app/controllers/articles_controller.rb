@@ -16,7 +16,9 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Post.find(params[:id])
+    # rubocop:disable Rails/SkipsModelValidations
     @article.increment!(:view_count)
+    # rubocop:enable Rails/SkipsModelValidations
     store_id = Post.find(params[:id]).store_id
     @store = Store.find(store_id)
     @coupons_list_1 = Coupon.where(store_id:).where(coupon_type_id: 1)

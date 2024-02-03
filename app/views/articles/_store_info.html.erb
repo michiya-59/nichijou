@@ -6,7 +6,7 @@
       <div class="store_info_part">
         <%= image_tag 'store.svg', class: 'store_info_img', alt: '店舗アイコン' %>
         <p class="store_info_title">店舗名</p>
-        <p class="store_info_body"><%= article&.store&.name %></p>
+        <h1 class="store_info_body"><%= article&.store&.name %></h1>
       </div>
 
       <%# 電話番号 %>
@@ -100,7 +100,7 @@
                     <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
                   <% end %>
                 <% end %>
-                <p class="store_info_body">※（）内の時間はラストオーダーの時間です。</p>
+                <p class="store_info_body last_order">※（）内の時間はラストオーダーの時間です。</p>
               </div>
             <% end %>
           </div>

@@ -3,6 +3,8 @@
   <%= javascript_import_module_tag "shared/search" %>
 <% end %>
 
+<% assign_meta_tags title: "#{seo_title @category_name, params["type"]}" %>
+
 <main>
   <div class="front_main_container">
     <p class="pankuzu">

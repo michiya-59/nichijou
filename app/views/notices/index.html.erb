@@ -5,6 +5,9 @@
   <%= javascript_import_module_tag "shared/search" %>
 <% end %>
 
+<% assign_meta_tags title: "日常街のポータル/二チマチのお知らせ",
+                    description: "日常街のポータル/二チマチのお知らせ" %>
+
 <main>
   <div class="front_main_container">
     <p class="pankuzu">
@@ -34,7 +37,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="not_content">お知らせがひとつもありません。</p>
+      <p class="not_content">お知らせはひとつもありません。</p>
     <% end %>
 
     <%= paginate @notices, theme: 'notice_custom_paginator' %>
