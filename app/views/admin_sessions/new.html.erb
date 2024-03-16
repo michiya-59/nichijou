@@ -1,7 +1,15 @@
 <%= stylesheet_link_tag "admin_index" %>
 
+<% if flash[:alert].blank? || flash[:logout].blank? %>
+  <% if session[:flash_message].present? %>
+    <div class="alert alert-success mt-2" role="alert">
+      <%= session[:flash_message] %>
+    </div>
+  <% end %>
+<% end %>
+
 <% if flash[:alert].present? %>
-  <div class="alert alert-danger text-center">
+  <div class="alert alert-danger text-center mt-2">
     <%= flash[:alert].html_safe %>
   </div>
 <% end %>

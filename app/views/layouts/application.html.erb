@@ -24,6 +24,9 @@
     <% if request.fullpath.include?('admin') %>
       <% if current_admin %>
         <div class="container">
+          <% if current_company_admin? %>
+            <p class="fz-1_5 fb-mt1"><%= get_store_name %>様<span class="fz-1">ログイン中</span></p>
+          <% end %>
           <div class="mt-2 row">
             <!-- サイドバー部分 -->
             <%= render 'shared/admin_header' %>
@@ -47,5 +50,6 @@
       <%= yield %>
       <%= render 'shared/footer' %>
     <% end %>
+
   </body>
 </html>

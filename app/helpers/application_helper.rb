@@ -13,6 +13,11 @@ module ApplicationHelper
     content.truncate(length, omission:)
   end
 
+  def get_store_name
+    store_id = current_admin.store_id
+    Store.find(store_id).name
+  end
+
   def get_notice_kind_classname kind
     case kind
     when 1

@@ -35,6 +35,27 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 60分でセッションが切れて、ログアウトする処理
+  def redirect_not_session
+    return unless session[:expires_at]
+
+    # session[:expires_at] を Time オブジェクトとして読み込み
+    expires_at = Time.zone.parse(session[:expires_at].to_s)
+    # 現在の時間との差を比較
+    session_out_time = Time.zone.now - expires_at
+
+    return unless session_out_time > 0
+
+    reset_session
+    flash[:logout] = "セッションが切れました<br>（60分間ご利用でない場合、または不正アクセスのため）"
+    redirect_to admin_login_path
+  end
+
+  # 操作時間の60set_search_date分前の時間を格納
+  def set_session_expiration
+    session[:expires_at] = 60.minutes.from_now
+  end
+
   private
 
   def catch_exception
