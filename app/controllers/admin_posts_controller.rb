@@ -3,10 +3,15 @@
 class AdminPostsController < ApplicationController
   before_action :set_post, only: %i(edit update destroy show)
   before_action :detail_set_post, only: %i(edit new)
-  before_action :authenticate_user, :redirect_not_logged_in
+  before_action :authenticate_user, :redirect_not_logged_in, :redirect_not_session, :set_session_expiration
 
   def index
-    @posts = Post.order(created_at: :asc, updated_at: :asc)
+    if current_company_admin?
+      store_id = current_admin&.store_id
+      @posts = Post.where(store_id:).order(created_at: :asc, updated_at: :asc)
+    else
+      @posts = Post.order(created_at: :asc, updated_at: :asc)
+    end
   end
 
   def show; end
@@ -63,7 +68,12 @@ class AdminPostsController < ApplicationController
 
   def detail_set_post
     @categories = Category.all
-    @areas = Area.all
-    @stores = Store.all
+    @areas = Area.order(name: :asc)
+    if current_company_admin?
+      store_id = current_admin&.store_id
+      @stores = Store.where(id: store_id)
+    else
+      @stores = Store.all
+    end
   end
 end

@@ -1,3 +1,4 @@
+
 # 名前の定義。このCIジョブの名前を「Rails CI」としています。
 name: Rails CI
 

@@ -25,6 +25,27 @@ class ArticlesController < ApplicationController
     @coupons_list_2 = Coupon.where(store_id:).where(coupon_type_id: 2)
   end
 
+  def authentication_approval
+    # formから送信された認証コードを取得
+    authentication_code = params[:authentication_code]
+    # AdminCompanyUserモデルを使用して認証コードの検証を行う
+    user = AdminCompanyUser.find_by(authentication_code:)
+
+    respond_to do |format|
+      if user
+        reset_session
+        # params[:id]で渡された投稿IDをセッションに保存して、後で使用できるようにする
+        session[:post_id] = params[:id]
+        session[:flash_message] = "認証に成功しました。ログインしてください。"
+        # ここでログイン画面や次の遷移先にリダイレクトする
+        format.js{render js: "window.location = '#{admin_login_path}';"}
+      else
+        # 認証が失敗した場合、JavaScriptを介してアラートを表示
+        format.js{render js: "alert('認証に失敗しました。');"}
+      end
+    end
+  end
+
   private
 
   def search

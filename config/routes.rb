@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   root "homes#index"
   get "/about", to: "homes#about"
-  resources :articles, only: %i(index show)
+  resources :articles, only: %i(index show) do
+    member do
+      post "authentication_approval"
+    end
+  end
   resources :categories, only: %i(show)
   resources :areas, only: %i(show)
   resources :notices, only: %i(index show)
@@ -21,6 +25,11 @@ Rails.application.routes.draw do
   resources :admin_areas, only: %i(index new create edit update destroy)
   resources :admin_stores
   resources :admin_notices
+  resources :admin_company_users do
+    collection do
+      post "bulk_create"
+    end
+  end
 
   delete "admin/logout", to: "admin_sessions#destroy", as: :admin_logout
   get "admin/login", to: "admin_sessions#new", as: :admin_login

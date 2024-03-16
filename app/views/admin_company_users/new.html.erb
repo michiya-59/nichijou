@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1>新しい会社アカウント作成</h1>
+
+<%= form_with(model: AdminCompanyUser.new, local: true, class: 'needs-validation', novalidate: true) do |form| %>
+  <div class="mb-3">
+    <%= form.label :store_id, "店舗選択", class: 'form-label' %>
+    <%= form.collection_select :store_id, @stores, :id, :name, {include_blank: true}, {class: "form-select", required: true} %>
+    <div class="invalid-feedback">
+      店舗を選択してください。
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "アカウント作成", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<%= link_to '戻る', admin_company_users_path, class: 'btn btn-warning mt-2' %>

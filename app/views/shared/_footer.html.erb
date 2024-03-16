@@ -9,6 +9,35 @@
       <li><%= link_to "新着記事", articles_path(type: 'news') %></li>
       <li><%= link_to "お知らせ", notices_path %></li>
     </ul>
-    <p>©︎ 日常街のポータル - All Rights Resered</p>
+    <div class="footer_content">
+      <p>©︎ 日常街のポータル - All Rights Resered</p>
+      <% if params[:id].present? && request.fullpath.include?('articles') %>
+        <div class="edit_switch_content">
+          <label class="switch">
+            <input type="checkbox" id="toggleSwitch">
+            <span class="slider round"></span>
+          </label>
+          <span class="edit_s">編集</span>
+        </div>
+      <% end %>
+    </div>
   </div>
 </footer>
+
+<% if params[:id].present? && request.fullpath.include?('articles') %>
+  <!-- モーダルウィンドウのマークアップ -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">×</span>
+      <%= form_with url: authentication_approval_article_path(params[:id]), local: false, remote: true do |form| %>
+        <fieldset>
+          <div class="authentication_content">
+            <%= form.label :authentication_code, "認証コード" %>
+            <%= form.text_field :authentication_code, required: true %>
+          </div>
+          <%= form.submit "認証", class: "authentication_submit" %>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+<% end %>

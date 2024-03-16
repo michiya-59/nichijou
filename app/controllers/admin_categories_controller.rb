@@ -2,7 +2,7 @@
 
 class AdminCategoriesController < ApplicationController
   before_action :set_category, only: %i(edit update destroy)
-  before_action :authenticate_user, :redirect_not_logged_in
+  before_action :authenticate_user, :redirect_not_logged_in, :redirect_not_session, :set_session_expiration
 
   def index
     @categories = Category.all

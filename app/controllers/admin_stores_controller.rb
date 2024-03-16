@@ -2,10 +2,15 @@
 
 class AdminStoresController < ApplicationController
   before_action :set_store, only: %i(edit update destroy show)
-  before_action :authenticate_user, :redirect_not_logged_in
+  before_action :authenticate_user, :redirect_not_logged_in, :redirect_not_session, :set_session_expiration
 
   def index
-    @stores = Store.all
+    if current_company_admin?
+      store_id = current_admin&.store_id
+      @stores = Store.where(id: store_id)
+    else
+      @stores = Store.all
+    end
   end
 
   def show; end

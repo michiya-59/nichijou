@@ -1,0 +1,50 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h1>作成されているアカウント情報</h1>
+
+<%= form_with(url: admin_company_users_path, method: :get, local: true, class: "mb-3") do |form| %>
+  <div class="form-group">
+    <%= form.label :store_id, "会社名で検索", class: "form-label" %>
+    <%= form.collection_select :store_id, @stores, :id, :name, {include_blank: true}, {class: "form-select"} %>
+  </div>
+  <%= form.submit "検索", class: "btn btn-primary mt-2 mb-3" %>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= link_to '会社アカウント作成', new_admin_company_user_path, class: "btn btn-success mb-3" %>
+<%= link_to '会社アカウント一括作成', bulk_create_admin_company_users_path, method: :post, class: "btn btn-warning mb-3", data: { confirm: '一括で会社のアカウント情報を作成しますか？' } %>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th></th>
+      <th>ログインID</th>
+      <th>認証コード</th>
+      <th>店舗ID</th>
+      <th>会社名</th> <!-- 会社名を表示する列を追加 -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @company_accounts.each_with_index do |account, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= account.login_id %></td>
+        <td><%= account.authentication_code %></td>
+        <td><%= account.store_id %></td>
+        <td><%= account.store&.name %></td> <!-- 会社名を表示 -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
