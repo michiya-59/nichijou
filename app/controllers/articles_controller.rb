@@ -82,11 +82,6 @@ class ArticlesController < ApplicationController
     Post.includes(:category, top_image_attachment: :blob)
   end
 
-  # キャッシュされたデータを取得する共通の処理をメソッドに抽出
-  def cached_data name, &
-    Rails.cache.fetch(name, expires_in: 12.hours, &)
-  end
-
   # @articlesの設定を行うメソッド
   def set_articles
     type = params["type"]

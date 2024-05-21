@@ -30,9 +30,4 @@ class CategoriesController < ApplicationController
   def fetch_posts
     Post.includes(top_image_attachment: :blob)
   end
-
-  # キャッシュされたデータを取得する共通の処理をメソッドに抽出
-  def cached_data name, &
-    Rails.cache.fetch(name, expires_in: 12.hours, &)
-  end
 end
