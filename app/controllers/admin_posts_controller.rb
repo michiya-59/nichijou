@@ -8,9 +8,9 @@ class AdminPostsController < ApplicationController
   def index
     if current_company_admin?
       store_id = current_admin&.store_id
-      @posts = Post.where(store_id:).order(created_at: :asc, updated_at: :asc)
+      @posts = Post.includes(:store).where(store_id:).order(created_at: :asc, updated_at: :asc)
     else
-      @posts = Post.order(created_at: :asc, updated_at: :asc)
+      @posts = Post.includes(:store).order(created_at: :desc, updated_at: :desc)
     end
   end
 
