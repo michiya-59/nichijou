@@ -9,7 +9,7 @@ class AdminStoresController < ApplicationController
       store_id = current_admin&.store_id
       @stores = Store.where(id: store_id)
     else
-      @stores = Store.all
+      @stores = Store.order(id: :asc)
     end
   end
 

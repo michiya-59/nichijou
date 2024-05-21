@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
                      else
                        "存在しないカテゴリー"
                      end
-    @articles = fetch_posts.with_attached_top_image
+    @articles = fetch_posts
       .where(category_id: @category&.id)
       .order(created_at: :asc)
       .page(params[:page]).per(24)
@@ -21,18 +21,18 @@ class CategoriesController < ApplicationController
 
   # 共通データのロードを１つのメソッドに集約
   def load_data
-    @ranking_articles = fetch_posts.with_attached_top_image.by_view_count.limit(5)
+    @ranking_articles = fetch_posts.includes(:category).by_view_count.limit(5)
     @categories = Category.all
     @areas = Area.all
   end
 
   # 投稿を取得する共通の処理をメソッドに抽出
   def fetch_posts
-    Post.includes(:top_image_blob)
+    Post.includes(top_image_attachment: :blob)
   end
 
   # キャッシュされたデータを取得する共通の処理をメソッドに抽出
-  def cached_data(name, &)
+  def cached_data name, &
     Rails.cache.fetch(name, expires_in: 12.hours, &)
   end
 end

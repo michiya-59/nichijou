@@ -15,14 +15,13 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Post.find(params[:id])
+    @article = Post.includes(:category, top_image_attachment: :blob).find(params[:id])
     # rubocop:disable Rails/SkipsModelValidations
     @article.increment!(:view_count)
     # rubocop:enable Rails/SkipsModelValidations
-    store_id = Post.find(params[:id]).store_id
-    @store = Store.find(store_id)
-    @coupons_list_1 = Coupon.where(store_id:).where(coupon_type_id: 1)
-    @coupons_list_2 = Coupon.where(store_id:).where(coupon_type_id: 2)
+    @store = Store.find(@article.store_id)
+    @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
+    @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
   end
 
   def authentication_approval
@@ -53,8 +52,8 @@ class ArticlesController < ApplicationController
     search_item = search_params[:search_item].strip
 
     if search_item.present?
-      articles = Post.where("title LIKE :search OR content LIKE :search", search: "%#{search_item}%")
-      @articles = articles.page(params[:page]).per(24)
+      articles = Post.includes(:category, top_image_attachment: :blob).where("title LIKE :search OR content LIKE :search", search: "%#{search_item}%")
+      @articles = articles.select(:id, :title, :created_at, :category_id).page(params[:page]).per(24)
       @title_en = search_item
       @title_ja = "による検索"
     else
@@ -73,19 +72,18 @@ class ArticlesController < ApplicationController
 
   # 共通データのロードを１つのメソッドに集約
   def load_data
-    @ranking_articles = fetch_posts.with_attached_top_image.by_view_count.select(:id, :title, :created_at, :view_count, :category_id).limit(5)
-      .with_attached_top_image.by_view_count.limit(5)
+    @ranking_articles = fetch_posts.includes(:category, top_image_attachment: :blob).by_view_count.select(:id, :title, :created_at, :view_count, :category_id).limit(5)
     @categories = Category.all
     @areas = Area.all
   end
 
   # 投稿を取得する共通の処理をメソッドに抽出
   def fetch_posts
-    Post.includes(:top_image_blob)
+    Post.includes(:category, top_image_attachment: :blob)
   end
 
   # キャッシュされたデータを取得する共通の処理をメソッドに抽出
-  def cached_data(name, &)
+  def cached_data name, &
     Rails.cache.fetch(name, expires_in: 12.hours, &)
   end
 
@@ -95,9 +93,9 @@ class ArticlesController < ApplicationController
 
     @articles = case type
                 when "recommend"
-                  fetch_posts.with_attached_top_image.by_view_count.select(:id, :title, :created_at).page(params[:page]).per(24)
+                  fetch_posts.by_view_count.select(:id, :title, :created_at, :category_id).page(params[:page]).per(24)
                 when "news"
-                  fetch_posts.with_attached_top_image.recent.select(:id, :title, :created_at).page(params[:page]).per(24)
+                  fetch_posts.recent.select(:id, :title, :created_at, :category_id).page(params[:page]).per(24)
                 else
                   [] # typeが指定されていない場合は空の配列を返す
                 end
