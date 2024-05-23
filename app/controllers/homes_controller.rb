@@ -4,7 +4,7 @@ class HomesController < ApplicationController
   before_action :load_data, only: %i(index)
 
   def index
-    @top_pick_articles = get_offset_number(6)
+    @top_pick_articles = get_offset_number 6
     @news_articles = Post.with_attached_top_image.recent.limit(6)
     @notices = Notice.order(created_at: :desc).limit(5)
   end
@@ -12,7 +12,7 @@ class HomesController < ApplicationController
   def about; end
 
   def pick_articles
-    @top_pick_articles = get_offset_number(21)
+    @top_pick_articles = get_offset_number 21
   end
 
   private
@@ -23,7 +23,7 @@ class HomesController < ApplicationController
   end
 
   def load_data
-    @ranking_articles = Post.with_attached_top_image.includes(:category).by_view_count.limit(5)
+    @ranking_articles = Post.with_attached_top_image.by_view_count.limit(5).includes(:top_image_blob)
     @categories = Category.all
     @areas = Area.all
   end
