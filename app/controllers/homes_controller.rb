@@ -5,7 +5,7 @@ class HomesController < ApplicationController
 
   def index
     @top_pick_articles = get_offset_number(6)
-    @news_articles = Post.with_attached_top_image.includes(top_image_attachment: {blob: :variant_records}).recent.limit(6)
+    @news_articles = Post.with_attached_top_image.recent.limit(6)
     @notices = Notice.order(created_at: :desc).limit(5)
   end
 
@@ -19,11 +19,11 @@ class HomesController < ApplicationController
 
   def get_offset_number limit_number
     offset_number = Post.order(view_count: :desc).offset(5).limit(6).count < 5 ? 0 : 5
-    Post.with_attached_top_image.includes(top_image_attachment: {blob: :variant_records}).order(view_count: :desc).offset(offset_number).limit(limit_number)
+    Post.with_attached_top_image.order(view_count: :desc).offset(offset_number).limit(limit_number)
   end
 
   def load_data
-    @ranking_articles = Post.with_attached_top_image.includes(top_image_attachment: {blob: :variant_records}).includes(:category).by_view_count.limit(5)
+    @ranking_articles = Post.with_attached_top_image.includes(:category).by_view_count.limit(5)
     @categories = Category.all
     @areas = Area.all
   end
