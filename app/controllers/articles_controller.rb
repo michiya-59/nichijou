@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :load_data, only: %i(index show)
+  before_action :load_data, only: %i(index show multi_search)
   before_action :set_articles, only: [:index]
   before_action :set_titles_and_tags, only: [:index], if: ->{params["type"].present?}
 
@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
     @store = Store.find(@article.store_id)
     @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
     @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
+    @related_articles = Post.where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id).limit(4)
   end
 
   def authentication_approval
@@ -43,6 +44,29 @@ class ArticlesController < ApplicationController
         format.js{render js: "alert('認証に失敗しました。');"}
       end
     end
+  end
+
+  def multi_search
+    @multi_search_articles = Post.all
+    @prefecture_name = params[:prefecture]
+    @city_name = params[:city]
+    @category_name = params[:category]
+
+    if @prefecture_name.present?
+      area_ids = Area.where(name: @prefecture_name).pluck(:id)
+      @multi_search_articles = @multi_search_articles.where(area_id: area_ids)
+    end
+
+    if @city_name.present?
+      area_ids = Area.where(city_name: @city_name).pluck(:id)
+      @multi_search_articles = @multi_search_articles.where(area_id: area_ids)
+    end
+
+    if @category_name.present?
+      category_ids = Category.where(name: @category_name).pluck(:id)
+      @multi_search_articles = @multi_search_articles.where(category_id: category_ids)
+    end
+    @multi_search_articles = @multi_search_articles.page(params[:page]).per(24)
   end
 
   private
@@ -79,7 +103,7 @@ class ArticlesController < ApplicationController
 
   # 投稿を取得する共通の処理をメソッドに抽出
   def fetch_posts
-    Post.includes(:category, top_image_attachment: :blob)
+    Post.includes(top_image_attachment: :blob)
   end
 
   # @articlesの設定を行うメソッド

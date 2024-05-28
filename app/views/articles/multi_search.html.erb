@@ -10,7 +10,7 @@
     <p class="pankuzu">
       <%= link_to 'ホーム', root_path, class: 'common_a' %>
       >
-      <%= @tag_name %>
+      <%= multi_searched_links @prefecture_name, @city_name, @category_name %>
     </p>
 
     <div class="search-form sp_search_form">
@@ -48,9 +48,9 @@
               <%= @title_en %> <span><%= @title_ja %></span>
             </h2>
           </div>
-          <% if @articles.present? %>
+          <% if @multi_search_articles.present? %>
             <div class="common_content">
-              <% @articles.each do |article| %>
+              <% @multi_search_articles.each do |article| %>
                 <%= link_to article_path(article), class: 'common_content_part' do %>
                   <div class="image_part">
                     <%= image_tag article.top_image if article.top_image.attached? %>
@@ -64,8 +64,8 @@
             <p class="not_content">記事がひとつもありません。</p>
           <% end %>
 
-          <% if @articles.present? %>
-            <%= paginate @articles, theme: 'article_custom_paginator' %>
+          <% if @multi_search_articles.present? %>
+            <%= paginate @multi_search_articles, theme: 'multi_search_article_custom_paginator' %>
           <% end %>
         </div>
       </section>

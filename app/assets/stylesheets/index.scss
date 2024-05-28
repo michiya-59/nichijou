@@ -36,6 +36,9 @@ body{
   position: relative;
   padding-bottom: 45rem;
   box-sizing: border-box;
+  @include responsive_media(sp){
+    padding-bottom: 30rem;
+  }
 }
 main{
   overflow: hidden;
@@ -126,6 +129,16 @@ $beige: #BB915B;
       &:nth-child(2n){
         margin-right: 0;
       }
+    }
+    @include responsive_media(sp_320){
+      width: 45%;
+    }
+  }
+  .related{
+    width: 23%;
+    margin: 0 0 2rem;
+    @include responsive_media(sp){
+      width: 48%;
     }
   }
 }
@@ -584,6 +597,11 @@ header{
     flex-direction: column;
   }
 }
+.ranking{
+  @include responsive_media(sp){
+    margin-top: 8rem;
+  }
+}
 .ranking_content_part{
   display: flex;
   margin-bottom: 2rem;
@@ -827,6 +845,7 @@ header{
     @include responsive_media(sp_320){
       flex-direction: column;
       font-size: 2rem;
+      margin-bottom: 4rem;
       li{
         margin-bottom: 1rem;
       }
@@ -859,6 +878,7 @@ header{
 .pankuzu{
   margin: 2rem 0;
   color: $black_color;
+  font-size: 1.6rem;
   // @include responsive.responsive_media(tab){
   //   font-size: 1.6rem;
   // }
@@ -1231,6 +1251,12 @@ header{
       }
     }
   }
+}
+.related_articles{
+  margin-top: 10rem;
+}
+.related_contents{
+  justify-content: space-between;
 }
 // 詳細画面
 
@@ -1830,4 +1856,72 @@ fieldset{
   width: 6rem;
   margin-top: 1rem;
   border-radius: 7px;
+}
+
+// 検索フォーム
+.search-form {
+  background: #ECECEC;
+  width: 100%;
+  margin: 5rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 10px #b6b6b6;
+  @include responsive_media(sp){
+    display: none;
+  }
+}
+.sp_search_form{
+  display: none;
+  @include responsive_media(sp){
+    display: block;
+  }
+}
+.form-group {
+  margin-bottom: 1rem;
+  background: white;
+  padding: 0.7rem;
+  border-radius: 5px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #3C3C3C;
+  padding-left: 1rem;
+  position: relative;
+  &::after{
+    content: '';
+    width: 0.4rem;
+    height: 1.5rem;
+    background: #808080;
+    position: absolute;
+    left: -7px;
+    top: 10%;
+    bottom: 50%;
+    @include responsive_media(sp){
+      left: -5px;
+    }
+  }
+  span{
+    font-weight: normal;
+    font-size: 1.3rem;
+  }
+}
+.form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #3C3C3C;
+}
+.search-button {
+  background-color: #6b4a2f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.6rem !important;
+  text-align: center;
 }

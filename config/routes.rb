@@ -3,13 +3,18 @@
 Rails.application.routes.draw do
   root "homes#index"
   get "/about", to: "homes#about"
+
+  get "articles/multi_search", to: "articles#multi_search", as: "multi_search_articles"
   resources :articles, only: %i(index show) do
     member do
       post "authentication_approval"
     end
   end
   resources :categories, only: %i(show)
+
+  get "areas/cities", to: "areas#cities"
   resources :areas, only: %i(show)
+
   resources :notices, only: %i(index show)
   resources :contacts, only: %i(new create)
 

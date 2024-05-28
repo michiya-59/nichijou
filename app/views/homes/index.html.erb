@@ -24,6 +24,33 @@
     </div>
   </section>
   <div class="front_main_container">
+    <div class="search-form sp_search_form">
+      <div class="form-group">
+        <div class="label-highlight"></div>
+        <label for="prefecture">都道府県<span>から探す</span></label>
+        <select id="prefecture" name="prefecture">
+          <option value="tokyo">東京都</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="label-highlight"></div>
+        <label for="city">市区町村<span>から探す</span></label>
+        <select id="city" name="city">
+          <option value="shibuya">渋谷区</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="label-highlight"></div>
+        <label for="genre">ジャンル<span>から探す</span></label>
+        <select id="genre" name="genre">
+          <option value="restaurant">飲食店</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <button class="search-button">この条件で検索する</button>
+    </div>
     <div class="main_content">
       <section class="content_left">
         <div class="top_picks">
@@ -74,10 +101,10 @@
         </div>
       </section>
       <aside class="content_right">
-        <%= render partial: "shared/sidebar", locals: { 
+        <%= render partial: "shared/sidebar", locals: {
           ranking_areas: @ranking_areas,
           categories: @categories,
-          areas: @areas 
+          areas: @areas
         } %>
       </aside>
     </div>
