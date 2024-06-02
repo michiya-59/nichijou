@@ -99,6 +99,9 @@ class ArticlesController < ApplicationController
     @ranking_articles = fetch_posts.includes(:category, top_image_attachment: :blob).by_view_count.select(:id, :title, :created_at, :view_count, :category_id).limit(5)
     @categories = Category.all
     @areas = Area.all
+    @prefecture_name = params[:prefecture]
+    @city_name = params[:city]
+    @category_name = params[:category]
   end
 
   # 投稿を取得する共通の処理をメソッドに抽出

@@ -1,6 +1,3 @@
-<% content_for :js do %>
-  <%= javascript_import_module_tag "shared/multi_search" %>
-<% end %>
 <%= form_with url: multi_search_articles_path, method: :get, local: true, id: "search-form", class: "search-form pc_search_form" do %>
   <div class="form-group">
     <label for="prefecture">都道府県<span>から探す</span></label>
