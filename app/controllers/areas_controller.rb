@@ -19,6 +19,15 @@ class AreasController < ApplicationController
       .page(params[:page]).per(24)
   end
 
+  def cities
+    if params[:prefecture_name].present?
+      cities = Area.where(name: params[:prefecture_name]).pluck(:city_name).uniq
+      render json: cities
+    else
+      render json: {error: "Prefecture name is missing"}, status: :bad_request
+    end
+  end
+
   private
 
   # 共通データのロードを１つのメソッドに集約

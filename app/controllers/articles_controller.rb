@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
-  before_action :load_data, only: %i(index show)
+  before_action :load_data, only: %i(index show multi_search)
   before_action :set_articles, only: [:index]
   before_action :set_titles_and_tags, only: [:index], if: ->{params["type"].present?}
 
@@ -22,6 +22,7 @@ class ArticlesController < ApplicationController
     @store = Store.find(@article.store_id)
     @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
     @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
+    @related_articles = Post.where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id).limit(4)
   end
 
   def authentication_approval
@@ -45,7 +46,38 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def multi_search
+    @multi_search_articles = Post.all
+    @prefecture_name = params[:prefecture]
+    @city_name = params[:city]
+    @category_name = params[:category]
+    @current_params = params.permit(:prefecture, :city, :category, :page) # セーフなパラメータをインスタンス変数に格納
+
+    # フィルタリングロジックの呼び出し
+    @multi_search_articles = apply_filters(@multi_search_articles, params)
+    @multi_search_articles = @multi_search_articles.page(params[:page]).per(24)
+  end
+
   private
+
+  def apply_filters articles, params
+    if params[:prefecture].present?
+      area_ids = Area.where(name: params[:prefecture]).pluck(:id)
+      articles = articles.where(area_id: area_ids)
+    end
+
+    if params[:city].present?
+      area_ids = Area.where(city_name: params[:city]).pluck(:id)
+      articles = articles.where(area_id: area_ids)
+    end
+
+    if params[:category].present?
+      category_ids = Category.where(name: params[:category]).pluck(:id)
+      articles = articles.where(category_id: category_ids)
+    end
+
+    articles
+  end
 
   def search
     # 検索文字の受け取りと検証（不適切なパラメータがあれば除外）
@@ -75,11 +107,14 @@ class ArticlesController < ApplicationController
     @ranking_articles = fetch_posts.includes(:category, top_image_attachment: :blob).by_view_count.select(:id, :title, :created_at, :view_count, :category_id).limit(5)
     @categories = Category.all
     @areas = Area.all
+    @prefecture_name = params[:prefecture]
+    @city_name = params[:city]
+    @category_name = params[:category]
   end
 
   # 投稿を取得する共通の処理をメソッドに抽出
   def fetch_posts
-    Post.includes(:category, top_image_attachment: :blob)
+    Post.includes(top_image_attachment: :blob)
   end
 
   # @articlesの設定を行うメソッド
