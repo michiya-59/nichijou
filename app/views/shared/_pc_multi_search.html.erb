@@ -14,6 +14,7 @@
     <%= select_tag :category, options_for_select(Category.order_categoies, params[:category]), include_blank: "選択してください", id: "category", class: "form-control" %>
   </div>
   <%= submit_tag 'この条件で検索する', class: 'search-button btn btn-primary' %>
+  <%= button_tag 'クリア', type: 'button', class: 'clear-button btn btn-secondary', id: "reset-button" %>
 <% end %>
 
 

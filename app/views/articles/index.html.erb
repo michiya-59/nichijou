@@ -2,6 +2,7 @@
   <%= javascript_import_module_tag "shared/hamburger" %>
   <%= javascript_import_module_tag "shared/search" %>
   <%= javascript_import_module_tag "shared/multi_search" %>
+  <%= javascript_import_module_tag "shared/multi_search2" %>
   <%= javascript_import_module_tag "fontawesome" %>
 <% end %>
 
@@ -16,13 +17,21 @@
       <div class="middle_content">
         <% if @prefecture_name.present? %>
           <p><%= @prefecture_name %></p>
-        <% elseif @city_name.present %>
+        <% end %>
+
+        <% if @prefecture_name.present? && @city_name.present? %>
           <hr>
           <p><%= @city_name %></p>
-        <% elseif @category_name.present %>
+        <% end %>
+
+        <% if @prefecture_name.present? && @category_name.present? %>
           <hr>
           <p><%= @category_name %></p>
         <% else %>
+          <p><%= @category_name %></p>
+        <% end %>
+
+        <% if @prefecture_name.blank? && @city_name.blank? && @category_name.blank? %>
           <p style="opacity:0.4">検索条件</p>
         <% end %>
       </div>
@@ -37,24 +46,7 @@
       >
       <%= @tag_name %>
     </p>
-
-    <%= form_with url: multi_search_articles_path, method: :get, local: true, id: "search-form", class: "search-form sp_search_form" do %>
-      <div class="form-group">
-        <label for="prefecture">都道府県<span>から探す</span></label>
-        <%= select_tag :prefecture, options_for_select(Area.unique_prefectures, params[:prefecture]), include_blank: "選択してください", id: "prefecture", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <label for="city">市区町村<span>から探す</span></label>
-        <%= select_tag :city, options_for_select([], params[:city]), include_blank: "都道府県を選択してください", id: "city", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <label for="category">ジャンル<span>から探す</span></label>
-        <%= select_tag :category, options_for_select(Category.order_categoies, params[:category]), include_blank: "選択してください", id: "category", class: "form-control" %>
-      </div>
-      <%= submit_tag 'この条件で検索する', class: 'search-button btn btn-primary' %>
-    <% end %>
+    <%= render partial: "shared/sp_multi_search" %>
     <div class="main_content">
       <section class="content_left">
         <div class="news">

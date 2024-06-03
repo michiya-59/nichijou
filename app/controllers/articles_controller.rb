@@ -51,25 +51,33 @@ class ArticlesController < ApplicationController
     @prefecture_name = params[:prefecture]
     @city_name = params[:city]
     @category_name = params[:category]
+    @current_params = params.permit(:prefecture, :city, :category, :page) # セーフなパラメータをインスタンス変数に格納
 
-    if @prefecture_name.present?
-      area_ids = Area.where(name: @prefecture_name).pluck(:id)
-      @multi_search_articles = @multi_search_articles.where(area_id: area_ids)
-    end
-
-    if @city_name.present?
-      area_ids = Area.where(city_name: @city_name).pluck(:id)
-      @multi_search_articles = @multi_search_articles.where(area_id: area_ids)
-    end
-
-    if @category_name.present?
-      category_ids = Category.where(name: @category_name).pluck(:id)
-      @multi_search_articles = @multi_search_articles.where(category_id: category_ids)
-    end
+    # フィルタリングロジックの呼び出し
+    @multi_search_articles = apply_filters(@multi_search_articles, params)
     @multi_search_articles = @multi_search_articles.page(params[:page]).per(24)
   end
 
   private
+
+  def apply_filters articles, params
+    if params[:prefecture].present?
+      area_ids = Area.where(name: params[:prefecture]).pluck(:id)
+      articles = articles.where(area_id: area_ids)
+    end
+
+    if params[:city].present?
+      area_ids = Area.where(city_name: params[:city]).pluck(:id)
+      articles = articles.where(area_id: area_ids)
+    end
+
+    if params[:category].present?
+      category_ids = Category.where(name: params[:category]).pluck(:id)
+      articles = articles.where(category_id: category_ids)
+    end
+
+    articles
+  end
 
   def search
     # 検索文字の受け取りと検証（不適切なパラメータがあれば除外）

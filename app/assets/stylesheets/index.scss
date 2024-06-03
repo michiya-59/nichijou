@@ -19,15 +19,15 @@ html {
   font-size: 62.5%;
   
   @media (max-width: 1024px) {
-    font-size: 50%; // タブレットサイズ
+    font-size: 50%;// タブレットサイズ
   }
 
   @media (max-width: 767px) {
-    font-size: 40%; // モバイルサイズ
+    font-size: 40%;// モバイルサイズ
   }
 
   // @media (max-width: 520px) {
-  //   font-size: 31.25%; // モバイルサイズ
+  //   font-size: 31.25%;// モバイルサイズ
   // }
 }
 body{
@@ -409,7 +409,7 @@ header{
     transform: rotate(0deg);
     transition: .5s ease-in-out;
     cursor: pointer;
-    z-index: 1000; /* Ensure the icon stays on top when open */
+    z-index: 1000;/* Ensure the icon stays on top when open */
     margin-top: 0;
   }
   #nav-icon span {
@@ -471,7 +471,7 @@ header{
   }
 
   #mobile-nav.open {
-    right: 0;  /* メニューが開いたときは画面内に移動します */
+    right: 0; /* メニューが開いたときは画面内に移動します */
     z-index: 1000;
   }
 
@@ -541,12 +541,12 @@ header{
 
 // スライダー
 .slider {
-  margin: 0 -2rem; /* 一枚一枚の間隔を13pxに設定 */
+  margin: 0 -2rem;/* 一枚一枚の間隔を13pxに設定 */
   img{
     border-radius: 150px 150px 0px 0px;
     width: 28rem;
-    height: 26rem; /* 一枚の写真のサイズを240px × 240pxに設定 */
-    margin: 0 2rem; /* 一枚一枚の間隔を13pxに設定 */
+    height: 26rem;/* 一枚の写真のサイズを240px × 240pxに設定 */
+    margin: 0 2rem;/* 一枚一枚の間隔を13pxに設定 */
     object-fit: cover;
     @include responsive_media(tab){
       width: 25rem;
@@ -829,7 +829,6 @@ header{
 .footer{
   text-align: center;
   border-top: 1px solid #F0F0F0;
-  margin-top: 20rem;
   padding-bottom: 1rem;
 
   .footer_img{
@@ -1551,7 +1550,7 @@ select{
     color: white;
     z-index: 100;
     left: 0;
-    top: 0; 
+    top: 0;
     text-align: center;
   }
   p{
@@ -1577,7 +1576,7 @@ select{
     }
     p{
       font-size: 1.7rem;
-      width: 75%;      
+      width: 75%;     
     }
     &::after{
       height: 28rem;
@@ -1794,7 +1793,7 @@ input:checked + .slider:before {
 }
 /* モーダルウィンドウのスタイル */
 .modal {
-  display: none; /* デフォルトでは非表示 */
+  display: none;/* デフォルトでは非表示 */
   position: fixed;
   z-index: 1;
   left: 0;
@@ -1818,8 +1817,8 @@ input:checked + .slider:before {
 }
 
 @keyframes modalopen {
-  from {bottom: -300px; opacity: 0}
-  to {bottom: 0; opacity: 1}
+  from {bottom: -300px;opacity: 0}
+  to {bottom: 0;opacity: 1}
 }
 
 .close-button {
@@ -1862,40 +1861,44 @@ fieldset{
 .search-form {
   background: #ECECEC;
   width: 100%;
-  margin: 5rem auto;
+  margin: 7rem auto 5rem auto;
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 1px 1px 10px #b6b6b6;
-  @include responsive_media(sp){
-    display: none;
-  }
+  // @include responsive_media(sp){
+  //   display: none;
+  // }
 }
 #search-overlay {
-  display: none; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  background-color: rgba(0,0,0,0.5); 
-  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1002;
+  padding: 0 3rem;
+}
+.home_search_overlay{
+  display: none;
+  @include responsive_media(sp){
+    display: block;
+  }
 }
 /* 閉じるボタンのスタイル */
 #close-search {
-  position: absolute; 
-  right: 10px; 
-  top: 10px; 
-  border: none; 
-  background: none; 
-  font-size: 24px; 
+  position: absolute;
+  right: 0.2rem;
+  top: 0rem;
+  border: none;
+  background: none;
   cursor: pointer;
+  z-index: 1000;
+  color: white;
+  font-size: 6rem;
 }
 .sp_search_form{
-  display: none;
-  position: relative; 
-  @include responsive_media(sp){
-    // display: block;
-  }
+  position: relative;
 }
 .form-group {
   margin-bottom: 1rem;
@@ -1936,7 +1939,7 @@ fieldset{
   border: 1px solid #ccc;
   color: #3C3C3C;
 }
-.search-button {
+.search-button, .clear-button{
   background-color: #6b4a2f;
   color: #fff;
   border: none;
@@ -1945,8 +1948,22 @@ fieldset{
   cursor: pointer;
   font-size: 1.6rem !important;
   text-align: center;
+  @include responsive_media(sp){
+    font-size: 2rem !important;
+  }
 }
-
+.clear-button{
+  border: 1px solid #755f4d;
+  background: white;
+  color: #755f4d;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+}
+.pc_search_form{
+  @include responsive_media(sp){
+    display: none;
+  }
+}
 .sp_search_bar{
   border-top: 1px solid #B1B1B1;
   padding: 1.5rem;

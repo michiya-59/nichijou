@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const prefectureSelect = form.querySelector('#prefecture');
     const citySelect = form.querySelector('#city');
     const categorySelect = form.querySelector('#category');
+    const resetButton = form.querySelector('#reset-button');
 
     function updateCities(prefecture, selectedCity) {
       if (!prefecture) {  // 都道府県が未選択の場合
@@ -63,6 +64,12 @@ document.addEventListener("DOMContentLoaded", function() {
       }).toString();
 
       window.location.href = `/articles/multi_search?${queryParams}`;
+    });
+
+    resetButton.addEventListener('click', function (){
+      prefectureSelect.value = '';
+      citySelect.innerHTML = '<option value="">都道府県を選択してください</option>';
+      categorySelect.value = '';
     });
   });
 });

@@ -1,0 +1,19 @@
+<% if @multi_search_articles.total_pages > 1 %>
+  <div class="pagenation">
+    <% if @multi_search_articles.prev_page %>
+      <%= link_to '前へ', multi_search_articles_path(@current_params.merge(page: @multi_search_articles.prev_page)), class: 'beige common_size14' %>
+    <% end %>
+    
+    <% 1.upto(@multi_search_articles.total_pages) do |page| %>
+      <% if page == @multi_search_articles.current_page %>
+        <a class="common_btn_beige_background common_size14"><%= page %></a>
+      <% else %>
+        <%= link_to page, multi_search_articles_path(@current_params.merge(page: page)), class: 'common_box_beige common_size14' %>
+      <% end %>
+    <% end %>
+    
+    <% if @multi_search_articles.next_page %>
+      <%= link_to '次へ', multi_search_articles_path(@current_params.merge(page: @multi_search_articles.next_page)), class: 'beige common_size14' %>
+    <% end %>
+  </div>
+<% end %>
