@@ -6,7 +6,7 @@
   <%= javascript_import_module_tag "fontawesome" %>
 <% end %>
 
-<% assign_meta_tags title: "#{seo_title @category_name, params["type"]}" %>
+<% assign_meta_tags title: "#{seo_title_multisearch @prefecture_name, @city_name, @category_name}" %>
 
 <main>
   <div class="sp_search_bar">

@@ -84,7 +84,7 @@ module ApplicationHelper
   def seo_title name, type = nil
     if type.blank?
       if name.blank?
-        "おすすめのお店を紹介!飲食店・美容院・整体・小売り店の特集! "
+        "おすすめのお店を紹介!飲食店・美容院・整体・小売り店などの特集! "
       else
         "おすすめの#{name}を紹介! #{name}特集! "
       end
@@ -94,6 +94,22 @@ module ApplicationHelper
       "飲食店・美容院・整体・小売り店の新着を紹介!"
     elsif type == "area"
       "#{name}でおすすめの飲食店・美容院・整体・小売り店の新着を紹介!"
+    end
+  end
+
+  def seo_title_multisearch prefecture_name, city_name, category_name
+    if prefecture_name.present? && city_name.present? && category_name.present?
+      "#{prefecture_name} #{city_name}でおすすめな#{category_name}"
+    elsif prefecture_name.present? && city_name.present?
+      "#{prefecture_name} #{city_name}でおすすめなお店"
+    elsif prefecture_name.present? && category_name.present?
+      "#{prefecture_name}でおすすめな#{category_name}"
+    elsif prefecture_name.present?
+      "#{prefecture_name}でおすすめなお店"
+    elsif category_name.present?
+      "全国でおすすめな#{category_name}"
+    else
+      "おすすめのお店を紹介!飲食店・美容院・整体・小売り店などの特集! "
     end
   end
 
