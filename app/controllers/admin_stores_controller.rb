@@ -17,9 +17,12 @@ class AdminStoresController < ApplicationController
 
   def new
     @store = Store.new
+    @store.business_hours.build
   end
 
-  def edit; end
+  def edit
+    @store.business_hours.build if @store.business_hours.empty?
+  end
 
   def create
     @store = Store.new(store_params)
@@ -35,11 +38,10 @@ class AdminStoresController < ApplicationController
   def update
     if @store.update(store_params)
       flash[:success] = "店舗情報を更新しました"
-      redirect_to admin_stores_path
     else
       flash[:error] = @store.errors.full_messages
-      redirect_to edit_admin_admin_store_path
     end
+    redirect_to edit_admin_store_path(@store)
   end
 
   def destroy
@@ -60,6 +62,7 @@ class AdminStoresController < ApplicationController
                                   :sales_time_lanch_holiday, :sales_time_dinner_weekday,
                                   :sales_time_dinner_holiday, :holiday, :pay_methods, :homepage_url,
                                   :sns_link_tabelog, :sns_link_twitter, :sns_link_instagram,
-                                  :sns_link_facebook, :sns_link_line)
+                                  :sns_link_facebook, :sns_link_line, :sales_flg,
+                                  business_hours_attributes: [:id, :store_id, :opening_time, :closing_time, :opening_time2, :closing_time2, :last_order_time, :last_order_time2, :last_order_drink, :last_order_drink2, :_destroy, {day_of_week: []}])
   end
 end
