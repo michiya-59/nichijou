@@ -136,7 +136,7 @@ $beige: #BB915B;
   }
   .related{
     width: 23%;
-    margin: 0 0 2rem;
+    margin: 0 2rem 2rem 0;
     @include responsive_media(sp){
       width: 48%;
     }
@@ -940,7 +940,7 @@ header{
       .store_info_body{
         width: 70%;
         font-size: 1.4rem;
-        @include responsive_media(tab){
+        @include responsive_media(sp){
           font-size: 2rem;
         }
       }
@@ -1254,9 +1254,9 @@ header{
 .related_articles{
   margin-top: 10rem;
 }
-.related_contents{
-  justify-content: space-between;
-}
+// .related_contents{
+//   justify-content: space-between;
+// }
 // 詳細画面
 
 // お知らせ画面
@@ -2006,5 +2006,47 @@ fieldset{
   }
   @include responsive_media(sp){
     display: block;
+  }
+}
+.business_hours_container{
+  width: 70%;
+}
+.business_hours_content{
+  margin-bottom: 1rem;
+  .week_body{
+    font-size: 1.4rem;
+    font-weight: bold;
+    @include responsive_media(sp){
+      font-size: 2rem
+    }
+  }
+  .business_hours_part{
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: 0.6rem;
+    .business_hours{
+      font-size: 1.4rem;
+      width: 15rem;
+      @include responsive_media(sp){
+        font-size: 2rem
+      }
+    }
+    .last_order_content{
+      font-size: 1.2rem;
+      margin-left: 2rem;
+      opacity: 0.5;
+      @include responsive_media(sp){
+        font-size: 1.7rem;
+      }
+      .last_order_time{
+        margin-bottom: 0.2rem;
+        &:nth-child(2n){
+          @include responsive_media(sp){
+            margin-left: -2rem;
+          }
+        }
+      }
+    }
   }
 }

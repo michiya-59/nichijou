@@ -1,0 +1,57 @@
+<fieldset class="business-hours-group">
+  <div class="day-checkbox-group">
+    <span>営業曜日</span>
+    <div class="week_group">
+      <% BusinessHour::DAYS_OF_WEEK.each do |day| %>
+        <div class="checkbox-item">
+          <%= f.check_box :day_of_week, { multiple: true, checked: f.object.day_of_week&.split('@')&.include?(day) }, day, nil %>
+          <%= f.label :day_of_week, day, value: day %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="business_hours_group_part">
+    <div class="day-group">
+      <%= f.label :opening_time, "営業時間" %>
+      <%= f.time_field :opening_time %>
+      <span>〜</span>
+      <%= f.time_field :closing_time %>
+    </div>
+    <div class="day-group last_order">
+      <div class="last_order_part">
+        <%= f.label :last_order_time, "料理 ラストオーダー" %>
+        <%= f.time_field :last_order_time %>
+      </div>
+
+      <div class="last_order_part">
+        <%= f.label :last_order_drink, "ドリンク ラストオーダー" %>
+        <%= f.time_field :last_order_drink %>
+      </div>
+    </div>
+  </div>
+
+  <div class="business_hours_group_part">
+    <div class="day-group">
+      <%= f.label :opening_time2, "営業時間2" %>
+      <%= f.time_field :opening_time2 %>
+      <span>〜</span>
+      <%= f.time_field :closing_time2 %>
+    </div>
+    <div class="day-group last_order">
+      <div class="last_order_part">
+        <%= f.label :last_order_time2, "料理 ラストオーダー2" %>
+        <%= f.time_field :last_order_time2 %>
+      </div>
+
+      <div class="last_order_part">
+        <%= f.label :last_order_drink2, "ドリンク ラストオーダー2" %>
+        <%= f.time_field :last_order_drink2 %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+  <div class="form-group">
+    <%= link_to '削除', '#', class: 'remove-business-hours btn btn-danger' %>
+  </div>
+</fieldset>
