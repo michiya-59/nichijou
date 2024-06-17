@@ -81,9 +81,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-  # Bullet.enable = true # Bulletプラグインを有効
-  # Bullet.alert = true # JavaScriptでの通知
-  # Bullet.bullet_logger = true # log/bullet.logへの出力
-  # Bullet.console = true # ブラウザのコンソールログに記録
-  # Bullet.rails_logger = true # Railsログに出力
+  Bullet.enable = true # Bulletプラグインを有効
+  Bullet.alert = true # JavaScriptでの通知
+  Bullet.bullet_logger = true # log/bullet.logへの出力
+  Bullet.console = true # ブラウザのコンソールログに記録
+  Bullet.rails_logger = true # Railsログに出力
 end
