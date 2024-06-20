@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :category
   belongs_to :area
   belongs_to :store
+  has_many :store_monthly_post_views, dependent: :destroy
   has_one_attached :top_image
 
   validates :title, presence: true, length: {maximum: 256}
