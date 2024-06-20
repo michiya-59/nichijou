@@ -59,8 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
     t.integer "status", null: false, comment: "ステータス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "authentication_code"
-    t.integer "store_id"
     t.index ["login_id"], name: "index_admin_users_on_login_id", unique: true
   end
 
@@ -70,6 +68,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
     t.datetime "updated_at", null: false
     t.string "city_name"
     t.string "prefecture_code"
+  end
+
+  create_table "business_hours", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.string "day_of_week"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "opening_time2"
+    t.time "closing_time2"
+    t.time "opening_time3"
+    t.time "closing_time3"
+    t.time "last_order_time"
+    t.time "last_order_time2"
+    t.time "last_order_drink"
+    t.time "last_order_drink2"
+    t.index ["store_id"], name: "index_business_hours_on_store_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -133,6 +149,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
     t.index ["view_count"], name: "index_posts_on_view_count"
   end
 
+  create_table "store_monthly_post_views", force: :cascade do |t|
+    t.integer "view_counts", default: 0, null: false
+    t.datetime "view_month", precision: nil, null: false
+    t.bigint "post_id", null: false
+    t.bigint "store_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id", "store_id", "view_month"], name: "index_store_monthly_post_views_on_post_store_month", unique: true
+    t.index ["post_id"], name: "index_store_monthly_post_views_on_post_id"
+    t.index ["store_id"], name: "index_store_monthly_post_views_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name", null: false, comment: "店舗名"
     t.string "tel", null: false, comment: "電話番号"
@@ -156,15 +184,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "google_map_url"
+    t.integer "sales_flg", default: 1, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admin_company_users", "stores"
-  add_foreign_key "admin_users", "stores"
+  add_foreign_key "business_hours", "stores"
   add_foreign_key "coupons", "stores"
   add_foreign_key "images", "posts"
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "stores"
+  add_foreign_key "store_monthly_post_views", "posts"
+  add_foreign_key "store_monthly_post_views", "stores"
 end
