@@ -69,39 +69,69 @@
       </div>
 
       <%# 営業時間 %>
-      <% if article&.store&.sales_time_lanch_weekday.present? || article&.store&.sales_time_lanch_holiday.present? || article&.store&.sales_time_dinner_weekday.present? || article&.store&.sales_time_dinner_holiday.present? || article&.store&.holiday.present? %>
+
+      <% if article&.store&.sales_flg.present? %>
         <div class="store_info_part multiple_lines">
           <div class="store_info_detail_part margin_bottom10">
             <div class="store_info_img">
               <%= image_tag 'clock2.svg', class: 'store_info_img', alt: '時間アイコン' %>
             </div>
-            <p class="store_info_title">営業時間</p>
+            <p class="store_info_title business_hours_title">営業時間</p>
 
-            <% if article&.store&.sales_time_lanch_weekday.present? || article&.store&.sales_time_lanch_holiday.present? || article&.store&.sales_time_dinner_weekday.present? || article&.store&.sales_time_dinner_holiday.present? %>
-              <div class="store_info_body_content">
-                <% if article&.store&.sales_time_lanch_weekday.present? %>
-                  <p class="store_info_body">ランチ 平日 <%= article&.store&.sales_time_lanch_weekday %></p>
-                <% end %>
-                <% if article&.store&.sales_time_lanch_holiday.present? %>
-                  <% if article&.store&.sales_time_lanch_weekday.blank? %>
-                    <p class="store_info_body margin_bottom10">ランチ 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
-                  <% elsif article&.store&.sales_time_lanch_weekday.present? %>
-                    <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+            <% if article&.store&.sales_flg.to_i == 1 %>
+              <% if article&.store&.sales_time_lanch_weekday.present? || article&.store&.sales_time_lanch_holiday.present? || article&.store&.sales_time_dinner_weekday.present? || article&.store&.sales_time_dinner_holiday.present? %>
+                <div class="store_info_body_content">
+                  <% if article&.store&.sales_time_lanch_weekday.present? %>
+                    <p class="store_info_body">ランチ 平日 <%= article&.store&.sales_time_lanch_weekday %></p>
                   <% end %>
-                <% end %>
+                  <% if article&.store&.sales_time_lanch_holiday.present? %>
+                    <% if article&.store&.sales_time_lanch_weekday.blank? %>
+                      <p class="store_info_body margin_bottom10">ランチ 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                    <% elsif article&.store&.sales_time_lanch_weekday.present? %>
+                      <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_lanch_holiday %></p>
+                    <% end %>
+                  <% end %>
 
-                <% if article&.store&.sales_time_dinner_weekday.present? %>
-                  <p class="store_info_body">ディナー 平日 <%= article&.store&.sales_time_dinner_weekday %></p>
-                <% end %>
-                <% if article&.store&.sales_time_dinner_holiday.present? %>
-                  <% if article&.store&.sales_time_dinner_weekday.blank? %>
-                    <p class="store_info_body margin_bottom10">ディナー 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
-                  <% elsif %>
-                    <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                  <% if article&.store&.sales_time_dinner_weekday.present? %>
+                    <p class="store_info_body">ディナー 平日 <%= article&.store&.sales_time_dinner_weekday %></p>
                   <% end %>
+                  <% if article&.store&.sales_time_dinner_holiday.present? %>
+                    <% if article&.store&.sales_time_dinner_weekday.blank? %>
+                      <p class="store_info_body margin_bottom10">ディナー 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                    <% elsif %>
+                      <p class="store_info_body margin_bottom10">　　　 土日祝 <%= article&.store&.sales_time_dinner_holiday %></p>
+                    <% end %>
+                  <% end %>
+                  <p class="store_info_body last_order">※（）内の時間はラストオーダーの時間です。</p>
+                </div>
+              <% end %>
+            <% elsif article&.store&.sales_flg.to_i == 2 %>
+              <div class="business_hours_container">
+                <% article&.store&.business_hours.each do |business_hour| %>
+                  <div class="business_hours_content">
+                    <p class="week_body"><%= business_hour&.day_of_week&.gsub('@', '・') %></p>
+
+                    <% if business_hour&.opening_time.present? && business_hour&.closing_time.present? %>
+                      <div class="business_hours_part">
+                        <p class="business_hours"><%= "#{business_hour&.opening_time&.strftime("%H:%M")} 〜 #{business_hour&.closing_time&.strftime("%H:%M")}" %></p>
+                        <% if business_hour&.last_order_time.present? %>
+                          <p class="last_order_time"><%= "L.O. #{business_hour&.last_order_time&.strftime("%H:%M")}" %></p>
+                        <% end %>
+                      </div>
+                    <% end %>
+
+                    <% if business_hour&.opening_time2.present? && business_hour&.closing_time2.present? %>
+                      <div class="business_hours_part">
+                        <p class="business_hours"><%= "#{business_hour&.opening_time2&.strftime("%H:%M")} 〜 #{business_hour&.closing_time2&.strftime("%H:%M")}" %></p>
+                        <% if business_hour&.last_order_time2.present? %>
+                          <p class="last_order_time"><%= "L.O. #{business_hour&.last_order_time2&.strftime("%H:%M")}" %></p>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
                 <% end %>
-                <p class="store_info_body last_order">※（）内の時間はラストオーダーの時間です。</p>
               </div>
+            <% %>
             <% end %>
           </div>
 

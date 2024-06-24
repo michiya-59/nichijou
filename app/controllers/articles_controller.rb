@@ -22,7 +22,9 @@ class ArticlesController < ApplicationController
     @store = Store.find(@article.store_id)
     @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
     @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
-    @related_articles = Post.includes(top_image_attachment: :blob).where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id).limit(4)
+    @related_articles = Post.includes(top_image_attachment: :blob).where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id)
+      .where.not(id: @article.id)
+      .limit(4)
   end
 
   def authentication_approval

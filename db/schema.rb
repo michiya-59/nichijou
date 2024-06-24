@@ -83,8 +83,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
     t.time "closing_time3"
     t.time "last_order_time"
     t.time "last_order_time2"
-    t.time "last_order_drink"
-    t.time "last_order_drink2"
     t.index ["store_id"], name: "index_business_hours_on_store_id"
   end
 

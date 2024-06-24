@@ -1,6 +1,15 @@
-<%= form_with model: @store, url: (@store.new_record? ? admin_stores_path : admin_store_path(@store)) do |f| %>
+<% content_for :js do %>
+  <%= javascript_import_module_tag "shared/add_business_fields" %>
+  <%= javascript_import_module_tag "shared/controll_business_hours" %>
+<% end %>
 
+<%= form_with model: @store, url: (@store.new_record? ? admin_stores_path : admin_store_path(@store)) do |f| %>
   <%= render 'shared/error_messages'%>
+  <% if flash[:success].present? %>
+    <div class="alert alert-success text-center mt-2">
+      <%= flash[:success].html_safe %>
+    </div>
+  <% end %>
 
   <div class="mt-1">
     <%= f.label :name, "店舗名" %>
@@ -8,99 +17,143 @@
     <%= f.text_field :name, class: 'form-control', required: true %>
     <span class="input_example">入力例：株式会社テスト</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :tel, "電話番号" %>
     <span class="badge bg-danger form_require">必須項目</span>
     <%= f.telephone_field :tel, class: 'form-control', required: true %>
     <span class="input_example">入力例：000-1111-3333　※ハイフンを含めて入力してください。</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :address, "住所" %>
     <span class="badge bg-danger form_require">必須項目</span>
     <%= f.text_field :address, class: 'form-control', required: true %>
     <span class="input_example">入力例：〒000-111 東京都品川区高輪テスト1-1　※郵便番号も含めて全て入力してください。</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :google_map_url, "住所 Google MapのURL" %>
     <span class="badge bg-danger form_require">必須項目</span>
     <%= f.text_field :google_map_url, class: 'form-control', required: true %>
     <span class="input_example">※ 該当住所のGoogle Mapを開く → 「共有」をクリック → 「地図を埋め込む」 → 「HTMLをコピーをクリック」</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "徒歩 アクセス方法" %>
     <%= f.text_field :access, class: 'form-control' %>
     <span class="input_example">入力例：相模原線 橋本駅から徒歩10分</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "バス アクセス方法" %>
     <%= f.text_field :access2, class: 'form-control' %>
     <span class="input_example">入力例：小田急 相模大野駅からバス9分</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "最寄駅" %>
     <%= f.text_field :nearest_station, class: 'form-control' %>
     <span class="input_example">入力例：相模原線 橋本駅</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "最寄駅２" %>
     <%= f.text_field :nearest_station2, class: 'form-control' %>
     <span class="input_example">入力例：相模原線 橋本駅</span>
   </div>
-  <div class="mt-1">
-    <%= f.label :name, "営業時間 ランチ平日" %>
-    <%= f.text_field :sales_time_lanch_weekday, class: 'form-control' %>
-    <span class="input_example">入力例：11:30 ～ 15:00 (13:00)　<strong>※()はラストオーダーの時間</strong></span>
-  </div>
-  <div class="mt-1">
-    <%= f.label :name, "営業時間 ランチ土日祝" %>
-    <%= f.text_field :sales_time_lanch_holiday, class: 'form-control' %>
-    <span class="input_example">入力例：12:00 ～ 15:00 (13:00)　<strong>※()はラストオーダーの時間</strong></span>
-  </div>
-  <div class="mt-1">
-    <%= f.label :name, "営業時間 ディナー平日" %>
-    <%= f.text_field :sales_time_dinner_weekday, class: 'form-control' %>
-    <span class="input_example">入力例：18:00 ～ 22:00 (20:00)　<strong>※()はラストオーダーの時間</strong></span>
-  </div>
-  <div class="mt-1">
-    <%= f.label :name, "営業時間 ディナー土日祝" %>
-    <%= f.text_field :sales_time_dinner_holiday, class: 'form-control' %>
-    <span class="input_example">入力例：18:00 ～ 22:00 (20:00)　<strong>※()はラストオーダーの時間</strong></span>
+
+  <div class="sales_content">
+    <div class="radio-group">
+      <div class="radio-item">
+        <%= f.radio_button :sales_flg, 1, checked: @store.sales_flg == 1 %>
+        <%= f.label :sales_flg, "ランチ・ディナーごと", value: 1 %>
+      </div>
+      <div class="radio-item">
+        <%= f.radio_button :sales_flg, 2, checked: @store.sales_flg == 2 %>
+        <%= f.label :sales_flg, "曜日ごと", value: 2 %>
+      </div>
+    </div>
+
+    <div id="salse_flg_1">
+      <div class="mt-1">
+        <%= f.label :name, "営業時間 ランチ平日" %>
+        <%= f.text_field :sales_time_lanch_weekday, class: 'form-control' %>
+        <span class="input_example">入力例：11:30 ～ 15:00 (13:00)　<strong>※()はラストオーダーの時間</strong></span>
+      </div>
+      <div class="mt-1">
+        <%= f.label :name, "営業時間 ランチ土日祝" %>
+        <%= f.text_field :sales_time_lanch_holiday, class: 'form-control' %>
+        <span class="input_example">入力例：12:00 ～ 15:00 (13:00)　<strong>※()はラストオーダーの時間</strong></span>
+      </div>
+      <div class="mt-1">
+        <%= f.label :name, "営業時間 ディナー平日" %>
+        <%= f.text_field :sales_time_dinner_weekday, class: 'form-control' %>
+        <span class="input_example">入力例：18:00 ～ 22:00 (20:00)　<strong>※()はラストオーダーの時間</strong></span>
+      </div>
+      <div class="mt-1">
+        <%= f.label :name, "営業時間 ディナー土日祝" %>
+        <%= f.text_field :sales_time_dinner_holiday, class: 'form-control' %>
+        <span class="input_example">入力例：18:00 ～ 22:00 (20:00)　<strong>※()はラストオーダーの時間</strong></span>
+      </div>
+    </div>
+
+    <div id="salse_flg_2">
+      <div id="business-hours-fields">
+        <%= f.fields_for :business_hours do |bh_form| %>
+          <div class="business-hours-group" data-index="<%= bh_form.index %>">
+            <%= render 'business_hours_fields', f: bh_form %>
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to '営業時間を追加', '#', class: 'add-business-hours' %>
+      </div>
+    </div>
   </div>
   <div class="mt-1">
     <%= f.label :name, "定休日" %>
     <%= f.text_field :holiday, class: 'form-control' %>
     <span class="input_example">入力例：水曜日、第1・3火曜日</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "支払い方法" %>
     <%= f.text_field :pay_methods, class: 'form-control' %>
     <span class="input_example">入力例：PayPay,楽天ペイ,現金,クレジットカード,交通系IC,メルペイ,PayPal,暗号通貨</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "ホームページURL" %>
     <%= f.text_field :homepage_url, class: 'form-control' %>
     <span class="input_example">入力例：https://www.google.com/</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "食べログリンク" %>
     <%= f.text_field :sns_link_tabelog, class: 'form-control' %>
     <span class="input_example">入力例：https://tabelog.com/</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "ツイッターリンク" %>
     <%= f.text_field :sns_link_twitter, class: 'form-control' %>
     <span class="input_example">入力例：https://twitter.com/?lang=ja</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "インスタグラム" %>
     <%= f.text_field :sns_link_instagram, class: 'form-control' %>
     <span class="input_example">入力例：https://www.instagram.com/</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "フェースブック" %>
     <%= f.text_field :sns_link_facebook, class: 'form-control' %>
     <span class="input_example">入力例：https://facebook.com/</span>
   </div>
+
   <div class="mt-1">
     <%= f.label :name, "LINEリンク" %>
     <%= f.text_field :sns_link_line, class: 'form-control' %>
@@ -112,3 +165,5 @@
     <%= f.submit '更新', class: 'btn btn-info mt-2' %>  
   </div>
 <% end %>
+
+

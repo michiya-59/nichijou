@@ -145,14 +145,18 @@
     <div class="related_articles">
       <h3 class="common_title_h3">関連記事</h3>
       <div class="common_content related_contents">
-        <% @related_articles.each do |elated_article| %>
-          <%= link_to article_path(elated_article), class: "common_content_part related" do %>
-            <div class="image_part">
-              <%= image_tag elated_article.top_image if elated_article.top_image.attached? %>
-            </div>
-            <p><%= truncate_content(elated_article.title, 33) %></p>
-            <p><%= elated_article.created_at.strftime("%Y/%m/%d") %></p>
+        <% if @related_articles.present? %>
+          <% @related_articles.each do |elated_article| %>
+            <%= link_to article_path(elated_article), class: "common_content_part related" do %>
+              <div class="image_part">
+                <%= image_tag elated_article.top_image if elated_article.top_image.attached? %>
+              </div>
+              <p><%= truncate_content(elated_article.title, 33) %></p>
+              <p><%= elated_article.created_at.strftime("%Y/%m/%d") %></p>
+            <% end %>
           <% end %>
+        <% else %>
+          <p class="not_content">関連記事がひとつもありません。</p>
         <% end %>
       </div>
     </div>
