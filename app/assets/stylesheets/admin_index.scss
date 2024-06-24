@@ -292,3 +292,66 @@ img{
   bottom: -1.9rem;
 }
 // クーポン自体のスタイル
+#salse_flg_2{
+  margin-top: 2rem;
+}
+.sales_content{
+  border: 1px solid #b5b5b5;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  .radio-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    .radio-item {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem; /* 必要に応じて間隔を調整してください */
+    }
+  }
+}
+.day-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  .week_group{
+    display: flex;
+  }
+  span{
+    margin-bottom: 0.5rem;
+  }
+}
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  input[type="checkbox"]{
+    margin-right: 0.3rem;
+  }
+}
+.business-hours-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.day-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  span{
+    margin: 0 0.5rem;
+  }
+  label {
+    width: 5rem;
+  }
+}
+.business_hours_group_part{
+  display: flex;
+  .last_order{
+    margin-left: 2rem;
+    label{
+      width: 7.5rem;
+    }
+  }
+}
