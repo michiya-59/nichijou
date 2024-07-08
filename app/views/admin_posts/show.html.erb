@@ -8,7 +8,7 @@
     トップ画像
   </div>
   <div class="card-body text-center">
-    <%= image_tag @post.top_image if @post.top_image.attached? %>
+    <%= image_tag @post&.top_image if @post&.top_image&.attached? %>
   </div>
 </div>
 
@@ -17,7 +17,7 @@
     基本情報
   </div>
   <div class="card-body">
-    <p><strong>投稿日時:</strong> <%= @post.created_at.strftime('%Y/%m/%d') %></p>
+    <p><strong>投稿日時:</strong> <%= @post&.created_at&.strftime('%Y/%m/%d') %></p>
     <p><strong>カテゴリー:</strong> <%= @post&.category&.name %></p>
     <p><strong>エリア:</strong> 都道府県：<%= @post&.area&.name %>, 市区郡：<%= @post&.area&.city_name %></p>
   </div>
@@ -28,7 +28,7 @@
     投稿内容
   </div>
   <div class="card-body">
-    <%= sanitize(markdown(@post.content)) %>
+    <%= sanitize(markdown(@post&.content)) %>
   </div>
 </div>
 <h3 class="mt-4">店舗情報</h3>
@@ -38,29 +38,29 @@
     <div>
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <%= @post.store.name %>の情報
+          <%= @post&.store&.name %>の情報
         </div>
         <div class="card-body">
-          <p><strong>店舗名:</strong> <%= @post.store.name %></p>
-          <p><strong>電話番号:</strong> <%= @post.store.tel %></p>
-          <p><strong>住所:</strong> <%= @post.store.address %></p>
-          <p><strong>Google MapのURL:</strong> <%= @post.store.google_map_url %></p>
-          <p><strong>徒歩 アクセス方法:</strong> <%= @post.store.access %></p>
-          <p><strong>バス アクセス方法:</strong> <%= @post.store.access2 %></p>
-          <p><strong>最寄駅:</strong> <%= @post.store.nearest_station %></p>
-          <p><strong>最寄駅２:</strong> <%= @post.store.nearest_station2 %></p>
-          <p><strong>営業時間 ランチ平日:</strong> <%= @post.store.sales_time_lanch_weekday %></p>
-          <p><strong>営業時間 ランチ土日祝:</strong> <%= @post.store.sales_time_lanch_holiday %></p>
-          <p><strong>営業時間 ディナー平日:</strong> <%= @post.store.sales_time_dinner_weekday %></p>
-          <p><strong>営業時間 ディナー土日祝:</strong> <%= @post.store.sales_time_dinner_holiday %></p>
-          <p><strong>定休日:</strong> <%= @post.store.holiday %></p>
-          <p><strong>支払い方法:</strong> <%= @post.store.pay_methods %></p>
-          <p><strong>ホームページURL:</strong> <%= @post.store.homepage_url %></p>
-          <p><strong>食べログリンク:</strong> <%= @post.store.sns_link_tabelog %></p>
-          <p><strong>ツイッターリンク:</strong> <%= @post.store.sns_link_twitter %></p>
-          <p><strong>インスタグラムリンク:</strong> <%= @post.store.sns_link_instagram %></p>
-          <p><strong>フェースブックリンク:</strong> <%= @post.store.sns_link_facebook %></p>
-          <p><strong>LINEリンク:</strong> <%= @post.store.sns_link_line %></p>
+          <p><strong>店舗名:</strong> <%= @post&.store&.name %></p>
+          <p><strong>電話番号:</strong> <%= @post&.store&.tel %></p>
+          <p><strong>住所:</strong> <%= @post&.store&.address %></p>
+          <p><strong>Google MapのURL:</strong> <%= @post&.store&.google_map_url %></p>
+          <p><strong>徒歩 アクセス方法:</strong> <%= @post&.store&.access %></p>
+          <p><strong>バス アクセス方法:</strong> <%= @post&.store&.access2 %></p>
+          <p><strong>最寄駅:</strong> <%= @post&.store&.nearest_station %></p>
+          <p><strong>最寄駅２:</strong> <%= @post&.store&.nearest_station2 %></p>
+          <p><strong>営業時間 ランチ平日:</strong> <%= @post&.store&.sales_time_lanch_weekday %></p>
+          <p><strong>営業時間 ランチ土日祝:</strong> <%= @post&.store&.sales_time_lanch_holiday %></p>
+          <p><strong>営業時間 ディナー平日:</strong> <%= @post&.store&.sales_time_dinner_weekday %></p>
+          <p><strong>営業時間 ディナー土日祝:</strong> <%= @post&.store&.sales_time_dinner_holiday %></p>
+          <p><strong>定休日:</strong> <%= @post&.store&.holiday %></p>
+          <p><strong>支払い方法:</strong> <%= @post&.store&.pay_methods %></p>
+          <p><strong>ホームページURL:</strong> <%= @post&.store&.homepage_url %></p>
+          <p><strong>食べログリンク:</strong> <%= @post&.store&.sns_link_tabelog %></p>
+          <p><strong>ツイッターリンク:</strong> <%= @post&.store&.sns_link_twitter %></p>
+          <p><strong>インスタグラムリンク:</strong> <%= @post&.store&.sns_link_instagram %></p>
+          <p><strong>フェースブックリンク:</strong> <%= @post&.store&.sns_link_facebook %></p>
+          <p><strong>LINEリンク:</strong> <%= @post&.store&.sns_link_line %></p>
         </div>
       </div>
     </div>
