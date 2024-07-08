@@ -19,12 +19,16 @@ class ArticlesController < ApplicationController
     # rubocop:disable Rails/SkipsModelValidations
     @article.increment!(:view_count)
     # rubocop:enable Rails/SkipsModelValidations
-    @store = Store.find(@article.store_id)
-    @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
-    @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
-    @related_articles = Post.includes(top_image_attachment: :blob).where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id)
-      .where.not(id: @article.id)
-      .limit(4)
+    if @article&.store_id.present?
+      @store = Store.find(@article&.store_id)
+      @coupons_list_1 = Coupon.where(store_id: @store.id).where(coupon_type_id: 1)
+      @coupons_list_2 = Coupon.where(store_id: @store.id).where(coupon_type_id: 2)
+      @related_articles = Post.includes(top_image_attachment: :blob).where("category_id = ? OR area_id = ?", @article.category_id, @article.area_id)
+        .where.not(id: @article.id)
+        .limit(4)
+    else
+      redirect_to root_path
+    end
   end
 
   def authentication_approval

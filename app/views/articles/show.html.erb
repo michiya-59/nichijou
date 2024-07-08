@@ -60,7 +60,7 @@
 
     <% if @coupons_list_1.present? || @coupons_list_2.present? %>
       <div class="coupon_content">
-        <p class="coupon_name"><%= @store.name %> のクーポン一覧 （全<%= (@coupons_list_1 + @coupons_list_2).size%>枚）</p>
+        <p class="coupon_name"><%= @store&.name %> のクーポン一覧 （全<%= (@coupons_list_1 + @coupons_list_2).size%>枚）</p>
 
         <% if @coupons_list_1.present? %>
           <p class="coupon_name">初回来店用クーポン</p>
