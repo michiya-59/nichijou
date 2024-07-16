@@ -42,5 +42,7 @@ import "bootstrap"
 import jquery from "jquery"
 window.$ = jquery
 import Rails from "@rails/ujs"
+import "chartkick"
+import "Chart.bundle"
 Rails.start()
 

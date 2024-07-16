@@ -56,6 +56,25 @@ class AdminPostsController < ApplicationController
     render json: {url: url_for(blob)}
   end
 
+  def view_counts
+    @post = Post.find(params[:id])
+    view_counts_data = StoreMonthlyPostView.where(post_id: params[:id])
+      .group("DATE_TRUNC('month', view_month)")
+      .sum(:view_counts)
+      .transform_keys{|date| date.strftime("%Y-%m")}
+
+    # 1月から12月までの全ての月を含むハッシュを作成
+    current_year = Time.zone.now.year
+    all_months = (1..12).map{|month| Date.new(current_year, month, 1).strftime("%Y-%m")}
+
+    @all_view_counts = all_months.index_with do |year_month|
+      view_counts_data[year_month] || 0
+    end
+
+    current_year_month = Time.zone.now.strftime("%Y-%m")
+    @all_view_counts[current_year_month] += @post&.view_count.to_i
+  end
+
   private
 
   def set_post

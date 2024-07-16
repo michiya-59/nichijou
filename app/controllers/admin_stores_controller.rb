@@ -50,6 +50,32 @@ class AdminStoresController < ApplicationController
     redirect_to admin_stores_path
   end
 
+  def view_counts
+    @store = Store.find(params[:id])
+
+    # 今月の投稿の全てのview_countカラムを合計
+    Time.zone.now.beginning_of_month
+    @current_month_view_count = Post.where(store_id: @store.id)
+      .sum(:view_count)
+
+    # store_idが@store.idの投稿の月毎の閲覧数を取得
+    store_view_counts_data = StoreMonthlyPostView.where(store_id: @store.id)
+      .group("DATE_TRUNC('month', view_month)")
+      .sum(:view_counts)
+      .transform_keys{|date| date.strftime("%Y-%m")}
+
+    # 1月から12月までの全ての月を含むハッシュを作成
+    current_year = Time.zone.now.year
+    all_months = (1..12).map{|month| Date.new(current_year, month, 1).strftime("%Y-%m")}
+
+    @all_view_counts = all_months.index_with do |year_month|
+      store_view_counts_data[year_month] || 0
+    end
+
+    current_year_month = Time.zone.now.strftime("%Y-%m")
+    @all_view_counts[current_year_month] = @current_month_view_count
+  end
+
   private
 
   def set_store

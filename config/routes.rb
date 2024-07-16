@@ -25,10 +25,13 @@ Rails.application.routes.draw do
   end
   resources :admin_posts do
     post "upload_content_image", on: :collection
+    get "view_counts", on: :member
   end
   resources :admin_categories, only: %i(index new create edit update destroy)
   resources :admin_areas, only: %i(index new create edit update destroy)
-  resources :admin_stores
+  resources :admin_stores do
+    get "view_counts", on: :member
+  end
   resources :admin_notices
   resources :admin_company_users do
     collection do
