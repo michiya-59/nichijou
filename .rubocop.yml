@@ -537,6 +537,7 @@ Metrics/BlockLength:
     - "db/**/*"
     - "spec/**/*"
     - "config/**/*"
+  Max: 40
 
 Metrics/PerceivedComplexity:
   Max: 20

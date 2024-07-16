@@ -31,7 +31,8 @@
           <% if !current_company_admin? %>
             <%= link_to '削除', admin_store_path(store), method: :delete, data: { confirm: "削除しますか？" }, class: 'btn btn-sm btn-danger me-2' %>
           <% end %>
-          <%= link_to 'クーポン', admin_coupons_path(store_id: store.id), class: 'btn btn-sm bg-info me-2' %> 
+          <%= link_to '閲覧数', view_counts_admin_store_path(store.id), class: 'btn btn-sm btn-secondary me-2' %> 
+          <%= link_to 'クーポン', admin_coupons_path(store_id: store.id), class: 'btn btn-sm btn-info me-2' %> 
         </td>
       </tr>
     <% end %>

@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "admin_index" %>
+
+<h2 class="mb-5">【投稿タイトル：<span class="fw-bold"><%= truncate_content(@post&.title, 15) %></span>】の閲覧数</h2>
+
+<div class="card p-3">
+  <h3 class="mb-3 border-end"><%= Time.now.month %>月の閲覧数(今月)</h3>
+  <h4 class="fw-bold"><%= @post&.view_count.to_i %>回</h4>
+</div>
+
+<h2 class="mb-2 mt-5"><%= Time.now.strftime("%Y年") %> 月毎の閲覧数</h2>
+<%= line_chart @all_view_counts.transform_keys { |year_month| Date.strptime(year_month, "%Y-%m").strftime("%Y年%-m月") } %>
+
+<%= link_to '戻る', admin_posts_path, class: 'btn btn-warning mt-3' %>

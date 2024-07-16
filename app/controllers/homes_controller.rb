@@ -18,8 +18,15 @@ class HomesController < ApplicationController
   private
 
   def get_offset_number limit_number
+    # 5件目から始めて6件を取得する際に、5件未満の場合はオフセットを0にする
     offset_number = Post.order(view_count: :desc).offset(5).limit(6).count < 5 ? 0 : 5
-    Post.with_attached_top_image.order(view_count: :desc).offset(offset_number).limit(limit_number)
+
+    # view_countが0で同じ場合はランダムに並べる
+    Post.with_attached_top_image
+      .order(view_count: :desc)
+      .order(Arel.sql("CASE WHEN view_count = 0 THEN RANDOM() END"))
+      .offset(offset_number)
+      .limit(limit_number)
   end
 
   def load_data
