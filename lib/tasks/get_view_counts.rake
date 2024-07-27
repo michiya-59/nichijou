@@ -7,8 +7,7 @@ namespace :get_view_counts do
     current_time = Time.zone.now
     batch_info = {}
 
-    # if current_time.day == current_time.end_of_month.day && current_time.hour == 23 && current_time.min == 50
-    if current_time.day == 16
+    if current_time.day == current_time.end_of_month.day && current_time.hour == 23 && current_time.min == 40
       Post.find_each do |post|
         # 既存のレコードがあるかどうかを確認
         existing_record = StoreMonthlyPostView.find_by(post_id: post.id, store_id: post.store_id, view_month: current_time)
