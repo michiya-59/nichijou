@@ -10,11 +10,13 @@
       </div>
 
       <%# 電話番号 %>
-      <div class="store_info_part">
-        <%= image_tag 'tel.svg', class: 'store_info_img', alt: '電話アイコン' %>
-        <p class="store_info_title">TEL</p>
-        <p class="store_info_body"><%= link_to article&.store&.tel, "tel:#{article&.store&.tel}" %></p>
-      </div>
+      <% if article&.store&.tel.present? %>
+        <div class="store_info_part">
+          <%= image_tag 'tel.svg', class: 'store_info_img', alt: '電話アイコン' %>
+          <p class="store_info_title">TEL</p>
+          <p class="store_info_body"><%= link_to article&.store&.tel, "tel:#{article&.store&.tel}" %></p>
+        </div>
+      <% end %>
 
       <%# 位置情報 %>
       <div class="store_info_part multiple_lines">

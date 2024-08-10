@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_10_144432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -161,7 +161,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_152835) do
 
   create_table "stores", force: :cascade do |t|
     t.string "name", null: false, comment: "店舗名"
-    t.string "tel", null: false, comment: "電話番号"
+    t.string "tel", comment: "電話番号"
     t.string "address", null: false, comment: "住所"
     t.string "access", comment: "徒歩 アクセス方法"
     t.string "access2", comment: "バス アクセス方法"

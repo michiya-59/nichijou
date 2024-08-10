@@ -8,6 +8,5 @@ class Store < ApplicationRecord
   accepts_nested_attributes_for :business_hours, allow_destroy: true
 
   validates :name, presence: true
-  validates :tel, presence: true
   validates :address, presence: true
 end

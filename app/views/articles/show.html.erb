@@ -22,7 +22,7 @@
         <% image = @article.top_image if @article.top_image.attached? %>
         <%= image_tag(image, alt: "#{@article&.store&.name} #{@article&.area&.city_name}の#{@article&.category&.name}", class: "detail_img") %>
         <h2><%= @article.title %></h2>
-        
+
         <div class="detail_content_sub_bottom">
           <dziv class="clock">
             <div class="clock_img">
