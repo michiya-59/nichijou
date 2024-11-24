@@ -17,7 +17,7 @@ $breakpoint: (
 
 html {
   font-size: 62.5%;
-  
+
   @media (max-width: 1024px) {
     font-size: 50%;// タブレットサイズ
   }
@@ -223,6 +223,7 @@ $beige: #BB915B;
   font-size: 1.6rem;
   font-weight: bold;
   color: #331102;
+  align-items: center;
   li{
     margin-left: 3.1rem;
     a{
@@ -254,6 +255,90 @@ $beige: #BB915B;
   }
   li:nth-child(1){
     margin: 0;
+  }
+}
+.store_request {
+  background: #806b62;
+  color: white;
+  width: 18rem;
+  text-align: center;
+  height: 4rem;
+  align-content: center;
+  border-radius: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  padding-left: 10px;
+
+  @include responsive_media(tab_820){
+    font-size: 2rem;
+    width: 25rem;
+  }
+
+  @include responsive_media(sp){
+    margin-right: 2rem;
+    width: 19rem;
+    font-size: 1.6rem;
+  }
+
+  @include responsive_media(sp_375){
+    margin-right: 1rem;
+    width: 17rem;
+    font-size: 1.6rem;
+    padding-left: 5px;
+  }
+
+  @include responsive_media(sp_320){
+    width: 15rem;
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+  }
+
+  a {
+    padding: 0 !important;
+    position: unset !important;
+
+    &:hover {
+      content: none;
+      &::after {
+        transform: none; /* アニメーションを削除 */
+        transition: none; /* アニメーションを無効化 */
+      }
+    }
+
+    &::after {
+      content: '';
+      transform: none; /* 初期状態のtransformも無効化 */
+      transform-origin: none; /* 基点設定を削除 */
+    }
+  }
+
+  .store_request_arrow {
+    @include responsive_media(sp){
+      width: 2.5rem;
+      height: 2.5rem;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    @include responsive_media(sp_375){
+      width: 1.5rem;
+      height: 1.5rem;
+      position: relative;
+      top: -2px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    @include responsive_media(sp_320){
+      top: -1px;
+    }
   }
 }
 .common_a{
@@ -358,9 +443,12 @@ header{
   display: flex;
   width: 78%;
   margin: 3rem auto 2rem auto;
+
   @include responsive_media(tab){
-    width: 94%;
+    width: 90%;
+    align-items: center;
   }
+
   @include responsive_media(tab_820){
     width: 87%;
     margin: 2.5rem auto 1rem auto;
@@ -371,11 +459,21 @@ header{
       }
     }
   }
+
   .header_left{
     width: 30rem;
     height: 6.5rem;
+    @include responsive_media(tab){
+      width: 25rem;
+      height: 5.5rem;
+    }
+
     @include responsive_media(sp){
-      width: 28rem;
+      width: 24rem;
+
+      img {
+        object-fit: contain;
+      }
     }
   }
   .header_right{
@@ -390,13 +488,25 @@ header{
     display: none;
     margin-left: auto;
     z-index: 1002;
+
     @include responsive_media(tab_820){
       padding-top: 2px;
-      display: block;
+      display: flex;
+      gap: 0 3rem;
+    }
+    @include responsive_media(tab_768){
+      display: flex;
+      align-items: baseline;
+      gap: 0 3rem;
     }
     @include responsive_media(sp){
-      display: block;
+      display: flex;
       padding: 0;
+      gap: 0 1rem;
+    }
+    @include responsive_media(sp_375){
+      display: flex;
+      gap: 0;
     }
   }
 }
@@ -411,6 +521,7 @@ header{
     cursor: pointer;
     z-index: 1000;/* Ensure the icon stays on top when open */
     margin-top: 0;
+    top: -3px;
   }
   #nav-icon span {
     display: block;
@@ -494,11 +605,14 @@ header{
     line-height: 2.6rem;
   }
 }
-@media (max-width: 767px) {
+
+@media (max-width: 768px) {
   #nav-icon{
     padding-top: 0;
     margin-top: 0;
     width: 4rem;
+    position: relative;
+    top: -6px;
   }
   #nav-icon span:nth-child(1) {
     top: 11px
@@ -1576,7 +1690,7 @@ select{
     }
     p{
       font-size: 1.7rem;
-      width: 75%;     
+      width: 75%;
     }
     &::after{
       height: 28rem;
